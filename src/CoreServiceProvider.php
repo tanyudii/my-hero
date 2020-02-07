@@ -25,8 +25,17 @@ class CoreServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->registerAssets();
+
+        $this->registerSchemas();
+
+        $this->registerEvents();
+
+    }
+
+    protected function registerAssets() {
         $this->mergeConfigFrom(
-            __DIR__ . '/../assets/configs/smoothsystem.php',
+            __DIR__ . '/../assets/config/smoothsystem.php',
             'smoothsystem'
         );
 
@@ -39,11 +48,6 @@ class CoreServiceProvider extends ServiceProvider
             [__DIR__ . '/../assets/seeds' => database_path('seeds')],
             'smoothsystem'
         );
-
-        $this->registerSchemas();
-
-        $this->registerEvents();
-
     }
 
     protected function registerSchemas()

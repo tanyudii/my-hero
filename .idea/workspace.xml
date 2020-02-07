@@ -2,41 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cd5ef72a-c61b-4f84-81f8-e63553e98d58" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/core.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/config/smoothsystem.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/migrations/2014_10_12_000001_create_roles_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/migrations/2014_10_12_000002_create_role_users_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/migrations/2014_10_12_000003_create_login_activities_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/seeds/RoleUsersTableSeeder.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/seeds/RolesTableSeeder.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/seeds/UsersTableSeeder.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/CoreServiceProvider.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entities/LoginActivity.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entities/Role.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entities/RoleUser.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entities/User.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Helpers/Global.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Http/Resources/SelectResource.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Listeners/Creating.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Listeners/Deleting.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Listeners/LogSuccessfulLogin.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Listeners/Restoring.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Listeners/TokenSuccessfulGenerate.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Listeners/Updating.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Rules/MustBeTrue.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Rules/NotPresent.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Utilities/Entities/BaseEntity.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Utilities/Entities/HasManySyncable.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Utilities/Entities/User.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Utilities/Interfaces/BaseController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Utilities/Traits/CoreController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Utilities/UserStamp.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Utilities/UserStampScope.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CoreServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/CoreServiceProvider.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,7 +118,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1581086540207</updated>
-      <workItem from="1581086544647" duration="5619000" />
+      <workItem from="1581086544647" duration="6089000" />
     </task>
     <servers />
   </component>
