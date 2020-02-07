@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cd5ef72a-c61b-4f84-81f8-e63553e98d58" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Commands/RefreshCommand.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/config/smoothsystem.php" beforeDir="false" afterPath="$PROJECT_DIR$/assets/config/smoothsystem.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CoreServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/CoreServiceProvider.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -118,7 +120,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1581086540207</updated>
-      <workItem from="1581086544647" duration="6478000" />
+      <workItem from="1581086544647" duration="7113000" />
     </task>
     <servers />
   </component>
@@ -142,14 +144,14 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="499" y="165" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.834@0.0.1536.834" timestamp="1581089710979" />
-    <state x="499" y="173" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1581093317927">
+    <state x="499" y="173" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1581094562181">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="499" y="173" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.834@0.0.1536.834" timestamp="1581093317927" />
-    <state x="552" y="233" key="NewPhpClassDialog" timestamp="1581092916433">
+    <state x="499" y="173" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.834@0.0.1536.834" timestamp="1581094562181" />
+    <state x="552" y="233" key="NewPhpClassDialog" timestamp="1581094394851">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="552" y="233" key="NewPhpClassDialog/0.0.1536.834@0.0.1536.834" timestamp="1581092916433" />
+    <state x="552" y="233" key="NewPhpClassDialog/0.0.1536.834@0.0.1536.834" timestamp="1581094394851" />
     <state x="604" y="342" key="NewPhpFileDialog" timestamp="1581092863998">
       <screen x="0" y="0" width="1536" height="834" />
     </state>

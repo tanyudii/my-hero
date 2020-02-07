@@ -5,6 +5,7 @@ namespace Smoothsystem\Core;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Passport\Passport;
 
 class CoreServiceProvider extends ServiceProvider
 {
@@ -30,6 +31,12 @@ class CoreServiceProvider extends ServiceProvider
         $this->registerSchemas();
 
         $this->registerEvents();
+
+        $this->registerCommands();
+
+        if (config('smoothsystem.passport.register', true)) {
+            $this->registerPassport();
+        }
 
     }
 
@@ -94,5 +101,23 @@ class CoreServiceProvider extends ServiceProvider
             'Laravel\Passport\Events\AccessTokenCreated',
             'Smoothsystem\Core\Listeners\TokenSuccessfulGenerate'
         );
+    }
+
+    protected function registerCommands()
+    {
+        $this->commands('Smoothsystem\Core\Commands\RefreshCommand');
+    }
+
+    protected function registerPassport()
+    {
+        if (!config('smoothsystem.passport.custom_routes', false)) {
+            Passport::routes();
+        }
+
+        Passport::tokensExpireIn(now()->addDays(config('smoothsystem.passport.expires.token', 15)));
+
+        Passport::refreshTokensExpireIn(now()->addDays(config('smoothsystem.passport.expires.refresh_token', 30)));
+
+        Passport::personalAccessTokensExpireIn(now()->addMonths(config('smoothsystem.passport.expires.personal_access_token', 6)));
     }
 }
