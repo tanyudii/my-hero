@@ -12,11 +12,11 @@ class RoleUser extends BaseEntity
     ];
 
     public function user() {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(userClass());
     }
 
     public function role() {
-        return $this->belongsTo(Role::class);
+        return $this->belongsTo(roleClass());
     }
 
 }

@@ -17,15 +17,11 @@ class RoleUsersTableSeeder extends Seeder
         ];
 
         foreach ($users as $email => $roleCode) {
-            $roleClass = config('smoothsystem.providers.roles.model');
-            $userClass = config('auth.providers.users.model');
-            $roleUserClass = config('auth.providers.users.model');
-
-            $role = $roleClass::where('code', $roleCode)->first();
-            $user = $userClass::where('email', $email)->first();
+            $role = roleClass()::where('code', $roleCode)->first();
+            $user = userClass()::where('email', $email)->first();
 
             if ($user && $role) {
-                $roleUserClass::create([
+                roleUserClass()::create([
                     'role_id' => $role->id,
                     'user_id' => $user->id,
                     'created_by' => 1,

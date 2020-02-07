@@ -12,5 +12,11 @@ class Role extends BaseEntity
         'description',
     ];
 
+    public function users() {
+        return $this->belongsToMany(userClass());
+    }
 
+    public function roleUsers() {
+        return $this->hasMany(roleClass());
+    }
 }

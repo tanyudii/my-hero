@@ -34,9 +34,7 @@ class UsersTableSeeder extends Seeder
             $user['email_verified_at'] = now();
             $user['remember_token'] = Str::random(10);
 
-            $userClass = config('auth.providers.users.model');
-
-            $userClass::create($user);
+            userClass()::create($user);
         }
     }
 }
