@@ -21,19 +21,19 @@ class User extends Authenticatable
     ];
 
     public function roles() {
-        return $this->belongsToMany(roleClass());
+        return $this->belongsToMany(roleClass(), 'role_users');
     }
 
-    public function roleUser() {
+    public function roleUsers() {
         return $this->hasMany(roleUserClass());
     }
 
-    public function getRoleUser() {
-        return $this->roleUser()->orderByDesc('valid_from')->first();
+    public function getRoleUserAttribute() {
+        return $this->roleUsers()->orderByDesc('valid_from')->first();
     }
 
-    public function getRole() {
-        $roleUser = $this->roleUser();
+    public function getRoleAttribute() {
+        $roleUser = $this->roleUser;
 
         return $roleUser ? $roleUser->role : null;
     }
