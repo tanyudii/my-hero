@@ -18,7 +18,7 @@ class CreateRoleUsersTable extends Migration
 
             $table->relation('role_id', 'roles');
             $table->relation('user_id', 'users');
-            $table->dateTime('valid_from');
+            $table->timestamp('valid_from');
 
             $table->userTimeStamp();
         });

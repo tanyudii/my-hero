@@ -12,8 +12,8 @@ class RoleUsersTableSeeder extends Seeder
     public function run()
     {
         $users = [
-            'admin@ss.id' => 'admin',
-            'user@ss.id' => 'user',
+            'admin@ss.com' => 'admin',
+            'user@ss.com' => 'user',
         ];
 
         foreach ($users as $email => $roleCode) {
