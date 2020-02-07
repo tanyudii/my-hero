@@ -1,0 +1,29 @@
+{
+    "name": "smoothsystem/core",
+    "description": "SmoothSystem[TM]",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Yudi Hertanto",
+            "email": "y.hertanto17@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.2",
+        "ext-json": "*",
+        "laravel/framework": "^6.2",
+        "laravel/passport": "^8.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Smoothsystem\\Core\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Smoothsystem\\Core\\CoreServiceProvider"
+            ]
+        }
+    }
+}
