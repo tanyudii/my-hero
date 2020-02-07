@@ -42,20 +42,20 @@ class CoreServiceProvider extends ServiceProvider
 
     protected function registerAssets() {
         $this->mergeConfigFrom($config = __DIR__ . '/../assets/config/smoothsystem.php',
-            'smoothsystem');
+            'smoothsystem-config');
 
         if ($this->app->runningInConsole()) {
-            $this->publishes([$config => config_path('smoothsystem.php')], 'smoothsystem');
+            $this->publishes([$config => config_path('smoothsystem.php')], 'smoothsystem-config');
         }
 
         $this->publishes(
             [__DIR__ . '/../assets/migrations' => database_path('migrations')],
-            'smoothsystem'
+            'smoothsystem-migration'
         );
 
         $this->publishes(
             [__DIR__ . '/../assets/seeds' => database_path('seeds')],
-            'smoothsystem'
+            'smoothsystem-seed'
         );
     }
 
