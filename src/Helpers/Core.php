@@ -9,5 +9,5 @@ function roleClass() {
 }
 
 function roleUserClass() {
-    return config('smoothsystem.providers.role_users.model', \Smoothsystem\Core\Entities\Role::class);
+    return config('smoothsystem.providers.role_users.model', \Smoothsystem\Core\Entities\RoleUser::class);
 }
