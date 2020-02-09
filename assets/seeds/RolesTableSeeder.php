@@ -26,7 +26,7 @@ class RolesTableSeeder extends Seeder
             $role['created_by'] = 1;
             $role['updated_by'] = 1;
 
-            roleClass()::create($role);
+            config('smoothsystem.models.role')::create($role);
         }
     }
 }
