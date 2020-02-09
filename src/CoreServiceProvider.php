@@ -54,6 +54,11 @@ class CoreServiceProvider extends ServiceProvider
         );
 
         $this->publishes(
+            [__DIR__ . '/../assets/factories' => database_path('factories')],
+            'smoothsystem-factory'
+        );
+
+        $this->publishes(
             [__DIR__ . '/../assets/seeds' => database_path('seeds')],
             'smoothsystem-seed'
         );
