@@ -10,13 +10,9 @@ return [
             'personal_access_token' => 6, //months
         ]
     ],
-
-    'providers' => [
-        'roles' => [
-            'model' => Smoothsystem\Core\Entities\Role::class
-        ],
-        'role_users' => [
-            'model' => Smoothsystem\Core\Entities\RoleUser::class
-        ]
+    'models' => [
+        'user' => config('auth.providers.users.model'),
+        'role' => Smoothsystem\Core\Entities\Role::class,
+        'role_user' => Smoothsystem\Core\Entities\RoleUser::class
     ]
 ];

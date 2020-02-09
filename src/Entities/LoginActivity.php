@@ -13,7 +13,7 @@ class LoginActivity extends BaseEntity
     ];
 
     public function user() {
-        return $this->belongsTo(userClass());
+        return $this->belongsTo(config('smoothsystem.models.user'));
     }
 
 }

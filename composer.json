@@ -17,7 +17,10 @@
     "autoload": {
         "psr-4": {
             "Smoothsystem\\Core\\": "src/"
-        }
+        },
+        "files": [
+            "src/helper.php"
+        ]
     },
     "extra": {
         "laravel": {

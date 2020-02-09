@@ -34,7 +34,7 @@ class UsersTableSeeder extends Seeder
             $user['email_verified_at'] = now();
             $user['remember_token'] = Str::random(10);
 
-            userClass()::create($user);
+            config('smoothsystem.models.user')::create($user);
         }
     }
 }
