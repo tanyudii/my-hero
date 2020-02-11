@@ -8,6 +8,10 @@
 - smoothsystem-seed
 - smoothsystem-factories
 
+## Installation Authorizations
+- Set register authorization to true in config smoothsystem.authorization
+- Register middleware 'smoothsystem.gate' => \Smoothsystem\Core\Http\Middleware\Gate::class
+
 ## Installation Instructions
 - Delete migration default (users, failed_jobs, jobs);
 - Register seeds (users, roles, role_users in DatabaseSeeder)

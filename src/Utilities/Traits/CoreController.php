@@ -12,6 +12,7 @@ trait CoreController
     protected $repository;
     protected $resource;
     protected $selectResource;
+
     public function index(Request $request) {
         if (empty($request->per_page)) {
             $data = $this->repository->all();
@@ -73,5 +74,9 @@ trait CoreController
                 'message' => $e->getMessage()
             ]);
         }
+    }
+
+    public function getRepository() {
+        return $this->repository;
     }
 }
