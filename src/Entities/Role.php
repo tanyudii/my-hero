@@ -10,6 +10,7 @@ class Role extends BaseEntity
         'code',
         'name',
         'description',
+        'is_special',
     ];
 
     public function users() {
