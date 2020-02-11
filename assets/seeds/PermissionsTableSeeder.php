@@ -17,7 +17,7 @@ class PermissionsTableSeeder extends Seeder
                 continue;
             }
 
-            \App\Entities\Permission::create([
+            config('smoothsystem.models.permission')::create([
                 'name' => $route->getName(),
                 'controller' => \Illuminate\Support\Arr::first(explode('@', $route->getActionName())),
                 'method' => $route->getActionMethod(),
