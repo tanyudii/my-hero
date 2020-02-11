@@ -12,8 +12,6 @@ trait CoreController
     protected $repository;
     protected $resource;
     protected $selectResource;
-    protected $view;
-
     public function index(Request $request) {
         if (empty($request->per_page)) {
             $data = $this->repository->all();
