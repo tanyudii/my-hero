@@ -24,6 +24,9 @@
         ]
     },
     "extra": {
+		"branch-alias": {
+			"dev-master": "dev"
+		},
         "laravel": {
             "providers": [
                 "Smoothsystem\\Core\\CoreServiceProvider"
