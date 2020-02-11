@@ -3,6 +3,7 @@
 namespace Smoothsystem\Core\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Auth;
 
 class Gate
 {
@@ -15,9 +16,14 @@ class Gate
      */
     public function handle($request, Closure $next)
     {
-        /*$actionName = class_basename($request->route()->getActionname());
+        if (!Auth::check()) {
+            abort(401);
+        }
 
-        abort(401);*/
+        $actionName = class_basename($request->route()->getActionname());
+        if (!Auth::hasAuthority($actionName)) {
+            abort(401);
+        }
 
         return $next($request);
     }

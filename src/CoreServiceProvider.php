@@ -2,7 +2,9 @@
 
 namespace Smoothsystem\Core;
 
+use Illuminate\Auth\SessionGuard;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Passport\Passport;
@@ -33,6 +35,8 @@ class CoreServiceProvider extends ServiceProvider
         $this->registerEvents();
 
         $this->registerCommands();
+
+        $this->registerSessionGuard();
 
         if (config('smoothsystem.passport.register', true)) {
             $this->registerPassport();
@@ -124,5 +128,14 @@ class CoreServiceProvider extends ServiceProvider
         Passport::refreshTokensExpireIn(now()->addDays(config('smoothsystem.passport.expires.refresh_token', 30)));
 
         Passport::personalAccessTokensExpireIn(now()->addMonths(config('smoothsystem.passport.expires.personal_access_token', 6)));
+    }
+
+    private function registerSessionGuard()
+    {
+        SessionGuard::macro('hasAuthority', function($action) {
+            // todo: authority
+
+            return true;
+        });
     }
 }
