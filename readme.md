@@ -11,6 +11,7 @@
 ## Installation Authorizations
 - Set register authorization to true in config smoothsystem.authorization
 - Register middleware 'smoothsystem.gate' => \Smoothsystem\Core\Http\Middleware\Gate::class
+- Register PermissionsTableSeeder to database table seeder
 
 ## Installation Instructions
 - Delete migration default (users, failed_jobs, jobs);
