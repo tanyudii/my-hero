@@ -22,3 +22,6 @@
 - Custom factory Eloquent location in config smoothsystem.models
 - Passport able to custom in config  smoothsystem.passport
 - For project use Passport, setting user guards in config auth.guards.api.driver to 'passport'
+
+#Tips
+- After publish seeder you must be composer dump-autoload (because seed registered in cache composer)
