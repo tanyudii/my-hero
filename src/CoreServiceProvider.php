@@ -133,9 +133,20 @@ class CoreServiceProvider extends ServiceProvider
     private function registerSessionGuard()
     {
         SessionGuard::macro('hasAuthority', function($action) {
-            // todo: authority
+            if (Auth::check()) {
+                return false;
+            }
 
             return true;
+
+            /*$user = Auth::user();
+            $role = $user->role ?? null;
+
+            if (!$role) {
+                return false;
+            }
+
+            return true;*/
         });
     }
 }

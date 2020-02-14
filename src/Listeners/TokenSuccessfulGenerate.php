@@ -1,12 +1,10 @@
 <?php
 
-namespace App\Listeners;
+namespace Smoothsystem\Core\Listeners;
 
-use Smoothsystem\Core\Entities\LoginActivity;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Request;
 use Laravel\Passport\Events\AccessTokenCreated;
+use Smoothsystem\Core\Entities\LoginActivity;
 
 class TokenSuccessfulGenerate
 {
