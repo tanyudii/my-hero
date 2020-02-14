@@ -13,7 +13,7 @@ class PermissionsTableSeeder extends Seeder
     {
         $routes = Route::getRoutes()->getRoutes();
         foreach ($routes as $route) {
-            if ($route->getPrefix() != 'api/v1') {
+            if ($route->getPrefix() != 'api' || !$route->getName()) {
                 continue;
             }
 
