@@ -17,13 +17,19 @@ class PermissionsTableSeeder extends Seeder
                 continue;
             }
 
-            config('smoothsystem.models.permission')::create([
+            $permission = [
                 'name' => $route->getName(),
                 'controller' => \Illuminate\Support\Arr::first(explode('@', $route->getActionName())),
                 'method' => $route->getActionMethod(),
                 'created_by' => 1,
                 'updated_by' => 1,
-            ]);
+            ];
+
+            if (config('smoothsystem.models.permission')::where($permission)->exists()) {
+                continue;
+            }
+
+            config('smoothsystem.models.permission')::create($permission);
         }
     }
 }
