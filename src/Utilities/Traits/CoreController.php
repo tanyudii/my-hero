@@ -20,8 +20,8 @@ trait CoreController
             $data = $this->repository->paginate($request->per_page);
         }
 
-        if ($this->resource instanceof JsonResource) {
-            return $this->resource::collection($data);
+        if (is_subclass_of($this->resource, JsonResource::class)) {
+            return new $this->resource($data);
         }
 
         return $data;
@@ -34,8 +34,8 @@ trait CoreController
             $data = $this->repository->paginate($request->per_page);
         }
 
-        if ($this->selectResource instanceof JsonResource) {
-            return $this->selectResource::collection($data);
+        if (is_subclass_of($this->selectResource, JsonResource::class)) {
+            return new $this->selectResource($data);
         }
 
         return SelectResource::collection($data);
@@ -44,7 +44,7 @@ trait CoreController
     public function show(Request $request, $id) {
         $data = $this->repository->find($id);
 
-        if ($this->resource instanceof JsonResource) {
+        if (is_subclass_of($this->resource, JsonResource::class)) {
             return new $this->resource($data);
         }
 
