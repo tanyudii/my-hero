@@ -21,7 +21,7 @@ trait CoreController
         }
 
         if (is_subclass_of($this->resource, JsonResource::class)) {
-            return new $this->resource($data);
+            return $this->selectResource::collection($data);
         }
 
         return $data;
@@ -35,7 +35,7 @@ trait CoreController
         }
 
         if (is_subclass_of($this->selectResource, JsonResource::class)) {
-            return new $this->selectResource($data);
+            return $this->selectResource::collection($data);
         }
 
         return SelectResource::collection($data);
