@@ -29,7 +29,7 @@ trait CoreController
                 : $data;
         }
 
-        return view($this->view, [
+        return view("$this->view.index", [
             'page' => $this->page,
         ]);
     }
@@ -46,6 +46,11 @@ trait CoreController
         }
 
         return SelectResource::collection($data);
+    }
+
+    public function create(Request $request)
+    {
+        return view("$this->view.detail");
     }
 
     public function show(Request $request, $id) {
