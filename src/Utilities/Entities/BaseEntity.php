@@ -33,4 +33,9 @@ abstract class BaseEntity extends Model
 
         return $rules;
     }
+
+    public function getLabel() {
+        return $this->name;
+    }
+
 }

@@ -36,4 +36,8 @@ abstract class User extends Authenticatable
         return $rules;
     }
 
+    public function getLabel() {
+        return $this->name;
+    }
+
 }
