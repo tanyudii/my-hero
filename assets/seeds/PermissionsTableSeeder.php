@@ -13,7 +13,8 @@ class PermissionsTableSeeder extends Seeder
     {
         $routes = Route::getRoutes()->getRoutes();
         foreach ($routes as $route) {
-            if ($route->getPrefix() != 'api' || !$route->getName()) {
+            $middleware = $route->gatherMiddleware();
+            if (in_array('smoothsystem.gate', $middleware) || !$route->getName()) {
                 continue;
             }
 
