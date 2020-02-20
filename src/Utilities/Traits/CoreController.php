@@ -34,7 +34,11 @@ trait CoreController
         ]);
     }
 
-    public function select(Request $request) {
+    public function select(Request $request, $id = null) {
+        if ($id || $request->id) {
+            return new SelectResource($this->repository->find($id ?? $request->id));
+        }
+
         if (empty($request->per_page)) {
             $data = $this->repository->all();
         } else {
