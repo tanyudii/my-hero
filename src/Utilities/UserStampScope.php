@@ -30,7 +30,7 @@ class UserStampScope implements Scope
     public function extend(Builder $builder)
     {
         $builder->macro('updateWithUserstamps', function (Builder $builder, $values) {
-            if (! $builder->getModel()->isUserstamping() || is_null(Auth::id())) {
+            if (! $builder->getModel()->isUserStamping() || is_null(Auth::id())) {
                 return $builder->update($values);
             }
 
@@ -40,7 +40,7 @@ class UserStampScope implements Scope
         });
 
         $builder->macro('deleteWithUserstamps', function (Builder $builder) {
-            if (! $builder->getModel()->isUserstamping() || is_null(Auth::id())) {
+            if (! $builder->getModel()->isUserStamping() || is_null(Auth::id())) {
                 return $builder->delete();
             }
 

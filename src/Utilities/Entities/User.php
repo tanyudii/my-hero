@@ -7,7 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 use Smoothsystem\Core\Rules\NotPresent;
-use Smoothsystem\Core\Utilities\UserStamp;
+use Smoothsystem\Core\Utilities\Traits\UserStamp;
 
 abstract class User extends Authenticatable
 {

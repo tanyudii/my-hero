@@ -1,6 +1,8 @@
 <?php
 
-namespace Smoothsystem\Core\Utilities;
+namespace Smoothsystem\Core\Utilities\Traits;
+
+use Smoothsystem\Core\Utilities\UserStampScope;
 
 trait UserStamp
 {
@@ -9,7 +11,7 @@ trait UserStamp
      *
      * @param bool
      */
-    protected $userstamping = true;
+    protected $userStamping = true;
 
     /**
      * Boot the userstamps trait for a model.
@@ -60,7 +62,7 @@ trait UserStamp
      */
     public function creator()
     {
-        return $this->belongsTo($this->getUserClass(), $this->getCreatedByColumn());
+        return $this->belongsTo(config('smoothsystem.models.user'), $this->getCreatedByColumn());
     }
 
     /**
@@ -68,7 +70,7 @@ trait UserStamp
      */
     public function editor()
     {
-        return $this->belongsTo($this->getUserClass(), $this->getUpdatedByColumn());
+        return $this->belongsTo(config('smoothsystem.models.user'), $this->getUpdatedByColumn());
     }
 
     /**
@@ -76,7 +78,7 @@ trait UserStamp
      */
     public function destroyer()
     {
-        return $this->belongsTo($this->getUserClass(), $this->getDeletedByColumn());
+        return $this->belongsTo(config('smoothsystem.models.user'), $this->getDeletedByColumn());
     }
 
     /**
@@ -114,9 +116,9 @@ trait UserStamp
      *
      * @return bool
      */
-    public function isUserstamping()
+    public function isUserStamping()
     {
-        return $this->userstamping;
+        return $this->userStamping;
     }
 
     /**
@@ -124,9 +126,9 @@ trait UserStamp
      *
      * @return void
      */
-    public function stopUserstamping()
+    public function stopUserStamping()
     {
-        $this->userstamping = false;
+        $this->userStamping = false;
     }
 
     /**
@@ -134,18 +136,8 @@ trait UserStamp
      *
      * @return void
      */
-    public function startUserstamping()
+    public function startUserStamping()
     {
-        $this->userstamping = true;
-    }
-
-    /**
-     * Get the class being used to provide a User.
-     *
-     * @return string
-     */
-    protected function getUserClass()
-    {
-        return config('auth.providers.users.model');
+        $this->userStamping = true;
     }
 }

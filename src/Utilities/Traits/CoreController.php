@@ -12,6 +12,9 @@ trait CoreController
     protected $repository;
     protected $resource;
     protected $selectResource;
+    protected $policy = false;
+    protected $view;
+    protected $page;
 
     public function index(Request $request) {
         if (empty($request->per_page)) {
@@ -20,11 +23,15 @@ trait CoreController
             $data = $this->repository->paginate($request->per_page);
         }
 
-        if (is_subclass_of($this->resource, JsonResource::class)) {
-            return $this->resource::collection($data);
+        if (request()->wantsJson() || empty($this->view) || !view()->exists("$this->view.index")) {
+            return is_subclass_of($this->resource, JsonResource::class)
+                ? $this->resource::collection($data)
+                : $data;
         }
 
-        return $data;
+        return view($this->view, [
+            'page' => $this->page,
+        ]);
     }
 
     public function select(Request $request) {
@@ -44,14 +51,42 @@ trait CoreController
     public function show(Request $request, $id) {
         $data = $this->repository->find($id);
 
-        if (is_subclass_of($this->resource, JsonResource::class)) {
-            return new $this->resource($data);
+        if ($this->policy) {
+            $this->authorize('view', $data);
         }
 
-        return $data;
+        if (request()->wantsJson() || empty($this->view) || !view()->exists("$this->view.detail")) {
+            return is_subclass_of($this->resource, JsonResource::class)
+                ? new $this->resource($data)
+                : $data;
+        }
+
+        return view("$this->view.detail",[
+            'data' => $data,
+            'page' => $this->page,
+        ]);
     }
 
-    public function destroy(Request $request, $id)
+    public function edit(Request $request, $id) {
+        $data = $this->repository->find($id);
+
+        if ($this->policy) {
+            $this->authorize('update', $data);
+        }
+
+        if (empty($this->view) || !view()->exists("$this->view.detail")) {
+            return is_subclass_of($this->resource, JsonResource::class)
+                ? new $this->resource($data)
+                : $data;
+        }
+
+        return view("$this->view.detail",[
+            'data' => $data,
+            'page' => $this->page,
+        ]);
+    }
+
+    public function destroy($id)
     {
         try {
             DB::beginTransaction();
@@ -62,10 +97,14 @@ trait CoreController
 
             DB::commit();
 
-            return response()->json([
-                'success' => true,
-                'message' => 'Data deleted.'
-            ]);
+            if (request()->wantsJson()) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Data deleted.'
+                ]);
+            }
+
+            return redirect()->back()->with('message', 'Data deleted.');
         } catch (\Exception $e) {
             DB::rollBack();
 
@@ -74,9 +113,5 @@ trait CoreController
                 'message' => $e->getMessage()
             ]);
         }
-    }
-
-    public function getRepository() {
-        return $this->repository;
     }
 }

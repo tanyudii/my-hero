@@ -5,7 +5,7 @@ namespace Smoothsystem\Core\Utilities\Entities;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Smoothsystem\Core\Rules\NotPresent;
-use Smoothsystem\Core\Utilities\UserStamp;
+use Smoothsystem\Core\Utilities\Traits\UserStamp;
 
 abstract class BaseEntity extends Model
 {

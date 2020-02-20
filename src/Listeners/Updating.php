@@ -15,7 +15,7 @@ class Updating
      */
     public function handle(Model $model)
     {
-        if (! $model->isUserstamping() || is_null(Auth::id())) {
+        if (!$model->isUserStamping() || is_null(Auth::id())) {
             return;
         }
 

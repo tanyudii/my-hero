@@ -14,7 +14,7 @@ class Restoring
      */
     public function handle(Model $model)
     {
-        if (! $model->isUserstamping()) {
+        if (! $model->isUserStamping()) {
             return;
         }
 
