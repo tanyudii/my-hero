@@ -14,7 +14,7 @@ class PermissionsTableSeeder extends Seeder
         $routes = Route::getRoutes()->getRoutes();
         foreach ($routes as $route) {
             $middleware = $route->gatherMiddleware();
-            if (in_array('smoothsystem.gate', $middleware) || !$route->getName()) {
+            if (!in_array('smoothsystem.gate', $middleware) || !$route->getName()) {
                 continue;
             }
 
