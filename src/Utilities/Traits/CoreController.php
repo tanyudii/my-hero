@@ -10,6 +10,7 @@ use Smoothsystem\Core\Http\Resources\SelectResource;
 trait CoreController
 {
     protected $repository;
+    protected $fillable;
     protected $resource;
     protected $selectResource;
     protected $policy = false;

@@ -11,6 +11,13 @@ abstract class BaseEntity extends Model
 {
     use SoftDeletes, UserStamp;
 
+    //todo: searchable like
+    /*protected $searchable = [];
+
+    public function scopeLike($query, Request $request) {
+
+    }*/
+
     public function hasMany($related, $foreignKey = null, $localKey = null)
     {
         $instance = $this->newRelatedInstance($related);
