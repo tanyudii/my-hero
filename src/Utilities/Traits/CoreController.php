@@ -101,7 +101,11 @@ trait CoreController
         try {
             DB::beginTransaction();
 
-            $this->repository->findOrFail($id);
+            $data = $this->repository->findOrFail($id);
+
+            if ($this->policy) {
+                $this->authorize('delete', $data);
+            }
 
             $this->repository->destroy($id);
 
