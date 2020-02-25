@@ -7,11 +7,23 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 use Smoothsystem\Core\Rules\NotPresent;
+use Smoothsystem\Core\Utilities\Traits\Searchable;
 use Smoothsystem\Core\Utilities\Traits\UserStamp;
 
 abstract class User extends Authenticatable
 {
-    use Notifiable, SoftDeletes, UserStamp, HasApiTokens;
+    use Notifiable, SoftDeletes, UserStamp, HasApiTokens, Searchable;
+    
+    /**
+     * Columns and their priority in search results.
+     * Columns with higher values are more important.
+     * Columns with equal values have equal importance.
+     ** @var array
+     */
+    protected $searchable = [
+        'columns' => [],
+        'joins' => [],
+    ];
 
     public function hasMany($related, $foreignKey = null, $localKey = null)
     {

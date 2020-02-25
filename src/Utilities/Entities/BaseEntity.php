@@ -5,18 +5,23 @@ namespace Smoothsystem\Core\Utilities\Entities;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Smoothsystem\Core\Rules\NotPresent;
+use Smoothsystem\Core\Utilities\Traits\Searchable;
 use Smoothsystem\Core\Utilities\Traits\UserStamp;
 
 abstract class BaseEntity extends Model
 {
-    use SoftDeletes, UserStamp;
+    use SoftDeletes, UserStamp, Searchable;
 
-    //todo: searchable like
-    /*protected $searchable = [];
-
-    public function scopeLike($query, Request $request) {
-
-    }*/
+    /**
+     * Columns and their priority in search results.
+     * Columns with higher values are more important.
+     * Columns with equal values have equal importance.
+     ** @var array
+     */
+    protected $searchable = [
+        'columns' => [],
+        'joins' => [],
+    ];
 
     public function hasMany($related, $foreignKey = null, $localKey = null)
     {

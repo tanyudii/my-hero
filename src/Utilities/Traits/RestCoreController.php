@@ -14,7 +14,6 @@ trait CoreController
     protected $resource;
     protected $selectResource;
     protected $policy = false;
-    protected $view;
     protected $page;
 
     public function index(Request $request) {
@@ -26,10 +25,9 @@ trait CoreController
             ? $repository->all()
             : $repository->paginate($request->per_page);
 
-        return view("$this->view.index", [
-            'data' => $data,
-            'page' => $this->page,
-        ]);
+        return is_subclass_of($this->resource, JsonResource::class)
+            ? $this->resource::collection($data)
+            : $data;
     }
 
     public function select(Request $request, $id = null) {
@@ -54,35 +52,16 @@ trait CoreController
         return SelectResource::collection($data);
     }
 
-    public function create(Request $request)
-    {
-        return view("$this->view.detail");
-    }
-
-    public function show($id) {
-        $data = $this->repository->findOrFail($id);
+    public function show(Request $request, $id) {
+        $data = $this->repository->find($id);
 
         if ($this->policy) {
             $this->authorize('view', $data);
         }
 
-        return view("$this->view.detail",[
-            'data' => $data,
-            'page' => $this->page,
-        ]);
-    }
-
-    public function edit($id) {
-        $data = $this->repository->findOrFail($id);
-
-        if ($this->policy) {
-            $this->authorize('update', $data);
-        }
-
-        return view("$this->view.detail",[
-            'data' => $data,
-            'page' => $this->page,
-        ]);
+        return is_subclass_of($this->resource, JsonResource::class)
+            ? new $this->resource($data)
+            : $data;
     }
 
     public function destroy($id)
@@ -97,7 +76,7 @@ trait CoreController
             }
 
             $this->repository->destroy($id);
-            
+
             DB::commit();
 
             if (request()->wantsJson()) {
