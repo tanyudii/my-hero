@@ -31,7 +31,7 @@ class Role extends BaseEntity
     }
 
     public function users() {
-        return $this->belongsToMany(config('smoothsystem.models.user'), 'role_users');
+        return $this->belongsToMany(config('smoothsystem.models.user'), 'role_users')->withTimestamps();;
     }
 
 }
