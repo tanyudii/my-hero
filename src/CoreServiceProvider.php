@@ -36,8 +36,6 @@ class CoreServiceProvider extends ServiceProvider
 
         $this->registerCommands();
 
-        $this->registerSessionGuard();
-
         if (config('smoothsystem.passport.register', true)) {
             $this->registerPassport();
         }
@@ -131,23 +129,4 @@ class CoreServiceProvider extends ServiceProvider
         Passport::personalAccessTokensExpireIn(now()->addMonths(config('smoothsystem.passport.expires.personal_access_token', 6)));
     }
 
-    private function registerSessionGuard()
-    {
-        SessionGuard::macro('hasAuthority', function($action) {
-            if (Auth::check()) {
-                return false;
-            }
-
-            return true;
-
-            /*$user = Auth::user();
-            $role = $user->role ?? null;
-
-            if (!$role) {
-                return false;
-            }
-
-            return true;*/
-        });
-    }
 }
