@@ -21,7 +21,7 @@ class User extends Authenticatable
     ];
 
     public function roles() {
-        return $this->belongsToMany(config('smoothsystem.models.role'), 'role_users')->withTimestamps();;
+        return $this->belongsToMany(config('smoothsystem.models.role'), 'role_users')->withTimestamps();
     }
 
     public function roleUsers() {

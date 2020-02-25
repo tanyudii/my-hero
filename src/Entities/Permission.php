@@ -17,7 +17,7 @@ class Permission extends BaseEntity
     }
 
     public function gateSetting() {
-        return $this->belongsToMany(config('smoothsystem.models.gate_setting'), 'gate_setting_permissions')->withTimestamps();;
+        return $this->belongsToMany(config('smoothsystem.models.gate_setting'), 'gate_setting_permissions')->withTimestamps();
     }
 
 }
