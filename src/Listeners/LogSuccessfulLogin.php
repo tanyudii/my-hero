@@ -2,11 +2,11 @@
 
 namespace Smoothsystem\Core\Listeners;
 
-use Smoothsystem\Core\Entities\LoginActivity;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Request;
+use Smoothsystem\Core\Entities\LoginActivity;
 
 class LogSuccessfulLogin
 {

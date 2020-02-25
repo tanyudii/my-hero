@@ -115,6 +115,7 @@ class CoreServiceProvider extends ServiceProvider
     protected function registerCommands()
     {
         $this->commands('Smoothsystem\Core\Commands\RefreshCommand');
+        $this->commands('Smoothsystem\Core\Commands\PermissionSeedCommand');;
     }
 
     protected function registerPassport()
