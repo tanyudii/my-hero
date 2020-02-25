@@ -5,7 +5,8 @@ namespace Smoothsystem\Core\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 
-class MakeEntityCommand extends Command
+// todo: create entity command
+class CreateEntityCommand extends Command
 {
     /**
      * The name and signature of the console command.
@@ -40,7 +41,7 @@ class MakeEntityCommand extends Command
     {
         $name = $this->argument('name');
 
-        Artisan::call('make:model Entities\\' . $name);
+        Artisan::call('make:model Entities/' . $name);
         Artisan::call('make:controller ' . $name . 'Controller');
         Artisan::call('make:request ' . $name . 'CreateRequest');
         Artisan::call('make:request ' . $name . 'UpdateRequest');
