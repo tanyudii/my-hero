@@ -79,14 +79,10 @@ trait CoreController
 
             DB::commit();
 
-            if (request()->wantsJson()) {
-                return response()->json([
-                    'success' => true,
-                    'message' => 'Data deleted.'
-                ]);
-            }
-
-            return redirect()->back()->with('message', 'Data deleted.');
+            return response()->json([
+                'success' => true,
+                'message' => 'Data deleted.'
+            ]);
         } catch (\Exception $e) {
             DB::rollBack();
 

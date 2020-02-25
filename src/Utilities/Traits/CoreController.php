@@ -72,19 +72,6 @@ trait CoreController
         ]);
     }
 
-    public function edit($id) {
-        $data = $this->repository->findOrFail($id);
-
-        if ($this->policy) {
-            $this->authorize('update', $data);
-        }
-
-        return view("$this->view.detail",[
-            'data' => $data,
-            'page' => $this->page,
-        ]);
-    }
-
     public function destroy($id)
     {
         try {
@@ -97,15 +84,8 @@ trait CoreController
             }
 
             $this->repository->destroy($id);
-            
-            DB::commit();
 
-            if (request()->wantsJson()) {
-                return response()->json([
-                    'success' => true,
-                    'message' => 'Data deleted.'
-                ]);
-            }
+            DB::commit();
 
             return redirect()->back()->with('message', 'Data deleted.');
         } catch (\Exception $e) {
