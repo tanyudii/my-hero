@@ -13,18 +13,19 @@ class GateSetting extends BaseEntity
     ];
 
     public function role() {
-        return $this->belongsTo(config('smoothsystem.entities.role'));
+        return $this->belongsTo(config('Smoothsystem.entities.role'));
     }
 
     public function user() {
-        return $this->belongsTo(config('smoothsystem.entities.user'));
-    }
-
-    public function permissions() {
-        return $this->belongsToMany(config('smoothsystem.models.permission'),'gate_setting_permissions');
+        return $this->belongsTo(config('Smoothsystem.entities.user'));
     }
 
     public function gateSettingPermissions() {
-        return $this->hasMany(config('smoothsystem.models.gate_permission_setting'));
+        return $this->hasMany(config('Smoothsystem.models.gate_permission_setting'));
     }
+
+    public function permissions() {
+        return $this->belongsToMany(config('Smoothsystem.models.permission'), 'gate_setting_permissions');
+    }
+
 }

@@ -13,11 +13,11 @@ class RoleUser extends BaseEntity
     ];
 
     public function user() {
-        return $this->belongsTo(config('smoothsystem.models.user'));
+        return $this->belongsTo(config('Smoothsystem.models.user'));
     }
 
     public function role() {
-        return $this->belongsTo(config('smoothsystem.models.role'));
+        return $this->belongsTo(config('Smoothsystem.models.role'));
     }
 
 }
