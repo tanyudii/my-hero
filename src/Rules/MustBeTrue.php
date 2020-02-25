@@ -38,6 +38,6 @@ class MustBeTrue implements Rule
      */
     public function message()
     {
-        return $this->message;
+        return __($this->message);
     }
 }

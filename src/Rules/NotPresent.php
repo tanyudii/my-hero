@@ -37,6 +37,6 @@ class NotPresent implements Rule
      */
     public function message()
     {
-        return $this->message;
+        return __($this->message);
     }
 }
