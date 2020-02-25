@@ -7,7 +7,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\DB;
 use Smoothsystem\Core\Http\Resources\SelectResource;
 
-trait CoreController
+trait RestCoreController
 {
     protected $repository;
     protected $fillable;
