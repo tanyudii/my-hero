@@ -15,23 +15,23 @@ class Role extends BaseEntity
     ];
 
     public function parent() {
-        return $this->belongsTo(config('Smoothsystem.models.role'))->with('parent');
+        return $this->belongsTo(config('smoothsystem.models.role'))->with('parent');
     }
 
     public function children() {
-        return $this->hasMany(config('Smoothsystem.models.role'),'parent_id')->with('children');
+        return $this->hasMany(config('smoothsystem.models.role'),'parent_id')->with('children');
     }
 
     public function roleUsers() {
-        return $this->hasMany(config('Smoothsystem.models.role_user'));
+        return $this->hasMany(config('smoothsystem.models.role_user'));
     }
 
     public function gateSettings() {
-        return $this->hasMany(config('Smoothsystem.models.gate_setting'));
+        return $this->hasMany(config('smoothsystem.models.gate_setting'));
     }
 
     public function users() {
-        return $this->belongsToMany(config('Smoothsystem.models.user'), 'role_users');
+        return $this->belongsToMany(config('smoothsystem.models.user'), 'role_users');
     }
 
 }
