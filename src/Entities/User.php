@@ -42,7 +42,9 @@ class User extends Authenticatable
         return $this->role ? $this->role->getLabel() : null;
     }
 
-    public function authorized($ability) {
+    public function authorized($action) {
+
         return true;
     }
+    
 }
