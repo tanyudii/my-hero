@@ -21,7 +21,7 @@ class Gate
         }
 
         $actionName = class_basename($request->route()->getActionname());
-        if (Auth::user()->authorized($actionName)) {
+        if (!Auth::user()->authorized($actionName)) {
             abort(401);
         }
 
