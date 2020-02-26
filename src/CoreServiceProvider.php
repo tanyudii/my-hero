@@ -2,9 +2,7 @@
 
 namespace Smoothsystem\Core;
 
-use Illuminate\Auth\SessionGuard;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Passport\Passport;
@@ -35,8 +33,6 @@ class CoreServiceProvider extends ServiceProvider
         $this->registerEvents();
 
         $this->registerCommands();
-
-        $this->registerSessionGuard();
 
         if (config('smoothsystem.passport.register', true)) {
             $this->registerPassport();
@@ -115,7 +111,7 @@ class CoreServiceProvider extends ServiceProvider
     protected function registerCommands()
     {
         $this->commands('Smoothsystem\Core\Commands\RefreshCommand');
-        $this->commands('Smoothsystem\Core\Commands\PermissionSeedCommand');;
+        $this->commands('Smoothsystem\Core\Commands\PermissionSeedCommand');
     }
 
     protected function registerPassport()
@@ -131,23 +127,4 @@ class CoreServiceProvider extends ServiceProvider
         Passport::personalAccessTokensExpireIn(now()->addMonths(config('smoothsystem.passport.expires.personal_access_token', 6)));
     }
 
-    private function registerSessionGuard()
-    {
-        SessionGuard::macro('hasAuthority', function($action) {
-            if (Auth::check()) {
-                return false;
-            }
-
-            return true;
-
-            /*$user = Auth::user();
-            $role = $user->role ?? null;
-
-            if (!$role) {
-                return false;
-            }
-
-            return true;*/
-        });
-    }
 }

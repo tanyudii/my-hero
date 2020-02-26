@@ -6,7 +6,6 @@ use Smoothsystem\Core\Utilities\Entities\BaseEntity;
 
 class GateSettingPermission extends BaseEntity
 {
-
     protected $fillable = [
         'gate_setting_id',
         'permission_id',
