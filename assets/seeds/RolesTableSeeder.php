@@ -24,9 +24,6 @@ class RolesTableSeeder extends Seeder
         ];
 
         foreach ($roles as $index => $role) {
-            $role['created_by'] = 1;
-            $role['updated_by'] = 1;
-
             config('smoothsystem.models.role')::create($role);
         }
     }
