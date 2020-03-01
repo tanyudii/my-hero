@@ -34,8 +34,8 @@ trait CoreController
                 : $this->repository;
 
             $data = $request->has('per_page')
-                ? $repository->all()
-                : $repository->paginate($request->per_page);
+                ? $repository->paginate($request->per_page)
+                : $repository->all();
 
             $returnData['data'] = $data;
         }
@@ -55,8 +55,8 @@ trait CoreController
             : $this->repository;
 
         $data = $request->has('per_page')
-            ? $repository->all()
-            : $repository->paginate($request->per_page);
+            ? $repository->paginate($request->per_page)
+            : $repository->all();
 
         if (is_subclass_of($this->selectResource, JsonResource::class)) {
             return $this->selectResource::collection($data);
