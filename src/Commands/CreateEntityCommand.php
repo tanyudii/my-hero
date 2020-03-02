@@ -17,7 +17,9 @@ class CreateEntityCommand extends Command
                                 {name : Class (singular) for example User}
                                 {--m : with migration.}
                                 {--migration : with migration.}
+                                {--c : with controller.}
                                 {--controller : with controller.}
+                                {--r-c : with rest controller.}
                                 {--rest-controller : with rest controller.}';
 
     /**
@@ -56,6 +58,14 @@ class CreateEntityCommand extends Command
         Artisan::call('make:resource', ['name' => $name . 'Resource']);
 
         if ($this->option('m') || $this->option('migration')) {
+            Artisan::call('create:migration', ['name' => $name]);
+        }
+
+        if ($this->option('c') || $this->option('controller')) {
+            Artisan::call('create:migration', ['name' => $name]);
+        }
+
+        if ($this->option('r-c') || $this->option('rest-controller')) {
             Artisan::call('create:migration', ['name' => $name]);
         }
 
