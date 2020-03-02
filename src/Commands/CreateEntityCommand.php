@@ -16,6 +16,7 @@ class CreateEntityCommand extends Command
     protected $signature = 'create:entity
                                 {name : Class (singular) for example User}
                                 {--m : with migration.}
+                                {--migration : with migration.}
                                 {--controller : with controller.}
                                 {--rest-controller : with rest controller.}';
 
@@ -41,9 +42,22 @@ class CreateEntityCommand extends Command
             StubService::getStub('Entity')
         );
 
-        file_put_contents(app_path("Entities/{$name}.php"), $template);
+        $path = app_path("Entities/{$name}.php");
+        if (file_exists($path)) {
+            $this->info("Entity {$name} already exists");
+
+            return false;
+        }
+
+        file_put_contents($path, $template);
+
+        $this->info('Successfully create entity');
 
         Artisan::call('make:resource', ['name' => $name . 'Resource']);
+
+        if ($this->option('m') || $this->option('migration')) {
+            Artisan::call('create:migration', ['name' => $name]);
+        }
 
         return true;
     }

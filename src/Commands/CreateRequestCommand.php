@@ -37,20 +37,23 @@ class CreateRequestCommand extends Command
         $this->comment($entityNamePluralSnakeCase);
         $this->comment($entityNameDashCase);
 
-        $templateCreate = str_replace(
-            ['{{ entityName }}'],
-            [$name],
-            StubService::getStub('CreateRequest')
-        );
+        $pathCreate = app_path("Http/Request/{$name}CreateRequest.php");
+        if (file_exists($pathCreate)) {
+            $this->info("{$name}CreateRequest already exists");
+        } else {
+            file_put_contents($pathCreate, $pathCreate);
 
-        $templateUpdate = str_replace(
-            ['{{ entityName }}'],
-            [$name],
-            StubService::getStub('UpdateRequest')
-        );
+            $this->info('Successfully create CreateRequest');
+        }
 
-        file_put_contents(app_path("Http/Request/{$name}CreateRequest.php"), $templateCreate);
-        file_put_contents(app_path("Http/Request/{$name}UpdateRequest.php"), $templateUpdate);
+        $pathUpdate = app_path("Http/Request/{$name}UpdateRequest.php");
+        if (file_exists($pathUpdate)) {
+            $this->info("{$name}UpdateRequest already exists");
+        } else {
+            file_put_contents($pathUpdate, $pathUpdate);
+
+            $this->info('Successfully create UpdateRequest');
+        }
 
         return true;
     }

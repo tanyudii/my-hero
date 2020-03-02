@@ -39,7 +39,16 @@ class CreateMigrationCommand extends Command
             StubService::getStub('Migration')
         );
 
-        file_put_contents(database_path('migrations/'.now()->format('Y_m_d_his') . "_create_{$entityNamePluralSnakeCase}_table.php"), $entityTemplate);
+        $path = database_path('migrations/'.now()->format('Y_m_d_his') . "_create_{$entityNamePluralSnakeCase}_table.php");
+        if (file_exists($path)) {
+            $this->info("Migration {$name} already exists");
+
+            return false;
+        }
+
+        file_put_contents($path, $entityTemplate);
+
+        $this->info('Successfully create migration');
 
         return true;
     }

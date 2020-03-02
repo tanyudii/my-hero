@@ -3,6 +3,7 @@
 namespace Smoothsystem\Manager\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Artisan;
 use Smoothsystem\Manager\Utilities\Services\StubService;
 
 class CreateRestControllerCommand extends Command
@@ -29,14 +30,26 @@ class CreateRestControllerCommand extends Command
     public function handle()
     {
         $name = $this->argument('name');
+        $entityNameDashCase = strtolower(preg_replace('/([a-zA-Z])(?=[A-Z])/', '$1-', $name));
 
         $template = str_replace(
-            ['{{ entityName }}'],
-            [$name],
-            StubService::getStub('Controller')
+            ['{{ entityName }}', '{{ entityNameDashCase }}'],
+            [$name, $entityNameDashCase],
+            StubService::getStub('RestController')
         );
 
+        $path = app_path("Http/Controllers/{$name}Controller.php");
+        if (file_exists($path)) {
+            $this->info("{$name}Controller already exists");
+
+            return false;
+        }
+
         file_put_contents(app_path("Http/Controllers/{$name}Controller.php"), $template);
+
+        $this->info('Successfully create rest controller');
+
+        Artisan::call('create:request', ['name' => $name]);
 
         return true;
     }

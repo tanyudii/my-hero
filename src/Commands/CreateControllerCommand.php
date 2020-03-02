@@ -38,7 +38,16 @@ class CreateControllerCommand extends Command
             StubService::getStub('Controller')
         );
 
+        $path = app_path("Http/Controllers/{$name}Controller.php");
+        if (file_exists($path)) {
+            $this->info("{$name}Controller already exists");
+
+            return false;
+        }
+
         file_put_contents(app_path("Http/Controllers/{$name}Controller.php"), $template);
+
+        $this->info('Successfully create controller');
 
         Artisan::call('create:request', ['name' => $name]);
 
