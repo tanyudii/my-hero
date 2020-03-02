@@ -69,14 +69,10 @@ class {{ entityName }}Controller extends Controller
 
             ExceptionService::log($e);
 
-            if ($request->wantsJson()) {
-                return response()->json([
-                    'error' => true,
-                    'message' => $e->getMessage()
-                ]);
-            }
-
-            return redirect()->back()->withErrors($e->getMessage())->withInput();
+            return response()->json([
+                'error' => true,
+                'message' => $e->getMessage()
+            ]);
         }
     }
 
