@@ -24,16 +24,6 @@ class CreateEntityCommand extends GeneratorCommand
     protected $description = 'Generator enitty.';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
      * Execute the console command.
      *
      * @return mixed
@@ -45,11 +35,15 @@ class CreateEntityCommand extends GeneratorCommand
         $entityNamePluralSnakeCase = Str::snake($entityPluralName);
         $entityNameDashCase = strtolower(preg_replace('/([a-zA-Z])(?=[A-Z])/', '$1-', $entityPluralName));
 
-        Artisan::call('make:model Entities/' . $name);
+        $this->comment($name);
+        $this->comment($entityPluralName);
+        $this->comment($entityNamePluralSnakeCase);
+        $this->comment($entityNameDashCase);
+        /*Artisan::call('make:model Entities/' . $name);
         Artisan::call('make:controller ' . $name . 'Controller');
         Artisan::call('make:request ' . $name . 'CreateRequest');
         Artisan::call('make:request ' . $name . 'UpdateRequest');
-        Artisan::call('make:resource ' . $name . 'Resource');
+        Artisan::call('make:resource ' . $name . 'Resource');*/
     }
 
     /**

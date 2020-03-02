@@ -1,5 +1,5 @@
 {
-    "name": "smoothsystem/core",
+    "name": "smoothsystem/manager",
     "description": "SmoothSystem[TM]",
     "type": "library",
     "authors": [
@@ -17,7 +17,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Smoothsystem\\Core\\": "src/"
+            "Smoothsystem\\Manager\\": "src/"
         },
         "files": [
             "src/helper.php"
@@ -29,7 +29,7 @@
 		},
         "laravel": {
             "providers": [
-                "Smoothsystem\\Core\\CoreServiceProvider"
+                "Smoothsystem\\Manager\\ManagerServiceProvider"
             ]
         }
     }
