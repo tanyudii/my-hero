@@ -30,8 +30,6 @@ class CreateRequestCommand extends Command
     public function handle()
     {
         $name = $this->argument('name');
-        $entityNamePluralSnakeCase = Str::snake(Str::plural($name));
-        $entityNameDashCase = strtolower(preg_replace('/([a-zA-Z])(?=[A-Z])/', '$1-', $name));
 
         $pathCreate = app_path("Http/Requests/{$name}CreateRequest.php");
         if (file_exists($pathCreate)) {
