@@ -34,8 +34,8 @@ class CreateMigrationCommand extends Command
         $entityNamePluralSnakeCase = Str::snake(Str::plural($name));
 
         $entityTemplate = str_replace(
-            ['{{ entityNamePlural }}'],
-            [$entityNamePlural],
+            ['{{ entityNamePlural }}', '{{ entityNamePluralSnakeCase }}'],
+            [$entityNamePlural, $entityNamePluralSnakeCase],
             StubService::getStub('Migration')
         );
 

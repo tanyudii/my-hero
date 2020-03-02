@@ -27,6 +27,6 @@ class Create{{ entityNamePlural }}Table extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('entityNamePluralSnakeCase');
+        Schema::dropIfExists('{{ entityNamePluralSnakeCase }}');
     }
 }
