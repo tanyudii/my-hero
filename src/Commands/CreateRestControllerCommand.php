@@ -36,7 +36,7 @@ class CreateRestControllerCommand extends Command
             StubService::getStub('Controller')
         );
 
-        file_put_contents(app_path("Http/Controllers/{$name}.php"), $template);
+        file_put_contents(app_path("Http/Controllers/{$name}Controller.php"), $template);
 
         return true;
     }

@@ -30,15 +30,16 @@ class CreateMigrationCommand extends Command
     public function handle()
     {
         $name = $this->argument('name');
+        $entityNamePlural = Str::plural($name);
         $entityNamePluralSnakeCase = Str::snake(Str::plural($name));
 
         $entityTemplate = str_replace(
-            ['{{ entityNamePluralSnakeCase }}'],
-            [$entityNamePluralSnakeCase],
+            ['{{ entityNamePlural }}'],
+            [$entityNamePlural],
             StubService::getStub('Migration')
         );
 
-        file_put_contents(database_path('migrations/'.now()->format('Y_m_d_his') . "create_{$entityNamePluralSnakeCase}_table.php"), $entityTemplate);
+        file_put_contents(database_path('migrations/'.now()->format('Y_m_d_his') . "_create_{$entityNamePluralSnakeCase}_table.php"), $entityTemplate);
 
         return true;
     }

@@ -105,7 +105,11 @@ class ManagerServiceProvider extends ServiceProvider
     {
         $this->commands('Smoothsystem\Manager\Commands\RefreshCommand');
         $this->commands('Smoothsystem\Manager\Commands\PermissionSeedCommand');
+        $this->commands('Smoothsystem\Manager\Commands\CreateControllerCommand');
         $this->commands('Smoothsystem\Manager\Commands\CreateEntityCommand');
+        $this->commands('Smoothsystem\Manager\Commands\CreateMigrationCommand');
+        $this->commands('Smoothsystem\Manager\Commands\CreateRequestCommand');
+        $this->commands('Smoothsystem\Manager\Commands\CreateRestControllerCommand');
     }
 
     protected function registerPassport()
