@@ -13,7 +13,11 @@ class CreateEntityCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'create:entity {name : Class (singular) for example User}';
+    protected $signature = 'create:entity
+                                {name : Class (singular) for example User}
+                                {--m : with migration.}
+                                {--controller : with controller.}
+                                {--rest-controller : with rest controller.}';
 
     /**
      * The console command description.

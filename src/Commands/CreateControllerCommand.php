@@ -3,6 +3,7 @@
 namespace Smoothsystem\Manager\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Artisan;
 use Smoothsystem\Manager\Utilities\Services\StubService;
 
 class CreateControllerCommand extends Command
@@ -38,6 +39,8 @@ class CreateControllerCommand extends Command
         );
 
         file_put_contents(app_path("Http/Controllers/{$name}Controller.php"), $template);
+
+        Artisan::call('create:request', ['name' => $name]);
 
         return true;
     }
