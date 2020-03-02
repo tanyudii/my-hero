@@ -28,8 +28,14 @@ class User extends Authenticatable
         return $this->hasMany(config('smoothsystem.models.role_user'));
     }
 
-    public function getRoleUserAttribute() {
-        return $this->roleUsers()->orderByDesc('valid_from')->first();
+    public function getRoleUserAttribute($date = null) {
+        if (!$date) {
+            $date = now()->toDateString();
+        }
+
+        return $this->roleUsers()->whereDate('role_users.valid_from', $date)
+            ->orderByDesc('role_users.valid_from')
+            ->first();
     }
 
     public function getRoleAttribute() {

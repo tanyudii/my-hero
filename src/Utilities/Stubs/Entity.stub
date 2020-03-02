@@ -1,0 +1,13 @@
+<?php
+
+namespace App\Entities;
+
+use Smoothsystem\Core\Utilities\Entities\BaseEntity;
+
+class {{ entityName }} extends BaseEntity
+{
+    protected $fillable = [
+
+    ];
+
+}

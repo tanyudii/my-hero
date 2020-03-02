@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'stub' => [
+        // custom stub path
+        //'path' => app_path('Utilities/Stubs')
+    ],
     'passport' => [
         'register' => true,
         'custom_routes' => false,

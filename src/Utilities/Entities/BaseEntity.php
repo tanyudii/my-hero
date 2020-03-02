@@ -2,8 +2,11 @@
 
 namespace Smoothsystem\Core\Utilities\Entities;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Schema;
 use Smoothsystem\Core\Rules\NotPresent;
 use Smoothsystem\Core\Utilities\Traits\Searchable;
 use Smoothsystem\Core\Utilities\Traits\UserStamp;
@@ -22,6 +25,13 @@ abstract class BaseEntity extends Model
         'columns' => [],
         'joins' => [],
     ];
+
+    public function scopeCriteria($query, Request $request) {
+        if ($request->has('order_by') && Schema::hasColumn($this->getTable(), $request->get('order_by'))) {
+            $sorted = $request->get('sorted_by') == 'desc' ? 'desc' : 'asc';
+            $query->orderBy($request->get('order_by'), $sorted);
+        }
+    }
 
     public function hasMany($related, $foreignKey = null, $localKey = null)
     {

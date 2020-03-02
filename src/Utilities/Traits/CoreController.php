@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\DB;
 use Smoothsystem\Core\Http\Resources\SelectResource;
+use Smoothsystem\Core\Utilities\Services\ExceptionService;
 
 trait CoreController
 {
@@ -33,6 +34,8 @@ trait CoreController
                 ? $this->repository->search($request->get('search'), null, true)
                 : $this->repository;
 
+            $repository = $repository->criteria($request);
+
             $data = $request->has('per_page')
                 ? $repository->paginate($request->per_page)
                 : $repository->all();
@@ -53,6 +56,8 @@ trait CoreController
         $repository = $request->has('search')
             ? $this->repository->search($request->get('search'), null, true)
             : $this->repository;
+
+        $repository = $repository->criteria($request);
 
         $data = $request->has('per_page')
             ? $repository->paginate($request->per_page)
@@ -126,6 +131,8 @@ trait CoreController
             return redirect()->back()->with('message', 'Data deleted.');
         } catch (\Exception $e) {
             DB::rollBack();
+
+            ExceptionService::log($e);
 
             return response()->json([
                 'error'   => true,

@@ -16,7 +16,7 @@ class CoreServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->registerHelpers();
+
     }
 
     /**
@@ -86,13 +86,6 @@ class CoreServiceProvider extends ServiceProvider
 
             $this->foreign($column)->on($table)->references('id')->onUpdate('cascade');
         });
-    }
-
-    protected function registerHelpers()
-    {
-        foreach(glob(__DIR__ . '/Helpers/*.php') as $fileHelper){
-            require_once($fileHelper);
-        }
     }
 
     protected function registerEvents()
