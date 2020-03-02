@@ -19,7 +19,7 @@ class CreateRestControllerCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Generator controller.';
+    protected $description = 'Generator rest controller.';
 
     /**
      * Execute the console command.
