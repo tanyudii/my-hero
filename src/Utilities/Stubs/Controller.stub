@@ -8,7 +8,7 @@ use App\Http\Requests\{{ entityName }}UpdateRequest;
 use App\Http\Resources\{{ entityName }}Resource;
 use Illuminate\Support\Facades\DB;
 use Smoothsystem\Manager\Utilities\Services\ExceptionService;
-use Smoothsystem\Manager\Utilities\Traits\ManagerController;
+use Smoothsystem\Manager\Utilities\Traits\CoreController;
 
 class {{ entityName }}Controller extends Controller
 {
