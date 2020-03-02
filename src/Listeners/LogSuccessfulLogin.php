@@ -1,12 +1,12 @@
 <?php
 
-namespace Smoothsystem\Core\Listeners;
+namespace Smoothsystem\Manager\Listeners;
 
 use Illuminate\Auth\Events\Login;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Request;
-use Smoothsystem\Core\Entities\LoginActivity;
+use Smoothsystem\Manager\Entities\LoginActivity;
 
 class LogSuccessfulLogin
 {

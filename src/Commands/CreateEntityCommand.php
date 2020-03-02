@@ -1,11 +1,11 @@
 <?php
 
-namespace Smoothsystem\Core\Commands;
+namespace Smoothsystem\Manager\Commands;
 
 use Illuminate\Console\GeneratorCommand;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Str;
-use Smoothsystem\Core\Utilities\Services\StubService;
+use Smoothsystem\Manager\Utilities\Services\StubService;
 
 class CreateEntityCommand extends GeneratorCommand
 {

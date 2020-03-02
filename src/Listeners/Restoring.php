@@ -1,6 +1,6 @@
 <?php
 
-namespace Smoothsystem\Core\Listeners;
+namespace Smoothsystem\Manager\Listeners;
 
 use Illuminate\Database\Eloquent\Model;
 

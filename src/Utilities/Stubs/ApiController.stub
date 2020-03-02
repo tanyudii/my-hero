@@ -8,12 +8,12 @@ use App\Http\Requests\{{ entityName }}UpdateRequest;
 use App\Http\Resources\{{ entityName }}Resource;
 use App\Utilities\Services\ExceptionService;
 use Illuminate\Support\Facades\DB;
-use Smoothsystem\Core\Utilities\Traits\RestCoreController;
+use Smoothsystem\Manager\Utilities\Traits\RestManagerController;
 
 class {{ entityName }}Controller extends Controller
 {
-    use RestCoreController {
-        RestCoreController::__construct as private __restCoreConstruct;
+    use RestManagerController {
+        RestManagerController::__construct as private __restManagerConstruct;
     }
 
     public function __construct({{ entityName }} $repository)

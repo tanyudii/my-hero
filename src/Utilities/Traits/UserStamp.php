@@ -1,8 +1,8 @@
 <?php
 
-namespace Smoothsystem\Core\Utilities\Traits;
+namespace Smoothsystem\Manager\Utilities\Traits;
 
-use Smoothsystem\Core\Utilities\UserStampScope;
+use Smoothsystem\Manager\Utilities\UserStampScope;
 
 trait UserStamp
 {
@@ -32,12 +32,12 @@ trait UserStamp
      */
     public static function registerListeners()
     {
-        static::creating('Smoothsystem\Core\Listeners\Creating@handle');
-        static::updating('Smoothsystem\Core\Listeners\Updating@handle');
+        static::creating('Smoothsystem\Manager\Listeners\Creating@handle');
+        static::updating('Smoothsystem\Manager\Listeners\Updating@handle');
 
         if (static::usingSoftDeletes()) {
-            static::deleting('Smoothsystem\Core\Listeners\Deleting@handle');
-            static::restoring('Smoothsystem\Core\Listeners\Restoring@handle');
+            static::deleting('Smoothsystem\Manager\Listeners\Deleting@handle');
+            static::restoring('Smoothsystem\Manager\Listeners\Restoring@handle');
         }
     }
 

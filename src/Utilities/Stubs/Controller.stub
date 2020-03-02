@@ -8,12 +8,12 @@ use App\Http\Requests\{{ entityName }}UpdateRequest;
 use App\Http\Resources\{{ entityName }}Resource;
 use App\Utilities\Services\ExceptionService;
 use Illuminate\Support\Facades\DB;
-use Smoothsystem\Core\Utilities\Traits\CoreController;
+use Smoothsystem\Manager\Utilities\Traits\ManagerController;
 
 class {{ entityName }}Controller extends Controller
 {
-    use CoreController {
-        CoreController::__construct as private __coreConstruct;
+    use ManagerController {
+        ManagerController::__construct as private __coreConstruct;
     }
 
     public function __construct({{ entityName }} $repository)

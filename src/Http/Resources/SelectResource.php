@@ -1,6 +1,6 @@
 <?php
 
-namespace Smoothsystem\Core\Http\Resources;
+namespace Smoothsystem\Manager\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 

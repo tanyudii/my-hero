@@ -1,6 +1,6 @@
 <?php
 
-namespace Smoothsystem\Core\Utilities\Services;
+namespace Smoothsystem\Manager\Utilities\Services;
 
 class StubService
 {

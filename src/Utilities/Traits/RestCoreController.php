@@ -1,14 +1,14 @@
 <?php
 
-namespace Smoothsystem\Core\Utilities\Traits;
+namespace Smoothsystem\Manager\Utilities\Traits;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\DB;
-use Smoothsystem\Core\Http\Resources\SelectResource;
-use Smoothsystem\Core\Utilities\Services\ExceptionService;
+use Smoothsystem\Manager\Http\Resources\SelectResource;
+use Smoothsystem\Manager\Utilities\Services\ExceptionService;
 
-trait RestCoreController
+trait RestManagerController
 {
     protected $repository;
     protected $fillable;

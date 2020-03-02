@@ -1,8 +1,8 @@
 <?php
 
-namespace Smoothsystem\Core\Entities;
+namespace Smoothsystem\Manager\Entities;
 
-use Smoothsystem\Core\Utilities\Entities\User as Authenticatable;
+use Smoothsystem\Manager\Utilities\Entities\User as Authenticatable;
 
 class User extends Authenticatable
 {

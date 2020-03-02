@@ -1,15 +1,15 @@
 <?php
 
-namespace Smoothsystem\Core\Utilities\Entities;
+namespace Smoothsystem\Manager\Utilities\Entities;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Schema;
-use Smoothsystem\Core\Rules\NotPresent;
-use Smoothsystem\Core\Utilities\Traits\Searchable;
-use Smoothsystem\Core\Utilities\Traits\UserStamp;
+use Smoothsystem\Manager\Rules\NotPresent;
+use Smoothsystem\Manager\Utilities\Traits\Searchable;
+use Smoothsystem\Manager\Utilities\Traits\UserStamp;
 
 abstract class BaseEntity extends Model
 {

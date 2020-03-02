@@ -1,13 +1,13 @@
 <?php
 
-namespace Smoothsystem\Core;
+namespace Smoothsystem\Manager;
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Passport\Passport;
 
-class CoreServiceProvider extends ServiceProvider
+class ManagerServiceProvider extends ServiceProvider
 {
     /**
      * Register services.
@@ -92,19 +92,19 @@ class CoreServiceProvider extends ServiceProvider
     {
         Event::listen(
             'Illuminate\Auth\Events\Login',
-            'Smoothsystem\Core\Listeners\LogSuccessfulLogin'
+            'Smoothsystem\Manager\Listeners\LogSuccessfulLogin'
         );
 
         Event::listen(
             'Laravel\Passport\Events\AccessTokenCreated',
-            'Smoothsystem\Core\Listeners\TokenSuccessfulGenerate'
+            'Smoothsystem\Manager\Listeners\TokenSuccessfulGenerate'
         );
     }
 
     protected function registerCommands()
     {
-        $this->commands('Smoothsystem\Core\Commands\RefreshCommand');
-        $this->commands('Smoothsystem\Core\Commands\PermissionSeedCommand');
+        $this->commands('Smoothsystem\Manager\Commands\RefreshCommand');
+        $this->commands('Smoothsystem\Manager\Commands\PermissionSeedCommand');
     }
 
     protected function registerPassport()

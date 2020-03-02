@@ -1,6 +1,6 @@
 <?php
 
-namespace Smoothsystem\Core\Utilities\Entities;
+namespace Smoothsystem\Manager\Utilities\Entities;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -8,9 +8,9 @@ use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Schema;
 use Laravel\Passport\HasApiTokens;
-use Smoothsystem\Core\Rules\NotPresent;
-use Smoothsystem\Core\Utilities\Traits\Searchable;
-use Smoothsystem\Core\Utilities\Traits\UserStamp;
+use Smoothsystem\Manager\Rules\NotPresent;
+use Smoothsystem\Manager\Utilities\Traits\Searchable;
+use Smoothsystem\Manager\Utilities\Traits\UserStamp;
 
 abstract class User extends Authenticatable
 {

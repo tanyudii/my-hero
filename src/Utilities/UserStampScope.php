@@ -1,6 +1,6 @@
 <?php
 
-namespace Smoothsystem\Core\Utilities;
+namespace Smoothsystem\Manager\Utilities;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;

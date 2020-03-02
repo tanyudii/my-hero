@@ -1,8 +1,8 @@
 <?php
 
-namespace Smoothsystem\Core\Entities;
+namespace Smoothsystem\Manager\Entities;
 
-use Smoothsystem\Core\Utilities\Entities\BaseEntity;
+use Smoothsystem\Manager\Utilities\Entities\BaseEntity;
 
 class Permission extends BaseEntity
 {

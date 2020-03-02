@@ -1,6 +1,6 @@
 <?php
 
-namespace Smoothsystem\Core\Http\Middleware;
+namespace Smoothsystem\Manager\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;

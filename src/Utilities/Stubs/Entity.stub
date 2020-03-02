@@ -2,7 +2,7 @@
 
 namespace App\Entities;
 
-use Smoothsystem\Core\Utilities\Entities\BaseEntity;
+use Smoothsystem\Manager\Utilities\Entities\BaseEntity;
 
 class {{ entityName }} extends BaseEntity
 {
