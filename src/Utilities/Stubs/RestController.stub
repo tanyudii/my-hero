@@ -12,8 +12,8 @@ use Smoothsystem\Manager\Utilities\Traits\RestManagerController;
 
 class {{ entityName }}Controller extends Controller
 {
-    use RestManagerController {
-        RestManagerController::__construct as private __restManagerConstruct;
+    use RestCoreController {
+        RestCoreController::__construct as private __restCoreConstruct;
     }
 
     public function __construct({{ entityName }} $repository)
@@ -21,7 +21,7 @@ class {{ entityName }}Controller extends Controller
         $this->repository = $repository;
         $this->resource = {{ entityName }}Resource::class;
 
-        $this->__restManagerConstruct();
+        $this->__restCoreConstruct();
     }
 
     public function store({{ entityName }}CreateRequest $request) {

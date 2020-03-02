@@ -12,8 +12,8 @@ use Smoothsystem\Manager\Utilities\Traits\ManagerController;
 
 class {{ entityName }}Controller extends Controller
 {
-    use ManagerController {
-        ManagerController::__construct as private __managerConstruct;
+    use CoreController {
+        CoreController::__construct as private __coreConstruct;
     }
 
     public function __construct({{ entityName }} $repository)
@@ -22,14 +22,14 @@ class {{ entityName }}Controller extends Controller
         $this->resource = {{ entityName }}Resource::class;
         $this->view = '{{ entityNameDashCase }}';
 
-        $this->__managerConstruct();
+        $this->__coreConstruct();
     }
 
     public function store({{ entityName }}CreateRequest $request) {
         try {
             DB::beginTransaction();
 
-            $data = $this->repository->create($request->only($this->fillable));
+            $this->repository->create($request->only($this->fillable));
 
             DB::commit();
 
@@ -51,7 +51,7 @@ class {{ entityName }}Controller extends Controller
 
             DB::commit();
 
-            return redirect()->back()->with('message', 'Data created.');
+            return redirect()->back()->with('message', 'Data updated.');
         } catch (\Exception $e) {
             DB::rollback();
 

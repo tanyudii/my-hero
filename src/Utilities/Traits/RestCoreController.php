@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Smoothsystem\Manager\Http\Resources\SelectResource;
 use Smoothsystem\Manager\Utilities\Services\ExceptionService;
 
-trait RestManagerController
+trait RestCoreController
 {
     protected $repository;
     protected $fillable;
