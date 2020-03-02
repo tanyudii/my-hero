@@ -33,7 +33,7 @@ class CreateMigrationCommand extends Command
         $entityNamePlural = Str::plural($name);
         $entityNamePluralSnakeCase = Str::snake(Str::plural($name));
 
-        $entityTemplate = str_replace(
+        $template = str_replace(
             ['{{ entityNamePlural }}', '{{ entityNamePluralSnakeCase }}'],
             [$entityNamePlural, $entityNamePluralSnakeCase],
             StubService::getStub('Migration')
@@ -46,7 +46,7 @@ class CreateMigrationCommand extends Command
             return false;
         }
 
-        file_put_contents($path, $entityTemplate);
+        file_put_contents($path, $template);
 
         $this->info('Successfully create migration');
 

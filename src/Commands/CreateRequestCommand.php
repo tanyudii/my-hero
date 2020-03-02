@@ -41,7 +41,13 @@ class CreateRequestCommand extends Command
         if (file_exists($pathCreate)) {
             $this->info("{$name}CreateRequest already exists");
         } else {
-            file_put_contents($pathCreate, $pathCreate);
+            $templateCreate = str_replace(
+                ['{{ entityName }}'],
+                [$name],
+                StubService::getStub('CreateRequest')
+            );
+
+            file_put_contents($pathCreate, $templateCreate);
 
             $this->info('Successfully create CreateRequest');
         }
@@ -50,7 +56,13 @@ class CreateRequestCommand extends Command
         if (file_exists($pathUpdate)) {
             $this->info("{$name}UpdateRequest already exists");
         } else {
-            file_put_contents($pathUpdate, $pathUpdate);
+            $templateUpdate = str_replace(
+                ['{{ entityName }}'],
+                [$name],
+                StubService::getStub('UpdateRequest')
+            );
+
+            file_put_contents($pathUpdate, $templateUpdate);
 
             $this->info('Successfully create UpdateRequest');
         }
