@@ -66,7 +66,11 @@ class CreateEntityCommand extends Command
         }
 
         if ($this->option('r-c') || $this->option('rest-controller')) {
-            Artisan::call('create:migration', ['name' => $name]);
+            Artisan::call('create:controller', ['name' => $name]);
+        }
+
+        if ($this->option('r-c') || $this->option('rest-controller')) {
+            Artisan::call('create:rest-controller', ['name' => $name]);
         }
 
         return true;

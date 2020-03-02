@@ -13,7 +13,7 @@ class CreateRestControllerCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'create:controller {name : Class (singular) for example User}';
+    protected $signature = 'create:rest-controller {name : Class (singular) for example User}';
 
     /**
      * The console command description.
