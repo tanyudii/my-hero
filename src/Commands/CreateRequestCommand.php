@@ -33,11 +33,7 @@ class CreateRequestCommand extends Command
         $entityNamePluralSnakeCase = Str::snake(Str::plural($name));
         $entityNameDashCase = strtolower(preg_replace('/([a-zA-Z])(?=[A-Z])/', '$1-', $name));
 
-        $this->comment($name);
-        $this->comment($entityNamePluralSnakeCase);
-        $this->comment($entityNameDashCase);
-
-        $pathCreate = app_path("Http/Request/{$name}CreateRequest.php");
+        $pathCreate = app_path("Http/Requests/{$name}CreateRequest.php");
         if (file_exists($pathCreate)) {
             $this->info("{$name}CreateRequest already exists");
         } else {
@@ -52,7 +48,7 @@ class CreateRequestCommand extends Command
             $this->info('Successfully create CreateRequest');
         }
 
-        $pathUpdate = app_path("Http/Request/{$name}UpdateRequest.php");
+        $pathUpdate = app_path("Http/Requests/{$name}UpdateRequest.php");
         if (file_exists($pathUpdate)) {
             $this->info("{$name}UpdateRequest already exists");
         } else {

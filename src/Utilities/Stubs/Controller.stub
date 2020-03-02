@@ -20,7 +20,7 @@ class {{ entityName }}Controller extends Controller
     {
         $this->repository = $repository;
         $this->resource = {{ entityName }}Resource::class;
-        $this->view = {{ entityNameDashCase }}
+        $this->view = '{{ entityNameDashCase }}';
 
         $this->__coreConstruct();
     }
@@ -39,10 +39,7 @@ class {{ entityName }}Controller extends Controller
 
             ExceptionService::log($e);
 
-            return response()->json([
-                'error' => true,
-                'message' => $e->getMessage()
-            ]);
+            return redirect()->back()->withErrors($e->getMessage())->withInput();
         }
     }
 
@@ -59,13 +56,6 @@ class {{ entityName }}Controller extends Controller
             DB::rollback();
 
             ExceptionService::log($e);
-
-            if ($request->wantsJson()) {
-                return response()->json([
-                    'error' => true,
-                    'message' => $e->getMessage()
-                ]);
-            }
 
             return redirect()->back()->withErrors($e->getMessage())->withInput();
         }
