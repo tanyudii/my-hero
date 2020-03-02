@@ -3,24 +3,23 @@
 namespace Smoothsystem\Manager\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Artisan;
 use Smoothsystem\Manager\Utilities\Services\StubService;
 
-class CreateEntityCommand extends Command
+class CreateControllerCommand extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'create:entity {name : Class (singular) for example User}';
+    protected $signature = 'create:controller {name : Class (singular) for example User}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Generator entity.';
+    protected $description = 'Generator controller.';
 
     /**
      * Execute the console command.
@@ -30,16 +29,15 @@ class CreateEntityCommand extends Command
     public function handle()
     {
         $name = $this->argument('name');
+        $entityNameDashCase = strtolower(preg_replace('/([a-zA-Z])(?=[A-Z])/', '$1-', $name));
 
         $template = str_replace(
-            ['{{ entityName }}'],
-            [$name],
-            StubService::getStub('Entity')
+            ['{{ entityName }}', '{{ entityNameDashCase }}'],
+            [$name, $entityNameDashCase],
+            StubService::getStub('Controller')
         );
 
-        file_put_contents(app_path("Entities/{$name}.php"), $template);
-
-        Artisan::call('make:resource', ['name' => $name . 'Resource']);
+        file_put_contents(app_path("Http/Controllers/{$name}.php"), $template);
 
         return true;
     }

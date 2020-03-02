@@ -6,8 +6,8 @@ use App\Entities\{{ entityName }};
 use App\Http\Requests\{{ entityName }}CreateRequest;
 use App\Http\Requests\{{ entityName }}UpdateRequest;
 use App\Http\Resources\{{ entityName }}Resource;
-use App\Utilities\Services\ExceptionService;
 use Illuminate\Support\Facades\DB;
+use Smoothsystem\Manager\Utilities\Services\ExceptionService;
 use Smoothsystem\Manager\Utilities\Traits\ManagerController;
 
 class {{ entityName }}Controller extends Controller

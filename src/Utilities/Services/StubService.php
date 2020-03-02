@@ -6,6 +6,8 @@ class StubService
 {
     public static function getStub($type)
     {
-        return config('smoothsystem.stub.path', __DIR__ . '/../Stubs/') . '/' . $type . '.stub';
+        $path = config('smoothsystem.stub.path', __DIR__ . '/../Stubs/') . '/' . $type . '.stub';
+
+        return file_get_contents($path);
     }
 }
