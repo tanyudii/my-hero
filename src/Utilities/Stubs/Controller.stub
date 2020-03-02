@@ -13,7 +13,7 @@ use Smoothsystem\Manager\Utilities\Traits\ManagerController;
 class {{ entityName }}Controller extends Controller
 {
     use ManagerController {
-        ManagerController::__construct as private __coreConstruct;
+        ManagerController::__construct as private __managerConstruct;
     }
 
     public function __construct({{ entityName }} $repository)
@@ -22,7 +22,7 @@ class {{ entityName }}Controller extends Controller
         $this->resource = {{ entityName }}Resource::class;
         $this->view = '{{ entityNameDashCase }}';
 
-        $this->__coreConstruct();
+        $this->__managerConstruct();
     }
 
     public function store({{ entityName }}CreateRequest $request) {

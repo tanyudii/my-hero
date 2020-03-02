@@ -6,8 +6,8 @@ use App\Entities\{{ entityName }};
 use App\Http\Requests\{{ entityName }}CreateRequest;
 use App\Http\Requests\{{ entityName }}UpdateRequest;
 use App\Http\Resources\{{ entityName }}Resource;
-use App\Utilities\Services\ExceptionService;
 use Illuminate\Support\Facades\DB;
+use Smoothsystem\Manager\Utilities\Services\ExceptionService;
 use Smoothsystem\Manager\Utilities\Traits\RestManagerController;
 
 class {{ entityName }}Controller extends Controller
@@ -21,7 +21,7 @@ class {{ entityName }}Controller extends Controller
         $this->repository = $repository;
         $this->resource = {{ entityName }}Resource::class;
 
-        $this->__restConstruct();
+        $this->__restManagerConstruct();
     }
 
     public function store({{ entityName }}CreateRequest $request) {
