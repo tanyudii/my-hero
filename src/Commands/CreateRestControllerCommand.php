@@ -45,7 +45,7 @@ class CreateRestControllerCommand extends Command
             return false;
         }
 
-        file_put_contents(app_path("Http/Controllers/{$name}Controller.php"), $template);
+        file_put_contents($path, $template);
 
         $this->info('Successfully create rest controller');
 
