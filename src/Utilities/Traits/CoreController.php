@@ -81,11 +81,17 @@ trait CoreController
             $this->authorize('view', $data);
         }
 
-        if (view()->exists("$this->view.show")) {
-            return view("$this->view.show", [
-                'data' => $data,
-                'page' => $this->page,
-            ]);
+        return view("$this->view.show", [
+            'data' => $data,
+            'page' => $this->page,
+        ]);
+    }
+
+    public function json($id) {
+        $data = $this->repository->findOrFail($id);
+
+        if ($this->policy) {
+            $this->authorize('view', $data);
         }
 
         return is_subclass_of($this->resource, JsonResource::class)
@@ -98,13 +104,6 @@ trait CoreController
 
         if ($this->policy) {
             $this->authorize('update', $data);
-        }
-
-        if (view()->exists("$this->view.detail")) {
-            return view("$this->view.detail", [
-                'data' => $data,
-                'page' => $this->page,
-            ]);
         }
 
         return view("$this->view.detail",[
