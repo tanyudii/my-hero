@@ -30,7 +30,7 @@ trait RestCoreController
 
         $data = $request->has('per_page')
             ? $repository->paginate($request->per_page)
-            : $repository->all();
+            : $repository->get();
 
         return is_subclass_of($this->resource, JsonResource::class)
             ? $this->resource::collection($data)
@@ -56,7 +56,7 @@ trait RestCoreController
 
         $data = $request->has('per_page')
             ? $repository->paginate($request->per_page)
-            : $repository->all();
+            : $repository->get();
 
         if (is_subclass_of($this->selectResource, JsonResource::class)) {
             return $this->selectResource::collection($data);
