@@ -1,7 +1,6 @@
 <?php
 
-
-namespace App\Utilities;
+namespace Smoothsystem\Manager\Utilities;
 
 use Illuminate\Support\Facades\Route;
 
