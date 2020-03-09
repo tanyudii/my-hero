@@ -41,27 +41,27 @@ class RouteCore
         }
 
         if (in_array('index', $only))
-            Route::get('/' . $name, $controller .'@index')->middleware($middleware['index'] ?? null)->name($name . '.index');
+            Route::get("/{$name}","{$controller}@index")->name($name . '.index')->middleware($middleware['index'] ?? null);
 
         if (in_array('store', $only))
-            Route::post('/' . $name, $controller .'@store')->middleware($middleware['store'] ?? null)->name($name . '.store');
+            Route::post("/{$name}","{$controller}@store")->name($name . '.store')->middleware($middleware['store'] ?? null);
 
         if (in_array('create', $only))
-            Route::get('/' . $name . '/create', $controller .'@create')->middleware($middleware['create'] ?? null)->name($name . '.create');
+            Route::get("/{$name}","{$controller}@create")->name($name . '.create')->middleware($middleware['create'] ?? null);
 
         if (in_array('show', $only))
-            Route::get('/' . $name . '/{id}', $controller .'@show')->middleware($middleware['show'] ?? null)->name($name . '.show');
+            Route::get("/{$name}/{id}","{$controller}@show")->name($name . '.show')->middleware($middleware['show'] ?? null);
 
         if (in_array('json', $only))
-            Route::get('/' . $name . '/json/{id}', $controller .'@show')->middleware($middleware['json'] ?? null)->name($name . '.json');
+            Route::get("/{$name}/json/{id}","{$controller}@json")->name($name . '.json')->middleware($middleware['json'] ?? null);
 
         if (in_array('update', $only))
-            Route::put('/' . $name . '/{id}', $controller .'@update')->middleware($middleware['update'] ?? null)->name($name . '.update');
+            Route::put("/{$name}/json/{id}","{$controller}@update")->name($name . '.update')->middleware($middleware['update'] ?? null);
 
         if (in_array('destroy', $only))
-            Route::delete('/' . $name . '/{id}', $controller .'@destroy')->middleware($middleware['destroy'] ?? null)->name($name . '.destroy');
+            Route::delete("/{$name}/json/{id}","{$controller}@destroy")->name($name . '.destroy')->middleware($middleware['destroy'] ?? null);
 
         if (in_array('edit', $only))
-            Route::get('/' . $name . '/{id}/edit', $controller .'@edit')->middleware($middleware['edit'] ?? null)->name($name . '.edit');
+            Route::get("/{$name}/json/{id}","{$controller}@edit")->name($name . '.edit')->middleware($middleware['edit'] ?? null);
     }
 }
