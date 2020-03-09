@@ -23,7 +23,7 @@ class RouteCore
     }
 
     public static function apiRoute($name, string $controller = '', array $options = []) {
-        $options['except'] = array_merge($options['except'], ['create','json','edit']);
+        $options['except'] = array_merge($options['except'] ?? [], ['create','json','edit']);
 
         self::createRoute($name, $controller, $options);
     }
