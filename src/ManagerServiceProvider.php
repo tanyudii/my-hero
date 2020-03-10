@@ -6,8 +6,8 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Passport\Passport;
-use Smoothsystem\Manager\Utilities\Facades\ExceptionService;
-use Smoothsystem\Manager\Utilities\Facades\FileService;
+use Smoothsystem\Manager\Utilities\Services\ExceptionService;
+use Smoothsystem\Manager\Utilities\Services\FileService;
 use Smoothsystem\Manager\Utilities\Services\StubService;
 
 class ManagerServiceProvider extends ServiceProvider
