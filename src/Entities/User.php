@@ -79,10 +79,6 @@ class User extends Authenticatable
                 ->toArray();
         }
 
-        if (count($gateSettingIds) < 1) {
-            return [];
-        }
-
         return config('smoothsystem.models.permission')::whereHas('gateSetting', function ($query) use ($gateSettingIds) {
             $query->whereIn('gate_settings.id', $gateSettingIds);
         });
@@ -93,3 +89,4 @@ class User extends Authenticatable
     }
 
 }
+
