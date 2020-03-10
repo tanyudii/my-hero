@@ -63,13 +63,11 @@ class User extends Authenticatable
         if (count($gateSettingIds) < 1) {
             $role = $this->role;
 
-            if (empty($role)) {
-                return [];
-            } else if ($role->is_special) {
+            if ($role && $role->is_special) {
                 return config('smoothsystem.models.permission')::query();
             }
 
-            $roleChildrenIds = $role->children_ids;
+            $roleChildrenIds = $role ? $role->children_ids : [];
 
             $gateSettingIds = config('smoothsystem.models.gate_setting')::select('gate_settings.id')
                 ->whereIn('gate_settings.role_id', $roleChildrenIds)
