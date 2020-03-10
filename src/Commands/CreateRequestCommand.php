@@ -4,7 +4,7 @@ namespace Smoothsystem\Manager\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
-use Smoothsystem\Manager\Utilities\Services\StubService;
+use Smoothsystem\Manager\Utilities\Facades\StubService;
 
 class CreateRequestCommand extends Command
 {

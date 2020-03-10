@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\DB;
 use Smoothsystem\Manager\Http\Resources\SelectResource;
-use Smoothsystem\Manager\Utilities\Services\ExceptionService;
+use Smoothsystem\Manager\Utilities\Facades\ExceptionService;
 
 trait CoreController
 {

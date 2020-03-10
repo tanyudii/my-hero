@@ -30,7 +30,12 @@
         "laravel": {
             "providers": [
                 "Smoothsystem\\Manager\\ManagerServiceProvider"
-            ]
+            ],
+            "aliases": {
+                "ExceptionService": "Smoothsystem\\Manager\\Utilities\\Facades\\ExceptionService",
+                "FileService": "Smoothsystem\\Manager\\Utilities\\Facades\\FileService",
+                "StubService": "Smoothsystem\\Manager\\Utilities\\Facades\\StubService"
+            }
         }
     }
 }

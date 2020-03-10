@@ -6,6 +6,9 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Passport\Passport;
+use Smoothsystem\Manager\Utilities\Facades\ExceptionService;
+use Smoothsystem\Manager\Utilities\Facades\FileService;
+use Smoothsystem\Manager\Utilities\Services\StubService;
 
 class ManagerServiceProvider extends ServiceProvider
 {
@@ -123,6 +126,21 @@ class ManagerServiceProvider extends ServiceProvider
         Passport::refreshTokensExpireIn(now()->addDays(config('smoothsystem.passport.expires.refresh_token', 30)));
 
         Passport::personalAccessTokensExpireIn(now()->addMonths(config('smoothsystem.passport.expires.personal_access_token', 6)));
+    }
+
+    protected function registerFacades()
+    {
+        app()->bind('exception.service', function() {
+            return new ExceptionService;
+        });
+
+        app()->bind('file.service', function() {
+            return new FileService;
+        });
+
+        app()->bind('stub.service', function() {
+            return new StubService;
+        });
     }
 
 }

@@ -48,9 +48,48 @@ class User extends Authenticatable
         return $this->role ? $this->role->getLabel() : null;
     }
 
-    public function authorized($action) {
+    public function permissions($date = null) {
+        if (!$date) {
+            $date = now()->toDateString();
+        }
 
-        return true;
+        $gateSettingIds = config('vodeamanager.models.gate_setting')::select('gate_settings.id')
+            ->where('gate_settings.user_id', $this->id)
+            ->where('gate_settings.valid_from', '<=', $date)
+            ->orderByDesc('gate_settings.valid_from')
+            ->pluck('id')
+            ->toArray();
+
+        if (count($gateSettingIds) < 1) {
+            $role = $this->role;
+
+            if (empty($role)) {
+                return [];
+            } else if ($role->is_special) {
+                return config('vodeamanager.models.permission')::query();
+            }
+
+            $roleChildrenIds = $role->children_ids;
+
+            $gateSettingIds = config('vodeamanager.models.gate_setting')::select('gate_settings.id')
+                ->whereIn('gate_settings.role_id', $roleChildrenIds)
+                ->where('gate_settings.valid_from', '<=', $date)
+                ->orderByDesc('gate_settings.valid_from')
+                ->pluck('id')
+                ->toArray();
+        }
+
+        if (count($gateSettingIds) < 1) {
+            return [];
+        }
+
+        return config('vodeamanager.models.permission')::whereHas('gateSetting', function ($query) use ($gateSettingIds) {
+            $query->whereIn('gate_settings.id', $gateSettingIds);
+        });
+    }
+
+    public function authorized($action) {
+        return $this->permissions()->where('permissions.name', $action)->exists();
     }
 
 }
