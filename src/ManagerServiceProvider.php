@@ -19,7 +19,7 @@ class ManagerServiceProvider extends ServiceProvider
      */
     public function register()
     {
-
+        $this->registerFacades();
     }
 
     /**
