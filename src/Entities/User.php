@@ -77,9 +77,12 @@ class User extends Authenticatable
                 ->toArray();
         }
 
-        return config('smoothsystem.models.permission')::whereHas('gateSetting', function ($query) use ($gateSettingIds) {
-            $query->whereIn('gate_settings.id', $gateSettingIds);
-        });
+        $permissionIds = config('smoothsystem.models.gate_setting_permission')::select('gate_setting_permissions.permission_id')
+            ->whereHas('gateSetting', function ($query) use ($gateSettingIds) {
+                $query->whereIn('gate_settings.id', $gateSettingIds);
+            })->distinct()->pluck('gate_setting_permissions.permission_id')->toArray();
+
+        return config('smoothsystem.models.permission')::whereIn('id', $permissionIds);
     }
 
     public function authorized($action) {
