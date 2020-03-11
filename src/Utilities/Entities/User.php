@@ -27,6 +27,11 @@ abstract class User extends Authenticatable
         'joins' => [],
     ];
 
+    protected $appends = [
+        'can_update',
+        'can_delete',
+    ];
+
     public function scopeCriteria($query, Request $request) {
         $order = null;
         $sorted = null;
