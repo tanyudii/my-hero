@@ -56,7 +56,7 @@ class RouteCore
             Route::get("/{$name}/json/{id}","{$controller}@json")->name($name . '.json')->middleware($middleware['json'] ?? null);
 
         if (in_array('update', $only))
-            Route::put("/{$name}/json/{id}","{$controller}@update")->name($name . '.update')->middleware($middleware['update'] ?? null);
+            Route::put("/{$name}","{$controller}@update")->name($name . '.update')->middleware($middleware['update'] ?? null);
 
         if (in_array('destroy', $only))
             Route::delete("/{$name}/json/{id}","{$controller}@destroy")->name($name . '.destroy')->middleware($middleware['destroy'] ?? null);
