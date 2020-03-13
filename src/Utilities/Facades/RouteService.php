@@ -8,6 +8,6 @@ class RouteService extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return 'route-core.service';
+        return 'route.service';
     }
 }
