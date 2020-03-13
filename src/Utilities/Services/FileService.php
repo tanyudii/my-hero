@@ -17,7 +17,7 @@ class FileService
                     foreach ($files as $file) {
                         $fileName = $file->getClientOriginalName();
                         $extension = $file->getClientOriginalExtension();
-                        $encodedName = now()->format('Y_m_d_h_i') . '_' . Str::random() . '.' . $extension;
+                        $encodedName = now()->format('Y_m_d_his_') . Str::random() . '.' . $extension;
 
                         $file->storeAs($path,$encodedName,['disk' => $disk]);
 
@@ -29,7 +29,7 @@ class FileService
                 } else {
                     $fileName = $files->getClientOriginalName();
                     $extension = $files->getClientOriginalExtension();
-                    $encodedName = now()->format('Y_m_d_h_i') . '_' . Str::random() . '.' . $extension;
+                    $encodedName = now()->format('Y_m_d_his_') . Str::random() . '.' . $extension;
 
                     $files->storeAs($path,$encodedName,['disk' => $disk]);
 
