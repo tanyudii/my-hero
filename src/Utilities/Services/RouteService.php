@@ -2,6 +2,8 @@
 
 namespace Smoothsystem\Manager\Utilities\Services;
 
+use Illuminate\Support\Facades\Route;
+
 class RouteService
 {
     public function routes(array $resources, array $options = []) {
