@@ -8,6 +8,7 @@ use Illuminate\Support\ServiceProvider;
 use Laravel\Passport\Passport;
 use Smoothsystem\Manager\Utilities\Services\ExceptionService;
 use Smoothsystem\Manager\Utilities\Services\FileService;
+use Smoothsystem\Manager\Utilities\Services\RouteService;
 use Smoothsystem\Manager\Utilities\Services\StubService;
 
 class ManagerServiceProvider extends ServiceProvider
@@ -140,6 +141,10 @@ class ManagerServiceProvider extends ServiceProvider
 
         app()->bind('stub.service', function() {
             return new StubService;
+        });
+
+        app()->bind('route.service', function() {
+            return new RouteService;
         });
     }
 

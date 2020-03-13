@@ -1,34 +1,32 @@
 <?php
 
-namespace Smoothsystem\Manager\Utilities;
+namespace Smoothsystem\Manager\Utilities\Services;
 
-use Illuminate\Support\Facades\Route;
-
-class RouteCore
+class RouteService
 {
-    public static function routes(array $resources, array $options = []) {
+    public function routes(array $resources, array $options = []) {
         foreach ($resources as $name) {
             self::route($name, '', $options);
         }
     }
 
-    public static function route($name, string $controller = '', array $options = []) {
+    public function route($name, string $controller = '', array $options = []) {
         self::createRoute($name, $controller, $options);
     }
 
-    public static function apiRoutes(array $resources, array $options = []) {
+    public function apiRoutes(array $resources, array $options = []) {
         foreach ($resources as $name) {
             self::apiRoute($name, '', $options);
         }
     }
 
-    public static function apiRoute($name, string $controller = '', array $options = []) {
+    public function apiRoute($name, string $controller = '', array $options = []) {
         $options['except'] = array_merge($options['except'] ?? [], ['create','json','edit']);
 
         self::createRoute($name, $controller, $options);
     }
 
-    private static function createRoute($name, string $controller = '', array $options = []) {
+    private function createRoute($name, string $controller = '', array $options = []) {
         $only = ['index', 'store', 'create', 'show', 'json', 'update', 'edit', 'destroy'];
         $middleware = $options['middleware'] ?? [];
 

@@ -2,7 +2,7 @@
 
 namespace Smoothsystem\Manager\Utilities\Traits;
 
-use Smoothsystem\Manager\Utilities\UserStampScope;
+use Smoothsystem\Manager\Utilities\Scope\UserStampScope;
 
 trait UserStamp
 {
