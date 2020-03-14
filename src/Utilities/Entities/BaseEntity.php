@@ -48,6 +48,8 @@ abstract class BaseEntity extends Model
         });
     }
 
+    public function scopeFilter($query, Request $request) {}
+
     public function hasMany($related, $foreignKey = null, $localKey = null)
     {
         $instance = $this->newRelatedInstance($related);

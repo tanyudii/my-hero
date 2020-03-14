@@ -49,6 +49,8 @@ abstract class User extends Authenticatable
         });
     }
 
+    public function scopeFilter($query, Request $request) {}
+
     public function hasMany($related, $foreignKey = null, $localKey = null)
     {
         $instance = $this->newRelatedInstance($related);
