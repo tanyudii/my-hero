@@ -22,8 +22,9 @@ class FileService
                         $file->storeAs($path,$encodedName,['disk' => $disk]);
 
                         array_push($uploaded, (object) [
-                            'file_name' => $fileName,
-                            'path' =>"$path/$encodedName",
+                            'real_name' => $fileName,
+                            'path' => "$path/$encodedName",
+                            'disk' => $disk,
                         ]);
                     }
                 } else {
@@ -34,8 +35,9 @@ class FileService
                     $files->storeAs($path,$encodedName,['disk' => $disk]);
 
                     array_push($uploaded, (object) [
-                        'file_name' => $fileName,
-                        'path' =>"$path/$encodedName",
+                        'real_name' => $fileName,
+                        'path' => "$path/$encodedName",
+                        'disk' => $disk,
                     ]);
                 }
 
