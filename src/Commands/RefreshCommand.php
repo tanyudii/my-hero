@@ -60,6 +60,8 @@ class RefreshCommand extends Command
         if (config('smoothsystem.passport.register')) {
             try {
                 Artisan::call('create:passport:client');
+
+                $this->info('Successfully passport install.');
             } catch (\Exception $e) {
                 $this->line($e->getMessage());
 

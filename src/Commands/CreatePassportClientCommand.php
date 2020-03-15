@@ -50,7 +50,7 @@ class CreatePassportClientCommand extends Command
                         'secret' => 'ol9FSJh3ypk4FdYUu2pL0wp21UransnXSKi5DaGm'
                     ]);
 
-                Artisan::call('passport:client --client', ['name' => config('app.name') . ' Clients']);
+                Artisan::call('passport:client', ['--client' => true, '--name' => config('app.name') . ' Clients']);
 
                 DB::table('oauth_clients')->where('id', 3)
                     ->update([
