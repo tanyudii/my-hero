@@ -47,7 +47,9 @@ class {{ entityName }}Controller extends Controller
         try {
             DB::beginTransaction();
 
-            $this->repository->where('id', $id)->update($request->only($this->fillable));
+            $data = $this->repository->findOrFail($id);
+            $data->fill($request->only($this->fillable());
+            $data->save();
 
             DB::commit();
 
