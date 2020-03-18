@@ -5,6 +5,7 @@ namespace Smoothsystem\Manager\Utilities\Traits;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\DB;
+use Smoothsystem\Manager\Http\Resources\DefaultResource;
 use Smoothsystem\Manager\Http\Resources\SelectResource;
 use Smoothsystem\Manager\Utilities\Facades\ExceptionService;
 
@@ -41,7 +42,9 @@ trait CoreController
                 ? $repository->paginate($request->per_page)
                 : $repository->get();
 
-            $returnData['data'] = $data;
+            $returnData['data'] = is_subclass_of($this->resource, JsonResource::class)
+                ? $this->resource::collection($data)
+                : DefaultResource::collection($data);
         }
 
         return view("$this->view.index", $returnData);
@@ -97,7 +100,7 @@ trait CoreController
 
         return is_subclass_of($this->resource, JsonResource::class)
             ? new $this->resource($data)
-            : $data;
+            : new DefaultResource($data);
     }
 
     public function edit($id) {

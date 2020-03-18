@@ -5,6 +5,7 @@ namespace Smoothsystem\Manager\Utilities\Traits;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\DB;
+use Smoothsystem\Manager\Http\Resources\DefaultResource;
 use Smoothsystem\Manager\Http\Resources\SelectResource;
 use Smoothsystem\Manager\Utilities\Facades\ExceptionService;
 
@@ -35,7 +36,7 @@ trait RestCoreController
 
         return is_subclass_of($this->resource, JsonResource::class)
             ? $this->resource::collection($data)
-            : $data;
+            : DefaultResource::collection($data);
     }
 
     public function select(Request $request, $id = null) {
@@ -75,7 +76,7 @@ trait RestCoreController
 
         return is_subclass_of($this->resource, JsonResource::class)
             ? new $this->resource($data)
-            : $data;
+            : new DefaultResource($data);
     }
 
     public function destroy($id)
