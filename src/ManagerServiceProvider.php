@@ -20,6 +20,8 @@ class ManagerServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->registerHelpers();
+
         $this->registerFacades();
     }
 
@@ -147,6 +149,13 @@ class ManagerServiceProvider extends ServiceProvider
         app()->bind('route.service', function() {
             return new RouteService;
         });
+    }
+
+    protected function registerHelpers()
+    {
+        foreach(glob(__DIR__ . '/Helpers/*.php') as $fileHelper){
+            require_once($fileHelper);
+        }
     }
 
 }

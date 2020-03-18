@@ -42,7 +42,7 @@ class FileService
                 }
 
             } catch (\Exception $e) {
-                ExceptionService::log($e);
+                \Smoothsystem\Manager\Utilities\Facades\ExceptionService::log($e);
             }
 
             return $uploaded;
