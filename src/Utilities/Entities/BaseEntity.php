@@ -2,7 +2,6 @@
 
 namespace Smoothsystem\Manager\Utilities\Entities;
 
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
