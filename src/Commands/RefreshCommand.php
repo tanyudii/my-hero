@@ -69,6 +69,12 @@ class RefreshCommand extends Command
             }
         }
 
+        Artisan::call('route:clear');
+        Artisan::call('view:clear');
+        Artisan::call('optimize:clear');
+        Artisan::call('config:clear');
+        Artisan::call('cache:clear');
+
         return true;
     }
 }
