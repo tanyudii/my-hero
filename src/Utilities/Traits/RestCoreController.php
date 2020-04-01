@@ -54,7 +54,8 @@ trait RestCoreController
             ? $this->repository->search($request->get('search'), null, true)
             : $this->repository;
 
-        $repository = $repository->criteria($request);
+        $repository = $repository->criteria($request)
+            ->filter($request);
 
         $data = $request->has('per_page')
             ? $repository->paginate($request->per_page)
