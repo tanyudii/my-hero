@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Route;
 
 class PermissionsTableSeeder extends Seeder
 {
@@ -20,7 +22,7 @@ class PermissionsTableSeeder extends Seeder
 
             $permission = [
                 'name' => $route->getName(),
-                'controller' => \Illuminate\Support\Arr::first(explode('@', $route->getActionName())),
+                'controller' => Arr::first(explode('@', $route->getActionName())),
                 'method' => $route->getActionMethod(),
             ];
 

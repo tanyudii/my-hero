@@ -3,6 +3,7 @@
 namespace Smoothsystem\Manager\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 use Smoothsystem\Manager\Utilities\Facades\StubService;
 
@@ -39,7 +40,7 @@ class CreateMigrationCommand extends Command
             StubService::getStub('Migration')
         );
 
-        $path = database_path('migrations/'.now()->format('Y_m_d_his') . "_create_{$entityNamePluralSnakeCase}_table.php");
+        $path = database_path('migrations/' . Carbon::now()->format('Y_m_d_his') . "_create_{$entityNamePluralSnakeCase}_table.php");
         if (file_exists($path)) {
             $this->info("Migration {$name} already exists");
 

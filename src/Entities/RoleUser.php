@@ -2,6 +2,7 @@
 
 namespace Smoothsystem\Manager\Entities;
 
+use Illuminate\Support\Carbon;
 use Smoothsystem\Manager\Utilities\Entities\BaseEntity;
 
 class RoleUser extends BaseEntity
@@ -18,7 +19,7 @@ class RoleUser extends BaseEntity
 
         static::creating(function ($data) {
             if (!$data->valid_from) {
-                $data->valid_from = now();
+                $data->valid_from = Carbon::now();
             }
         });
     }

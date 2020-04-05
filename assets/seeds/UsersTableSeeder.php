@@ -16,12 +16,12 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'Administrator',
                 'email' => 'admin@ss.com',
-                'password' => bcrypt('test12345'),
+                'password' => 'test12345'
             ],
             [
                 'name' => 'User',
                 'email' => 'user@ss.com',
-                'password' => bcrypt('test12345'),
+                'password' => 'test12345'
             ],
         ];
 
@@ -33,6 +33,7 @@ class UsersTableSeeder extends Seeder
 
             $user['email_verified_at'] = now();
             $user['remember_token'] = Str::random(10);
+            $user['password'] = \Illuminate\Support\Facades\Hash::make($user['password']);
 
             config('smoothsystem.models.user')::create($user);
         }
