@@ -27,7 +27,7 @@ class CreateEntityCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Generator entity.';
+    protected $description = 'Generator entity';
 
     /**
      * Execute the console command.

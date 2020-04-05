@@ -20,7 +20,7 @@ class CreateRequestCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Generator request.';
+    protected $description = 'Generator request';
 
     /**
      * Execute the console command.

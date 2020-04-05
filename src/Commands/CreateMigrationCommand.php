@@ -20,7 +20,7 @@ class CreateMigrationCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Generator migration.';
+    protected $description = 'Generator migration';
 
     /**
      * Execute the console command.
