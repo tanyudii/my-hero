@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 
 class UsersTableSeeder extends Seeder
@@ -31,7 +32,7 @@ class UsersTableSeeder extends Seeder
                 $user['updated_by'] = 1;
             }
 
-            $user['email_verified_at'] = now();
+            $user['email_verified_at'] = Carbon::now();
             $user['remember_token'] = Str::random(10);
             $user['password'] = \Illuminate\Support\Facades\Hash::make($user['password']);
 
