@@ -20,7 +20,7 @@ class CreateControllerCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Generator controller.';
+    protected $description = 'Generator controller';
 
     /**
      * Execute the console command.

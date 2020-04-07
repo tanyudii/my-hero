@@ -19,9 +19,7 @@
         "psr-4": {
             "Smoothsystem\\Manager\\": "src/"
         },
-        "files": [
-            "src/helper.php"
-        ]
+        "files": []
     },
     "extra": {
 		"branch-alias": {

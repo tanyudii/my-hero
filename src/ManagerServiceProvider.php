@@ -3,6 +3,7 @@
 namespace Smoothsystem\Manager;
 
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Passport\Passport;
@@ -125,11 +126,11 @@ class ManagerServiceProvider extends ServiceProvider
             Passport::routes();
         }
 
-        Passport::tokensExpireIn(now()->addDays(config('smoothsystem.passport.expires.token', 15)));
+        Passport::tokensExpireIn(Carbon::now()->addDays(config('smoothsystem.passport.expires.token', 15)));
 
-        Passport::refreshTokensExpireIn(now()->addDays(config('smoothsystem.passport.expires.refresh_token', 30)));
+        Passport::refreshTokensExpireIn(Carbon::now()->addDays(config('smoothsystem.passport.expires.refresh_token', 30)));
 
-        Passport::personalAccessTokensExpireIn(now()->addMonths(config('smoothsystem.passport.expires.personal_access_token', 6)));
+        Passport::personalAccessTokensExpireIn(Carbon::now()->addMonths(config('smoothsystem.passport.expires.personal_access_token', 6)));
     }
 
     protected function registerFacades()
