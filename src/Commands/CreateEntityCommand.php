@@ -53,8 +53,6 @@ class CreateEntityCommand extends Command
 
         $this->info('Successfully create entity');
 
-        Artisan::call('make:resource', ['name' => $name . 'Resource']);
-
         if ($this->option('m') || $this->option('migration')) {
             Artisan::call('create:migration', ['name' => $name]);
         }
