@@ -4,7 +4,6 @@ namespace Smoothsystem\Manager\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\DB;
 
 class RefreshCommand extends Command
 {
@@ -13,7 +12,7 @@ class RefreshCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'refresh
+    protected $signature = 'manager:refresh
                    {--force : force refresh.}';
 
     /**
@@ -46,7 +45,7 @@ class RefreshCommand extends Command
         } catch (\Exception $e) {
             $this->line($e->getMessage());
 
-            return false;
+            return;
         }
 
         try {
@@ -55,27 +54,19 @@ class RefreshCommand extends Command
         } catch (\Exception $e) {
             $this->line($e->getMessage());
 
-            return false;
+            return;
         }
 
-        if (config('smoothsystem.passport.register')) {
+        if (config('smoothsystem.passport.register', true)) {
             try {
-                Artisan::call('create:passport:client');
-
+                Artisan::call('manager:passport');
                 $this->info('Successfully passport install.');
             } catch (\Exception $e) {
                 $this->line($e->getMessage());
 
-                return false;
+                return;
             }
         }
-
-        Artisan::call('route:clear');
-        Artisan::call('view:clear');
-        Artisan::call('optimize:clear');
-        Artisan::call('config:clear');
-        Artisan::call('cache:clear');
-
-        return true;
     }
+
 }

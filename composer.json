@@ -11,9 +11,16 @@
     "require": {
         "php": "^7.2",
         "ext-json": "*",
-        "laravel/framework": "^6.2",
-        "laravel/passport": "^8.3",
-        "fzaninotto/faker": "^1.4"
+        "laravel/framework": "^5.8|^6.2",
+        "laravel/passport": "^7.5|^8.3",
+        "fzaninotto/faker": "^1.4",
+        "langleyfoxall/math_eval": "^2.0",
+        "superbalist/laravel-google-cloud-storage": "^2.2",
+        "owen-it/laravel-auditing": "^10.0",
+        "fruitcake/laravel-cors": "^2.0",
+        "nicolaslopezj/searchable": "1.*",
+        "wildside/userstamps": "^1.1",
+        "staudenmeir/eloquent-json-relations": "^1.3.2"
     },
     "autoload": {
         "psr-4": {
@@ -32,8 +39,8 @@
             "aliases": {
                 "ExceptionService": "Smoothsystem\\Manager\\Utilities\\Facades\\ExceptionService",
                 "FileService": "Smoothsystem\\Manager\\Utilities\\Facades\\FileService",
-                "StubService": "Smoothsystem\\Manager\\Utilities\\Facades\\StubService",
-                "RouteService": "Smoothsystem\\Manager\\Utilities\\Facades\\RouteService"
+                "RouteService": "Smoothsystem\\Manager\\Utilities\\Facades\\RouteService",
+                "StubService": "Smoothsystem\\Manager\\Utilities\\Facades\\StubService"
             }
         }
     }

@@ -9,14 +9,14 @@ class HasManySyncable extends HasMany
     public function sync($data, $deleting = true)
     {
         $changes = [
-            'created' => [], 'deleted' => [], 'updated' => [],
+            'created' => [],
+            'deleted' => [],
+            'updated' => [],
         ];
 
         $relatedKeyName = $this->related->getKeyName();
 
-        $current = $this->newQuery()->pluck(
-            $relatedKeyName
-        )->all();
+        $current = $this->newQuery()->pluck($relatedKeyName)->all();
 
         $updateRows = [];
         $newRows = [];
@@ -39,13 +39,11 @@ class HasManySyncable extends HasMany
 
         if ($deleting && count($deleteIds) > 0) {
             $this->getRelated()->destroy($deleteIds);
-
             $changes['deleted'] = $this->castKeys($deleteIds);
         }
 
         foreach ($updateRows as $id => $row) {
-            $this->getRelated()->where($relatedKeyName, $id)
-                ->update($row);
+            $this->getRelated()->where($relatedKeyName, $id)->update($row);
         }
 
         $changes['updated'] = $this->castKeys($updateIds);

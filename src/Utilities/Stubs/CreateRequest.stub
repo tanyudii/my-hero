@@ -1,32 +1,11 @@
 <?php
 
-namespace App\Http\Requests;
+namespace Smoothsystem\Manager\Http\Requests;
 
-use App\Entities\{{ entityName }};
 use Illuminate\Foundation\Http\FormRequest;
+use Smoothsystem\Manager\Utilities\Traits\DefaultFormRequest;
 
 class {{ entityName }}CreateRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return false;
-    }
-
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
-    public function rules()
-    {
-        $model = new {{ entityName }}();
-        $rules = $model->getDefaultRules();
-
-        return $rules;
-    }
+    use DefaultFormRequest;
 }

@@ -9,10 +9,10 @@ use Illuminate\Support\Str;
 class FileService
 {
     public function store(Request $request, $key, $disk, $path) {
-        if ($request->hasFile($key)) {
+        try {
             $uploaded = [];
 
-            try {
+            if ($request->hasFile($key)) {
                 $files = $request->file($key);
                 if (is_array($files)) {
                     foreach ($files as $file) {
@@ -20,12 +20,12 @@ class FileService
                         $extension = $file->getClientOriginalExtension();
                         $encodedName = Carbon::now()->format('Y_m_d_his_') . Str::random() . '.' . $extension;
 
-                        $file->storeAs($path,$encodedName,['disk' => $disk]);
-
                         array_push($uploaded, (object) [
-                            'real_name' => $fileName,
+                            'name' => $fileName,
                             'encoded_name' => $encodedName,
-                            'path' => "$path/$encodedName",
+                            'size' => $file->getSize(),
+                            'extension' => $extension,
+                            'path' => $file->storeAs($path,$encodedName,['disk' => $disk]),
                             'disk' => $disk,
                         ]);
                     }
@@ -34,23 +34,22 @@ class FileService
                     $extension = $files->getClientOriginalExtension();
                     $encodedName = Carbon::now()->format('Y_m_d_his_') . Str::random() . '.' . $extension;
 
-                    $files->storeAs($path,$encodedName,['disk' => $disk]);
-
                     array_push($uploaded, (object) [
-                        'real_name' => $fileName,
+                        'name' => $fileName,
                         'encoded_name' => $encodedName,
-                        'path' => "$path/$encodedName",
+                        'size' => $files->getSize(),
+                        'extension' => $extension,
+                        'path' => $files->storeAs($path,$encodedName,['disk' => $disk]),
                         'disk' => $disk,
                     ]);
                 }
-
-            } catch (\Exception $e) {
-                \Smoothsystem\Manager\Utilities\Facades\ExceptionService::log($e);
             }
 
             return $uploaded;
-        }
+        } catch (\Exception $e) {
+            \Smoothsystem\Manager\Utilities\Facades\ExceptionService::log($e);
 
-        return [];
+            return [];
+        }
     }
 }

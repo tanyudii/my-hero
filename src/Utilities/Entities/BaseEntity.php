@@ -6,40 +6,24 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Schema;
-use Smoothsystem\Manager\Rules\NotPresent;
-use Smoothsystem\Manager\Utilities\Traits\Searchable;
-use Smoothsystem\Manager\Utilities\Traits\UserStamp;
+use OwenIt\Auditing\Auditable as AudibleTrait;
+use OwenIt\Auditing\Contracts\Auditable;
+use Smoothsystem\Manager\Utilities\Traits\EntityFormRequest;
+use Smoothsystem\Manager\Utilities\Traits\ResourceTrait;
+use Smoothsystem\Manager\Utilities\Traits\SearchableCustomTrait;
+use Wildside\Userstamps\Userstamps;
 
-abstract class BaseEntity extends Model
+abstract class BaseEntity extends Model implements Auditable
 {
-    use SoftDeletes, UserStamp, Searchable;
-
-    /**
-     * Columns and their priority in search results.
-     * Columns with higher values are more important.
-     * Columns with equal values have equal importance.
-     ** @var array
-     */
-    protected $searchable = [
-        'columns' => [],
-        'joins' => [],
-    ];
-
-    protected $appends = [
-        'can_update',
-        'can_delete',
-    ];
+    use SoftDeletes, Userstamps, SearchableCustomTrait, EntityFormRequest, AudibleTrait, ResourceTrait;
 
     public function scopeCriteria($query, Request $request) {
         $order = null;
         $sorted = null;
 
         if ($request->has('order_by')) {
-            $sorted = $request->get('sorted_by') == 'desc' ? 'desc' : 'asc';
+            $sorted = in_array(strtolower($request->get('sorted_by')), ['desc', 'descending']) ? 'desc' : 'asc';
             $order = $request->get('order_by');
-        } else if (config('smoothsystem.entity.sorting_default.active', false)) {
-            $order = config('smoothsystem.entity.sorting_default.column', 'id');
-            $sorted = config('smoothsystem.entity.sorting_default.order', 'desc') == 'desc' ? 'desc' : 'asc';
         }
 
         $query->when($order && $sorted && Schema::hasColumn($this->getTable(),$order), function ($query) use ($order, $sorted) {
@@ -47,14 +31,15 @@ abstract class BaseEntity extends Model
         });
     }
 
-    public function scopeFilter($query, Request $request) {}
+    public function scopeFilter($query, Request $request)
+    {
+        //
+    }
 
     public function hasMany($related, $foreignKey = null, $localKey = null)
     {
         $instance = $this->newRelatedInstance($related);
-
         $foreignKey = $foreignKey ?: $this->getForeignKey();
-
         $localKey = $localKey ?: $this->getKeyName();
 
         return new HasManySyncable(
@@ -62,26 +47,14 @@ abstract class BaseEntity extends Model
         );
     }
 
-    public function getDefaultRules() {
-        $rules = [];
-
-        foreach ($this->getFillable() as $field) {
-            $rules[$field] = [ new NotPresent() ];
-        }
-
-        return $rules;
-    }
-
     public function getLabel() {
         return $this->name;
     }
 
-    // todo: can update by relation
     public function getCanUpdateAttribute() {
         return true;
     }
 
-    // todo: create validation can delete by relation
     public function getCanDeleteAttribute() {
         return true;
     }

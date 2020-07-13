@@ -4,7 +4,6 @@ namespace Smoothsystem\Manager\Listeners;
 
 use Illuminate\Support\Facades\Request;
 use Laravel\Passport\Events\AccessTokenCreated;
-use Smoothsystem\Manager\Entities\LoginActivity;
 
 class TokenSuccessfulGenerate
 {
@@ -26,10 +25,14 @@ class TokenSuccessfulGenerate
      */
     public function handle(AccessTokenCreated $event)
     {
-        LoginActivity::create([
+        config('smoothsystem.models.login_activity')::disableAuditing();
+
+        config('smoothsystem.models.login_activity')::create([
             'user_id'       =>  $event->userId,
             'user_agent'    =>  Request::header('User-Agent'),
             'ip_address'    =>  Request::ip()
         ]);
+
+        config('smoothsystem.models.login_activity')::enableAuditing();
     }
 }

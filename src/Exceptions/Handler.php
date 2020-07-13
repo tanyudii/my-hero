@@ -84,14 +84,12 @@ class Handler extends ExceptionHandler
 
     private function customApiResponse($e)
     {
+        $statusCode = 500;
         if (method_exists($e, 'getStatusCode')) {
             $statusCode = $e->getStatusCode();
-        } else {
-            $statusCode = 500;
         }
 
         $response = [];
-
         switch ($statusCode) {
             case 401:
                 $response['message'] = 'Unauthorized';
@@ -115,9 +113,13 @@ class Handler extends ExceptionHandler
         }
 
         if (config('app.debug')) {
-            if (method_exists($e, 'getTrace')) $response['trace'] = $e->getTrace();
+            if (method_exists($e, 'getTrace')) {
+                $response['trace'] = $e->getTrace();
+            }
 
-            if (method_exists($e, 'getCode')) $response['code'] = $e->getCode();
+            if (method_exists($e, 'getCode')) {
+                $response['code'] = $e->getCode();
+            }
         }
 
         $response['status'] = $statusCode;
@@ -127,3 +129,4 @@ class Handler extends ExceptionHandler
         return response()->json($response, $statusCode);
     }
 }
+

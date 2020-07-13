@@ -7,6 +7,8 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Passport\Passport;
+use Smoothsystem\Manager\Http\Middleware\Gate;
+use Smoothsystem\Manager\Http\Middleware\Notification;
 use Smoothsystem\Manager\Utilities\Services\ExceptionService;
 use Smoothsystem\Manager\Utilities\Services\FileService;
 use Smoothsystem\Manager\Utilities\Services\RouteService;
@@ -41,6 +43,8 @@ class ManagerServiceProvider extends ServiceProvider
 
         $this->registerCommands();
 
+        $this->registerMiddleware();
+
         if (config('smoothsystem.passport.register', true)) {
             $this->registerPassport();
         }
@@ -48,49 +52,31 @@ class ManagerServiceProvider extends ServiceProvider
     }
 
     protected function registerAssets() {
-        $this->mergeConfigFrom($config = __DIR__ . '/../assets/config/smoothsystem.php',
-            'smoothsystem-config');
+        $this->mergeConfigFrom($configVodeaManager = __DIR__ . '/../assets/config/smoothsystem.php','smoothsystem-config');
+        $this->mergeConfigFrom($configCors = __DIR__ . '/../assets/config/cors.php','smoothsystem-config');
 
         if ($this->app->runningInConsole()) {
-            $this->publishes([$config => config_path('smoothsystem.php')], 'smoothsystem-config');
+            $this->publishes([$configVodeaManager => config_path('smoothsystem.php')], 'smoothsystem-config');
+            $this->publishes([$configCors => config_path('cors.php')], 'smoothsystem-config');
         }
 
-        $this->publishes(
-            [__DIR__ . '/../assets/migrations' => database_path('migrations')],
-            'smoothsystem-migration'
-        );
-
-        $this->publishes(
-            [__DIR__ . '/../assets/factories' => database_path('factories')],
-            'smoothsystem-factory'
-        );
-
-        $this->publishes(
-            [__DIR__ . '/../assets/seeds' => database_path('seeds')],
-            'smoothsystem-seed'
-        );
+        $this->publishes([__DIR__ . '/../assets/migrations' => database_path('migrations')],'smoothsystem-migration');
+        $this->publishes([__DIR__ . '/../assets/factories' => database_path('factories')],'smoothsystem-factory');
+        $this->publishes([__DIR__ . '/../assets/seeds' => database_path('seeds')],'smoothsystem-seed');
     }
 
-    protected function registerSchemas()
+    private function registerSchemas()
     {
-        Blueprint::macro('userTimeStamp', function($created = 'created_by', $updated = 'updated_by', $deleted = 'deleted_by', $table = 'users', $reference = 'id') {
+        Blueprint::macro('userTimeStamp', function($created = 'created_by', $updated = 'updated_by', $deleted = 'deleted_by') {
             $this->timestamps();
             $this->softDeletes();
             $this->unsignedBigInteger($created)->nullable();
-            $this->foreign($created)->references($reference)->on($table)->onUpdate('cascade');
             $this->unsignedBigInteger($updated)->nullable();
-            $this->foreign($updated)->references($reference)->on($table)->onUpdate('cascade');
             $this->unsignedBigInteger($deleted)->nullable();
-            $this->foreign($deleted)->references($reference)->on($table)->onUpdate('cascade');
         });
 
         Blueprint::macro('relation', function($column, $table, $nullable = true) {
-            if ($nullable) {
-                $this->unsignedBigInteger($column)->nullable();
-            } else {
-                $this->unsignedBigInteger($column);
-            }
-
+            $this->unsignedBigInteger($column)->nullable($nullable);
             $this->foreign($column)->on($table)->references('id')->onUpdate('cascade');
         });
     }
@@ -157,6 +143,15 @@ class ManagerServiceProvider extends ServiceProvider
         foreach(glob(__DIR__ . '/Helpers/*.php') as $fileHelper){
             require_once($fileHelper);
         }
+    }
+
+    private function registerMiddleware()
+    {
+        $kernel = $this->app->make('Illuminate\Contracts\Http\Kernel');
+        $kernel->pushMiddleware('Fruitcake\Cors\HandleCors');
+
+        $this->app['router']->aliasMiddleware('smoothsystem.gate', Gate::class);
+        $this->app['router']->aliasMiddleware('smoothsystem.notification', Notification::class);
     }
 
 }

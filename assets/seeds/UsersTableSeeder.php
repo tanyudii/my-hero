@@ -16,13 +16,13 @@ class UsersTableSeeder extends Seeder
         $users = [
             [
                 'name' => 'Administrator',
-                'email' => 'admin@ss.com',
-                'password' => 'test12345'
+                'email' => 'admin@gmail.com',
+                'password' => bcrypt('codes239'),
             ],
             [
-                'name' => 'User',
-                'email' => 'user@ss.com',
-                'password' => 'test12345'
+                'name' => 'user',
+                'email' => 'user@gmail.com',
+                'password' => bcrypt('codes239'),
             ],
         ];
 
@@ -34,7 +34,6 @@ class UsersTableSeeder extends Seeder
 
             $user['email_verified_at'] = Carbon::now();
             $user['remember_token'] = Str::random(10);
-            $user['password'] = \Illuminate\Support\Facades\Hash::make($user['password']);
 
             config('smoothsystem.models.user')::create($user);
         }

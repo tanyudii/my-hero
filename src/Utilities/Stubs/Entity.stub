@@ -10,4 +10,13 @@ class {{ entityName }} extends BaseEntity
 
     ];
 
+    protected $validationRules = [
+
+    ];
+
+    public function setValidationRules(array $request = [], $id = null)
+    {
+
+        return $this;
+    }
 }

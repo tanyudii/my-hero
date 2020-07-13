@@ -11,6 +11,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'telephone',
+        'mobile_phone',
+        'photo_id',
     ];
 
     protected $hidden = [
@@ -21,6 +24,19 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected $validationRules = [
+        'name' => 'required|string|max:255',
+        'email' => 'required|email|unique:users,email',
+        'password' => 'required|string|max:255',
+        'telephone' => 'nullable|string|max:15',
+        'mobile_phone' => 'nullable|string|max:15',
+        'photo_id' => 'nullable|exists:file_logs,id,deleted_at,NULL',
+    ];
+
+    public function photo() {
+        return $this->belongsTo(config('smoothsystem.models.file_log'),'photo_id');
+    }
+
     public function roles() {
         return $this->belongsToMany(config('smoothsystem.models.role'), 'role_users')->withTimestamps();
     }
@@ -29,28 +45,14 @@ class User extends Authenticatable
         return $this->hasMany(config('smoothsystem.models.role_user'));
     }
 
-    public function getRoleUserAttribute($date = null) {
-        if (!$date) {
-            $date = Carbon::now()->toDateString();
-        }
-
-        return $this->roleUsers()->whereDate('role_users.valid_from', '<=', $date)
-            ->orderByDesc('role_users.valid_from')
-            ->first();
-    }
-
-    public function getRoleAttribute() {
-        $roleUser = $this->roleUser;
-
-        return $roleUser ? $roleUser->role : null;
-    }
-
-    public function getRoleNameAttribute() {
-        return $this->role ? $this->role->getLabel() : null;
+    public function roleUser() {
+        return $this->hasOne(config('smoothsystem.models.role_user'))
+            ->whereDate('role_users.valid_from', '<=', Carbon::now()->toDateString())
+            ->orderByDesc('role_users.valid_from');
     }
 
     public function permissions($date = null) {
-        if (!$date) {
+        if (is_null($date)) {
             $date = Carbon::now()->toDateString();
         }
 
@@ -58,17 +60,21 @@ class User extends Authenticatable
             ->where('gate_settings.user_id', $this->id)
             ->where('gate_settings.valid_from', '<=', $date)
             ->orderByDesc('gate_settings.valid_from')
+            ->limit(1)
             ->pluck('id')
             ->toArray();
 
-        if (count($gateSettingIds) < 1) {
-            $role = $this->role;
+        if (empty($gateSettingIds)) {
+            $role = $this->roleUser()->exists() ? $this->roleUser->role : null;
 
-            if ($role && $role->is_special) {
-                return config('smoothsystem.models.permission')::query();
+            $roleChildrenIds = [];
+            if (!empty($role)) {
+                if ($role->is_special) {
+                    return config('smoothsystem.models.permission')::query();
+                }
+
+                $roleChildrenIds = $role->children_ids;
             }
-
-            $roleChildrenIds = $role ? $role->children_ids : [];
 
             $gateSettingIds = config('smoothsystem.models.gate_setting')::select('gate_settings.id')
                 ->whereIn('gate_settings.role_id', $roleChildrenIds)

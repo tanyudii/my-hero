@@ -3,10 +3,7 @@
 namespace Smoothsystem\Manager\Listeners;
 
 use Illuminate\Auth\Events\Login;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Request;
-use Smoothsystem\Manager\Entities\LoginActivity;
 
 class LogSuccessfulLogin
 {
@@ -28,10 +25,14 @@ class LogSuccessfulLogin
      */
     public function handle(Login $event)
     {
-        LoginActivity::create([
+        config('smoothsystem.models.login_activity')::disableAuditing();
+
+        config('smoothsystem.models.login_activity')::create([
             'user_id'       =>  $event->user->id,
             'user_agent'    =>  Request::header('User-Agent'),
             'ip_address'    =>  Request::ip()
         ]);
+
+        config('smoothsystem.models.login_activity')::enableAuditing();
     }
 }

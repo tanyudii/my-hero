@@ -13,22 +13,28 @@ class RoleUser extends BaseEntity
         'valid_from',
     ];
 
+    protected $dates = [
+        'valid_from',
+    ];
+
     protected static function boot()
     {
         parent::boot();
 
         static::creating(function ($data) {
-            if (!$data->valid_from) {
-                $data->valid_from = Carbon::now();
+            if (is_null($data->valid_from)) {
+                $data->valid_from = Carbon::now()->toDateString();
             }
         });
     }
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(config('smoothsystem.models.user'));
     }
 
-    public function role() {
+    public function role()
+    {
         return $this->belongsTo(config('smoothsystem.models.role'));
     }
 

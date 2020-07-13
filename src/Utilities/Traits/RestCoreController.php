@@ -5,91 +5,150 @@ namespace Smoothsystem\Manager\Utilities\Traits;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\DB;
-use Smoothsystem\Manager\Http\Resources\DefaultResource;
-use Smoothsystem\Manager\Http\Resources\SelectResource;
+use Smoothsystem\Manager\Http\Resources\BaseResource;
+use Smoothsystem\Manager\Utilities\Entities\BaseEntity;
 use Smoothsystem\Manager\Utilities\Facades\ExceptionService;
 
 trait RestCoreController
 {
     protected $repository;
+    protected $namespace;
     protected $fillable;
-    protected $resource;
+    protected $indexResource;
+    protected $showResource;
     protected $selectResource;
-    protected $policy = false;
+    protected $policies;
+    protected $eagerLoadRelationIndex = [];
+    protected $eagerLoadRelationShow = [];
 
     public function __construct()
     {
-        $this->fillable = $this->repository->getFillable();
+        if (is_null($this->namespace)) {
+            $this->namespace = get_class($this->repository);
+        }
+
+        $repository = app($this->namespace);
+        $this->fillable = (clone $repository)->getFillable();
+
+        if (is_null($this->indexResource)) {
+            $this->indexResource = (clone $repository)->getResource();
+        }
+
+        if (is_null($this->showResource)) {
+            $this->showResource = (clone $repository)->getShowResource();
+        }
+
+        if (is_null($this->selectResource)) {
+            $this->selectResource = (clone $repository)->getSelectResource();
+        }
     }
 
-    public function index(Request $request) {
-        $repository = $request->has('search')
-            ? $this->repository->search($request->get('search'), null, true)
-            : $this->repository;
+    public function index(Request $request)
+    {
+        if ($request->has('search') && !empty($this->repository->getSearchable())) {
+            $repository = $this->repository->search($request->get('search'), null, true);
+        } else {
+            $repository = $this->repository->query();
+        }
 
-        $repository = $repository->criteria($request)
+        if ($request->has('with')) {
+            $with = $request->get('with');
+            $this->eagerLoadRelationIndex = array_merge(
+                $this->eagerLoadRelationIndex,
+                is_array($with) ? $with : [$with]
+            );
+        }
+
+        $repository = $repository->with(array_unique($this->eagerLoadRelationIndex))
+            ->criteria($request)
             ->filter($request);
 
         $data = $request->has('per_page')
-            ? $repository->paginate($request->per_page)
+            ? $repository->paginate($request->get('per_page'))
             : $repository->get();
 
-        return is_subclass_of($this->resource, JsonResource::class)
-            ? $this->resource::collection($data)
-            : DefaultResource::collection($data);
+        if ($this->indexResource && is_subclass_of($this->indexResource, JsonResource::class)) {
+            return $this->indexResource::collection($data);
+        }
+
+        return BaseResource::collection($data);
     }
 
-    public function select(Request $request, $id = null) {
-        if ($id || $request->has('id')) {
-            $data = $this->repository->findOrFail($id ?? $request->get('id'));
+    public function select(Request $request, $id = null)
+    {
+        $repository = $this->repository->criteria($request)
+            ->filter($request);
 
-            if (is_subclass_of($this->selectResource, JsonResource::class)) {
+        if ($id || $request->has('id')) {
+            if ($request->has('with')) {
+                $with = $request->get('with');
+                $this->eagerLoadRelationShow = array_merge(
+                    $this->eagerLoadRelationShow,
+                    is_array($with) ? $with : [$with]
+                );
+            }
+
+            $data = $repository->with(array_unique($this->eagerLoadRelationShow))->findOrFail($id ?? $request->get('id'));
+
+            if ($this->selectResource && is_subclass_of($this->selectResource, JsonResource::class)) {
                 return new $this->selectResource($data);
             }
 
-            return new SelectResource($data);
+            return new BaseResource($data);
         }
 
-        $repository = $request->has('search')
-            ? $this->repository->search($request->get('search'), null, true)
-            : $this->repository;
+        if ($request->has('search') && !empty($this->repository->getSearchable())) {
+            $repository = $this->repository->search($request->get('search'), null, true);
+        } else {
+            $repository = $this->repository->query();
+        }
 
-        $repository = $repository->criteria($request)
+        $repository = $repository->with($this->eagerLoadRelationIndex)
+            ->criteria($request)
             ->filter($request);
 
         $data = $request->has('per_page')
-            ? $repository->paginate($request->per_page)
+            ? $repository->paginate($request->get('per_page'))
             : $repository->get();
 
-        if (is_subclass_of($this->selectResource, JsonResource::class)) {
+        if ($this->selectResource && is_subclass_of($this->selectResource, JsonResource::class)) {
             return $this->selectResource::collection($data);
         }
 
-        return SelectResource::collection($data);
+        return BaseResource::collection($data);
     }
 
-    public function show(Request $request, $id) {
-        $data = $this->repository->find($id);
-
-        if ($this->policy) {
-            $this->authorize('view', $data);
+    public function show(Request $request, $id)
+    {
+        if ($request->has('with')) {
+            $with = $request->get('with');
+            $this->eagerLoadRelationShow = array_merge(
+                $this->eagerLoadRelationShow,
+                is_array($with) ? $with : [$with]
+            );
         }
 
-        return is_subclass_of($this->resource, JsonResource::class)
-            ? new $this->resource($data)
-            : new DefaultResource($data);
+        $data = $this->repository->with(array_unique($this->eagerLoadRelationShow))
+            ->filter($request)
+            ->findOrFail($id);
+
+        $this->gate($data, __FUNCTION__);
+
+        if ($this->showResource && is_subclass_of($this->showResource, JsonResource::class)) {
+            return new $this->showResource($data);
+        }
+
+        return new BaseResource($data);
     }
 
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         try {
             DB::beginTransaction();
 
-            $data = $this->repository->findOrFail($id);
+            $data = $this->repository->filter($request)->findOrFail($id);
 
-            if ($this->policy) {
-                $this->authorize('delete', $data);
-            }
+            $this->gate($data, __FUNCTION__);
 
             $this->repository->destroy($id);
 
@@ -108,6 +167,50 @@ trait RestCoreController
                 'error'   => true,
                 'message' => $e->getMessage()
             ]);
+        }
+    }
+
+    public function multipleDestroy(Request $request)
+    {
+        try {
+            DB::beginTransaction();
+
+            $id = $request->get('id');
+
+            $data = $this->repository->filter($request)
+                ->whereIn('id', is_array($id) ? $id : [$id])
+                ->get();
+
+            foreach ($data as $d) {
+                $this->gate($d, __FUNCTION__);
+                $d->delete();
+            }
+
+            DB::commit();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Data deleted.'
+            ]);
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            ExceptionService::log($e);
+
+            return response()->json([
+                'error'   => true,
+                'message' => $e->getMessage()
+            ]);
+        }
+    }
+
+    private function gate(BaseEntity $data, $policyName) {
+        if (!empty($this->policies)) {
+            if ((is_bool($this->policies) && $this->policies) ||
+                (is_array($this->policies) && in_array($policyName, $this->policies)) ||
+                (is_string($this->policies) && $this->policies == $policyName)) {
+                $this->authorize($policyName, $data);
+            }
         }
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Smoothsystem\Manager\Entities;
 
+use Smoothsystem\Manager\Rules\ValidUnique;
 use Smoothsystem\Manager\Utilities\Entities\BaseEntity;
 
 class Role extends BaseEntity
@@ -14,27 +15,34 @@ class Role extends BaseEntity
         'is_special',
     ];
 
-    public function parent() {
+    protected $casts = [
+        'is_special' => 'boolean',
+    ];
+
+    protected $validationRules = [
+        'name' => 'required|string|max:255',
+        'description' => 'nullable|string|max:255',
+        'parent_id' => 'nullable|exists:roles,id,deleted_at,NULL',
+        'is_special' => 'boolean',
+    ];
+
+    public function parent()
+    {
         return $this->belongsTo(config('smoothsystem.models.role'))->with('parent');
     }
 
-    public function children() {
+    public function children()
+    {
         return $this->hasMany(config('smoothsystem.models.role'),'parent_id')->with('children');
     }
 
-    public function roleUsers() {
+    public function roleUsers()
+    {
         return $this->hasMany(config('smoothsystem.models.role_user'));
     }
 
-    public function gateSettings() {
-        return $this->hasMany(config('smoothsystem.models.gate_setting'));
-    }
-
-    public function users() {
-        return $this->belongsToMany(config('smoothsystem.models.user'), 'role_users')->withTimestamps();
-    }
-
-    public function getChildrenIdsAttribute() {
+    public function getChildrenIdsAttribute()
+    {
         $data = [];
 
         $this->recursiveChildrenGetAttribute($this, $data);
@@ -42,7 +50,8 @@ class Role extends BaseEntity
         return $data;
     }
 
-    public function recursiveChildrenGetAttribute($child, &$data, $key = 'id') {
+    public function recursiveChildrenGetAttribute($child, &$data, $key = 'id')
+    {
         array_push($data, $child[$key]);
 
         if (count($child->children) > 0) {
@@ -50,6 +59,18 @@ class Role extends BaseEntity
                 $this->recursiveChildrenGetAttribute($child, $data, $key);
             }
         }
+    }
+
+    public function setValidationRules(array $request = [], $id = null)
+    {
+        $this->validationRules['code'] = [
+            'required',
+            'string',
+            'max:24',
+            new ValidUnique($this,$id),
+        ];
+
+        return $this;
     }
 
 }

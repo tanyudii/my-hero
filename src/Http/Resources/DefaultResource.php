@@ -17,4 +17,5 @@ class DefaultResource extends JsonResource
     {
         return parent::toArray($request);
     }
+
 }

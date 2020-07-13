@@ -5,13 +5,6 @@ return [
         // custom stub path
         //'path' => app_path('Utilities/Stubs')
     ],
-    'entity' => [
-        'sorting_default' => [
-            'active' => true,
-            'column' => 'id',
-            'order' => 'desc',
-        ],
-    ],
     'passport' => [
         'register' => true,
         'custom_routes' => false,
@@ -28,5 +21,11 @@ return [
         'permission' => Smoothsystem\Manager\Entities\Permission::class,
         'gate_setting' => Smoothsystem\Manager\Entities\GateSetting::class,
         'gate_setting_permission' => Smoothsystem\Manager\Entities\GateSettingPermission::class,
+        'setting' => Smoothsystem\Manager\Entities\Setting::class,
+        'file_log' => Smoothsystem\Manager\Entities\FileLog::class,
+        'file_log_use' => Smoothsystem\Manager\Entities\FileLogUse::class,
+        'number_setting' => Smoothsystem\Manager\Entities\NumberSetting::class,
+        'number_setting_component' => Smoothsystem\Manager\Entities\NumberSettingComponent::class,
+        'login_activity' => Smoothsystem\Manager\Entities\LoginActivity::class,
     ]
 ];
