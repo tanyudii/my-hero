@@ -83,15 +83,8 @@ class ManagerServiceProvider extends ServiceProvider
 
     protected function registerEvents()
     {
-        Event::listen(
-            'Illuminate\Auth\Events\Login',
-            'Smoothsystem\Manager\Listeners\LogSuccessfulLogin'
-        );
-
-        Event::listen(
-            'Laravel\Passport\Events\AccessTokenCreated',
-            'Smoothsystem\Manager\Listeners\TokenSuccessfulGenerate'
-        );
+        Event::listen('Illuminate\Auth\Events\Login','Smoothsystem\Manager\Listeners\LogSuccessfulLogin');
+        Event::listen('Laravel\Passport\Events\AccessTokenCreated','Smoothsystem\Manager\Listeners\TokenSuccessfulGenerate');
     }
 
     protected function registerCommands()
