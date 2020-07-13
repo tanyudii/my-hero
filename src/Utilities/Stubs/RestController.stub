@@ -13,15 +13,13 @@ use Smoothsystem\Manager\Utilities\Traits\RestCoreController;
 class {{ entityName }}Controller extends Controller
 {
     use RestCoreController {
-        RestCoreController::__construct as private __restCoreConstruct;
+        RestCoreController::__construct as private __restConstruct;
     }
 
-    public function __construct({{ entityName }} $repository)
+    public function __construct(Department $repository)
     {
         $this->repository = $repository;
-        $this->resource = {{ entityName }}Resource::class;
-
-        $this->__restCoreConstruct();
+        $this->__restConstruct();
     }
 
     public function store({{ entityName }}CreateRequest $request) {

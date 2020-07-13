@@ -1,6 +1,6 @@
 <?php
 
-namespace Smoothsystem\Manager\Http\Requests;
+namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Smoothsystem\Manager\Utilities\Traits\DefaultFormRequest;
