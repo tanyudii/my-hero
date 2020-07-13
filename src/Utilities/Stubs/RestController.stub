@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Entities\{{ entityName }};
 use App\Http\Requests\{{ entityName }}CreateRequest;
 use App\Http\Requests\{{ entityName }}UpdateRequest;
-use App\Http\Resources\{{ entityName }}Resource;
 use Illuminate\Support\Facades\DB;
 use Smoothsystem\Manager\Utilities\Facades\ExceptionService;
 use Smoothsystem\Manager\Utilities\Traits\RestCoreController;
