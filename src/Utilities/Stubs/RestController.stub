@@ -15,7 +15,7 @@ class {{ entityName }}Controller extends Controller
         RestCoreController::__construct as private __restConstruct;
     }
 
-    public function __construct(Department $repository)
+    public function __construct({{ entityName }} $repository)
     {
         $this->repository = $repository;
         $this->__restConstruct();
