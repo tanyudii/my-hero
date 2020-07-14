@@ -24,7 +24,7 @@ class NumberSetting extends BaseEntity
 
     public function numberSettingComponents()
     {
-        return $this->hasMany(NumberSettingComponent::class);
+        return $this->hasMany(config('smoothsystem.models.number_setting_component'));
     }
 
     public function setValidationRules(array $request = [], $id = null)

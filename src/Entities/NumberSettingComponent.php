@@ -14,7 +14,7 @@ class NumberSettingComponent extends BaseEntity
     ];
 
     public function numberSetting() {
-        return $this->belongsTo(NumberSetting::class);
+        return $this->belongsTo(config('smoothsystem.models.number_setting'));
     }
 
 }
