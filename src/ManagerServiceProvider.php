@@ -9,6 +9,7 @@ use Illuminate\Support\ServiceProvider;
 use Laravel\Passport\Passport;
 use Smoothsystem\Manager\Http\Middleware\Gate;
 use Smoothsystem\Manager\Http\Middleware\Notification;
+use Smoothsystem\Manager\Utilities\Facades\FileLogService;
 use Smoothsystem\Manager\Utilities\Services\ExceptionService;
 use Smoothsystem\Manager\Utilities\Services\FileService;
 use Smoothsystem\Manager\Utilities\Services\RouteService;
@@ -119,6 +120,10 @@ class ManagerServiceProvider extends ServiceProvider
 
         app()->bind('file.service', function() {
             return new FileService;
+        });
+
+        app()->bind('file_log.service', function() {
+            return new FileLogService;
         });
 
         app()->bind('stub.service', function() {
