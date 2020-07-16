@@ -9,7 +9,7 @@ use Illuminate\Support\ServiceProvider;
 use Laravel\Passport\Passport;
 use Smoothsystem\Manager\Http\Middleware\Gate;
 use Smoothsystem\Manager\Http\Middleware\Notification;
-use Smoothsystem\Manager\Utilities\Facades\FileLogService;
+use Smoothsystem\Manager\Utilities\Services\FileLogService;
 use Smoothsystem\Manager\Utilities\Services\ExceptionService;
 use Smoothsystem\Manager\Utilities\Services\FileService;
 use Smoothsystem\Manager\Utilities\Services\RouteService;
