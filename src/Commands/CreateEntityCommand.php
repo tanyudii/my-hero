@@ -42,6 +42,10 @@ class CreateEntityCommand extends Command
             StubService::getStub('Entity')
         );
 
+        if (!file_exists(app_path('Entities'))) {
+            mkdir(app_path('Entities'), 0777, true);
+        }
+
         $path = app_path("Entities/{$name}.php");
         if (file_exists($path)) {
             $this->info("Entity {$name} already exists");

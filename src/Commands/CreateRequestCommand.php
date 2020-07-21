@@ -31,6 +31,10 @@ class CreateRequestCommand extends Command
     {
         $name = $this->argument('name');
 
+        if (!file_exists(app_path('Http/Requests'))) {
+            mkdir(app_path('Http/Requests'), 0777, true);
+        }
+
         $pathCreate = app_path("Http/Requests/{$name}CreateRequest.php");
         if (file_exists($pathCreate)) {
             $this->info("{$name}CreateRequest already exists");

@@ -40,6 +40,10 @@ class CreateMigrationCommand extends Command
             StubService::getStub('Migration')
         );
 
+        if (!file_exists(database_path('migrations'))) {
+            mkdir(app_path('migrations'), 0777, true);
+        }
+
         $path = database_path('migrations/' . Carbon::now()->format('Y_m_d_his') . "_create_{$entityNamePluralSnakeCase}_table.php");
         if (file_exists($path)) {
             $this->info("Migration {$name} already exists");

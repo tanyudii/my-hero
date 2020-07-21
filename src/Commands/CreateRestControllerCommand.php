@@ -38,6 +38,10 @@ class CreateRestControllerCommand extends Command
             StubService::getStub('RestController')
         );
 
+        if (!file_exists(app_path('Http/Controllers'))) {
+            mkdir(app_path('Http/Controllers'), 0777, true);
+        }
+
         $path = app_path("Http/Controllers/{$name}Controller.php");
         if (file_exists($path)) {
             $this->info("{$name}Controller already exists");
