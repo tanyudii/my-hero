@@ -4,6 +4,7 @@ namespace Smoothsystem\Manager\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Smoothsystem\Manager\Utilities\Facades\ResourceService;
 
 class AccountController extends Controller
 {
@@ -13,9 +14,7 @@ class AccountController extends Controller
     {
         $data = config('smoothsystem.models.user')::with($this->lazyLoadingRelationAccount)->findOrFail(Auth::id());
 
-        $resource = $data->getResource();
-
-        return new $resource($data);
+        return ResourceService::jsonResource($data->getResource(), $data);
     }
 
     public function permission(Request $request)

@@ -2,12 +2,19 @@
 
 namespace Smoothsystem\Manager\Utilities\Services;
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class ExceptionService
 {
+    /**
+     * Handler logging exception to log
+     *
+     * @param $e
+     * @return void
+     */
     public function log($e) {
         $messages = [
             'timestamp' => Carbon::now()->toDateString(),
@@ -32,6 +39,12 @@ class ExceptionService
         Log::error(json_encode($messages));
     }
 
+    /**
+     * Handler response from exception and save to log
+     *
+     * @param $e
+     * @return JsonResponse
+     */
     public function responseJson($e) {
         \Smoothsystem\Manager\Utilities\Facades\ExceptionService::log($e);
 

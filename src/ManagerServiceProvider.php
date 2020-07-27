@@ -12,6 +12,7 @@ use Smoothsystem\Manager\Http\Middleware\Notification;
 use Smoothsystem\Manager\Utilities\Services\FileLogService;
 use Smoothsystem\Manager\Utilities\Services\ExceptionService;
 use Smoothsystem\Manager\Utilities\Services\FileService;
+use Smoothsystem\Manager\Utilities\Services\ResourceService;
 use Smoothsystem\Manager\Utilities\Services\RouteService;
 use Smoothsystem\Manager\Utilities\Services\StubService;
 
@@ -132,6 +133,10 @@ class ManagerServiceProvider extends ServiceProvider
 
         app()->bind('route.service', function() {
             return new RouteService;
+        });
+
+        app()->bind('resource.service', function() {
+            return new ResourceService;
         });
     }
 
