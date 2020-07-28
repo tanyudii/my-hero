@@ -1,7 +1,16 @@
 <?php
 
 if (!function_exists('distance')) {
-    function distance($fromLat, $fromLong, $toLat, $toLong, $unit = 'KM') {
+    /**
+     * @param float $fromLat
+     * @param float $fromLong
+     * @param float $toLat
+     * @param float $toLong
+     * @param string $unit
+     *
+     * @return float
+     */
+    function distance(float $fromLat, float $fromLong, float $toLat, float $toLong, string $unit = 'KM') {
         $theta = $fromLong - $toLong;
         $dist = sin(deg2rad($fromLat)) * sin(deg2rad($toLat)) +  cos(deg2rad($fromLat)) * cos(deg2rad($toLat)) * cos(deg2rad($theta));
         $dist = acos($dist);
