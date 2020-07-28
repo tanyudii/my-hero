@@ -55,11 +55,9 @@ class ManagerServiceProvider extends ServiceProvider
 
     protected function registerAssets() {
         $this->mergeConfigFrom($configVodeaManager = __DIR__ . '/../assets/config/smoothsystem.php','smoothsystem-config');
-        $this->mergeConfigFrom($configCors = __DIR__ . '/../assets/config/cors.php','smoothsystem-config');
 
         if ($this->app->runningInConsole()) {
             $this->publishes([$configVodeaManager => config_path('smoothsystem.php')], 'smoothsystem-config');
-            $this->publishes([$configCors => config_path('cors.php')], 'smoothsystem-config');
         }
 
         $this->publishes([__DIR__ . '/../assets/migrations' => database_path('migrations')],'smoothsystem-migration');
