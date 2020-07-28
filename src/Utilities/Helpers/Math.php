@@ -27,3 +27,36 @@ if (!function_exists('distance')) {
         }
     }
 }
+
+if (!function_exists('ceil_thousand')) {
+    /**
+     * @param float $value
+     *
+     * @return float
+     */
+    function ceil_thousand(float $value) {
+        if ($value >= 1000) {
+            return ceil($value / 1000) * 1000;
+        }
+
+        return 1000;
+    }
+}
+
+if (!function_exists('ceil_nearest')) {
+    /**
+     * @param float $value
+     *
+     * @return float
+     */
+    function ceil_nearest(float $value) {
+        if ($value >= 1000) {
+            return ceil($value / 1000) * 1000;
+        }
+
+        $length = strlen(ceil($value));
+        $times = str_pad('1', $length, '0');
+
+        return ceil($value / $times) * $times;
+    }
+}
