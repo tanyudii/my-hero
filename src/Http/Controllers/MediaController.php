@@ -5,25 +5,25 @@ namespace Smoothsystem\Manager\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-use Smoothsystem\Manager\Entities\FileLog;
-use Smoothsystem\Manager\Http\Requests\FileLogCreateRequest;
+use Smoothsystem\Manager\Entities\Media;
+use Smoothsystem\Manager\Http\Requests\MediaCreateRequest;
 use Smoothsystem\Manager\Utilities\Facades\ExceptionService;
 use Smoothsystem\Manager\Utilities\Facades\FileService;
 use Smoothsystem\Manager\Utilities\Traits\RestCoreController;
 
-class FileManagerController extends Controller
+class MediaController extends Controller
 {
     use RestCoreController {
         RestCoreController::__construct as private __restConstruct;
     }
 
-    public function __construct(FileLog $repository)
+    public function __construct(Media $repository)
     {
         $this->repository = $repository;
         $this->__restConstruct();
     }
 
-    public function store(FileLogCreateRequest $request)
+    public function store(MediaCreateRequest $request)
     {
         try {
             DB::beginTransaction();
@@ -58,13 +58,13 @@ class FileManagerController extends Controller
     }
 
     public function download(Request $request, $id) {
-        $fileLog = $this->repository->findOrFail($id);
+        $media = $this->repository->findOrFail($id);
 
-        $disk = Storage::disk($fileLog->disk);
-        if (!(clone $disk)->exists($fileLog->path)) {
+        $disk = Storage::disk($media->disk);
+        if (!(clone $disk)->exists($media->path)) {
             return abort(404);
         }
 
-        return $disk->download($fileLog->path);
+        return $disk->download($media->path);
     }
 }

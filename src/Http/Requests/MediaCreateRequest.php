@@ -5,7 +5,7 @@ namespace Smoothsystem\Manager\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Smoothsystem\Manager\Utilities\Traits\DefaultFormRequest;
 
-class FileLogCreateRequest extends FormRequest
+class MediaCreateRequest extends FormRequest
 {
     use DefaultFormRequest;
 

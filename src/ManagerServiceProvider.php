@@ -9,7 +9,7 @@ use Illuminate\Support\ServiceProvider;
 use Laravel\Passport\Passport;
 use Smoothsystem\Manager\Http\Middleware\Gate;
 use Smoothsystem\Manager\Http\Middleware\Notification;
-use Smoothsystem\Manager\Utilities\Services\FileLogService;
+use Smoothsystem\Manager\Utilities\Services\MediaService;
 use Smoothsystem\Manager\Utilities\Services\ExceptionService;
 use Smoothsystem\Manager\Utilities\Services\FileService;
 use Smoothsystem\Manager\Utilities\Services\ResourceService;
@@ -121,8 +121,8 @@ class ManagerServiceProvider extends ServiceProvider
             return new FileService;
         });
 
-        app()->bind('file_log.service', function() {
-            return new FileLogService;
+        app()->bind('media.service', function() {
+            return new MediaService;
         });
 
         app()->bind('stub.service', function() {

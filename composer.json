@@ -40,6 +40,9 @@
             "aliases": {
                 "ExceptionService": "Smoothsystem\\Manager\\Utilities\\Facades\\ExceptionService",
                 "FileService": "Smoothsystem\\Manager\\Utilities\\Facades\\FileService",
+                "MediaService": "Smoothsystem\\Manager\\Utilities\\Facades\\MediaService",
+                "NumberSettingService": "Smoothsystem\\Manager\\Utilities\\Facades\\NumberSettingService",
+                "ResourceService": "Smoothsystem\\Manager\\Utilities\\Facades\\ResourceService",
                 "RouteService": "Smoothsystem\\Manager\\Utilities\\Facades\\RouteService",
                 "StubService": "Smoothsystem\\Manager\\Utilities\\Facades\\StubService"
             }

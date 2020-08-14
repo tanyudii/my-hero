@@ -2,7 +2,7 @@
 
 namespace Smoothsystem\Manager\Http\Resources;
 
-class FileLogResource extends BaseResource
+class MediaResource extends BaseResource
 {
     /**
      * Transform the resource into an array.
