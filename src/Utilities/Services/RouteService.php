@@ -11,7 +11,7 @@ class RouteService
      *
      * @return void
      */
-    public function fileService() {
+    public function mediaService() {
         Route::group(['prefix' => 'media', 'as' => 'media.', 'namespace' => '\Smoothsystem\Manager\Http\Controllers'], function () {
             Route::get('/', 'MediaController@index')->name('index');
             Route::post('/','MediaController@store')->name('store');

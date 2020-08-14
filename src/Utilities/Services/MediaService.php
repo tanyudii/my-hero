@@ -2,17 +2,17 @@
 
 namespace Smoothsystem\Manager\Utilities\Services;
 
-use Smoothsystem\Manager\Utilities\Entities\BaseEntity;
+use Illuminate\Database\Eloquent\Model;
 
 class MediaService
 {
     /**
      * File log usages
      *
-     * @param BaseEntity $model
+     * @param Model $model
      * @param string $relationName
      */
-    public function logUse(BaseEntity $model, string $relationName) {
+    public function logUse(Model $model, string $relationName) {
         if ($attachment = $model->$relationName) {
             $attachment->mediaUses()->create([
                 'entity' => get_class($model),

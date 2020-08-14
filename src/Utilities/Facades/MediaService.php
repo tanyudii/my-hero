@@ -2,11 +2,11 @@
 
 namespace Smoothsystem\Manager\Utilities\Facades;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Facade;
-use Smoothsystem\Manager\Utilities\Entities\BaseEntity;
 
 /**
- * @method static void logUse(BaseEntity $model, string $relationName)
+ * @method static void logUse(Model $model, string $relationName)
  *
  * @see \Smoothsystem\Manager\Utilities\Services\MediaService
  */
