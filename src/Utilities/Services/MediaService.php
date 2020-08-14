@@ -14,10 +14,14 @@ class MediaService
      */
     public function logUse(Model $model, string $relationName) {
         if ($attachment = $model->$relationName) {
-            $attachment->mediaUses()->create([
+            $logUse = [
                 'entity' => get_class($model),
                 'subject_id' => $model->id
-            ]);
+            ];
+
+            if (!$attachment->mediaUses()->where($logUse)->exists()) {
+                $attachment->mediaUses()->create($logUse);
+            }
         }
     }
 }
