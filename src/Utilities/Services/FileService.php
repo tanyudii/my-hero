@@ -5,7 +5,6 @@ namespace Smoothsystem\Manager\Utilities\Services;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
-use Throwable;
 
 class FileService
 {
@@ -18,7 +17,6 @@ class FileService
      * @param string $path
      *
      * @return array
-     * @throws Throwable
      */
     public function store(Request $request, string $key, string $disk, string $path) {
         try {
@@ -51,8 +49,6 @@ class FileService
             \Smoothsystem\Manager\Utilities\Facades\ExceptionService::log($e);
 
             return [];
-        } catch (\Throwable $e) {
-            throw $e;
         }
     }
 }

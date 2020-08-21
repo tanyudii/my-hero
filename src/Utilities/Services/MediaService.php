@@ -2,9 +2,7 @@
 
 namespace Smoothsystem\Manager\Utilities\Services;
 
-use Exception;
 use Illuminate\Database\Eloquent\Model;
-use Throwable;
 
 class MediaService
 {
@@ -15,7 +13,6 @@ class MediaService
      * @param string $relationName
      *
      * @return void
-     * @throws Throwable
      */
     public function logUse(Model $model, string $relationName) {
         try {
@@ -29,10 +26,8 @@ class MediaService
                     $attachment->mediaUses()->create($logUse);
                 }
             }
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             \Smoothsystem\Manager\Utilities\Facades\ExceptionService::log($e);
-        } catch (Throwable $e) {
-            throw $e;
         }
     }
 }
