@@ -2,16 +2,27 @@
 
 namespace Smoothsystem\Manager\Utilities\Services;
 
+use Exception;
+use Throwable;
+
 class StubService
 {
     /**
      * @param $type
-     * @return false|string
+     *
+     * @return string|void|false
+     * @throws Throwable
      */
     public function getStub($type)
     {
-        $path = config('smoothsystem.stub.path', __DIR__ . '/../Stubs/') . '/' . $type . '.stub';
+        try {
+            $path = config('smoothsystem.stub.path', __DIR__ . '/../Stubs/') . '/' . $type . '.stub';
 
-        return file_get_contents($path);
+            return file_get_contents($path);
+        } catch (Exception $e) {
+            \Smoothsystem\Manager\Utilities\Facades\ExceptionService::log($e);
+        } catch (Throwable $e) {
+            throw $e;
+        }
     }
 }
