@@ -9,8 +9,7 @@ class StubService
 {
     /**
      * @param $type
-     *
-     * @return string|void|false
+     * @return string|array|void
      * @throws Throwable
      */
     public function getStub($type)
