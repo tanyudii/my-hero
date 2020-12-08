@@ -8,7 +8,7 @@ use tanyudii\Hero\Rules\ValidNumberSettingComponent;
 use tanyudii\Hero\Rules\ValidUnique;
 use tanyudii\Hero\Utilities\Constant;
 use tanyudii\Hero\Utilities\Entities\BaseEntity;
-use tanyudii\Hero\Utilities\Entities\HasManySyncAble;
+use tanyudii\Hero\Utilities\HasManySyncAble;
 
 class NumberSetting extends BaseEntity
 {

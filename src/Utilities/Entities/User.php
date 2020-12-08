@@ -1,19 +1,11 @@
 <?php
 
-namespace Smoothsystem\Manager\Utilities\Entities;
+namespace tanyudii\Hero\Utilities\Entities;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Http\Request;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\Schema;
-use Laravel\Passport\HasApiTokens;
 use OwenIt\Auditing\Auditable as AudibleTrait;
 use OwenIt\Auditing\Contracts\Auditable;
-use Smoothsystem\Manager\Rules\NotPresent;
-use Smoothsystem\Manager\Utilities\Traits\EntityFormRequest;
-use Smoothsystem\Manager\Utilities\Traits\ResourceTrait;
-use Smoothsystem\Manager\Utilities\Traits\SearchableCustomTrait;
 use tanyudii\Hero\Utilities\Traits\WithAbility;
 use tanyudii\Hero\Utilities\Traits\WithHasManySyncAble;
 use tanyudii\Hero\Utilities\Traits\WithModelValidation;

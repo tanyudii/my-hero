@@ -5,7 +5,7 @@ namespace tanyudii\Hero\Utilities\Traits;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Carbon;
-use tanyudii\Hero\Utilities\Entities\HasManySyncAble;
+use tanyudii\Hero\Utilities\HasManySyncAble;
 
 trait WithUserGateHero
 {

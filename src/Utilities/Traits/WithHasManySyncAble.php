@@ -2,7 +2,7 @@
 
 namespace tanyudii\Hero\Utilities\Traits;
 
-use tanyudii\Hero\Utilities\Entities\HasManySyncAble;
+use tanyudii\Hero\Utilities\HasManySyncAble;
 
 trait WithHasManySyncAble
 {
