@@ -29,11 +29,9 @@
         "files": []
     },
     "extra": {
-		"branch-alias": {
-            "dev-master": "master-dev",
-            "dev-v1": "1.0.x-dev",
-            "dev-v2": "2.0.x-dev"
-		},
+        "branch-alias": {
+            "dev-master": "master-dev"
+        },
         "laravel": {
             "providers": [
                 "tanyudii\\Hero\\HeroServiceProvider"
