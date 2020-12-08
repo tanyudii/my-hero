@@ -25,8 +25,19 @@ abstract class BaseEntity extends Model implements Auditable
         WithScope,
         WithSearchable;
 
+    /**
+     * @var string
+     */
     protected $indexResource = BaseResource::class;
+
+    /**
+     * @var string
+     */
     protected $showResource = BaseResource::class;
+
+    /**
+     * @var string
+     */
     protected $selectResource = BaseResource::class;
 
     /**

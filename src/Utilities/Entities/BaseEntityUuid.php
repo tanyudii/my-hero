@@ -37,8 +37,19 @@ abstract class BaseEntityUuid extends Model implements Auditable
         });
     }
 
+    /**
+     * @var string
+     */
     protected $indexResource = BaseResource::class;
+
+    /**
+     * @var string
+     */
     protected $showResource = BaseResource::class;
+
+    /**
+     * @var string
+     */
     protected $selectResource = BaseResource::class;
 
     /**
