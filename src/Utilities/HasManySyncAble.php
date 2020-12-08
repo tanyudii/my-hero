@@ -1,6 +1,6 @@
 <?php
 
-namespace tanyudii\Hero\Utilities\Entities;
+namespace tanyudii\Hero\Utilities;
 
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
