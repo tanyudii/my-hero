@@ -13,7 +13,6 @@
         "php": "^7.2",
         "ext-json": "*",
         "laravel/framework": "^5.8|^6.2|^7.0",
-        "laravel/passport": "^7.5|^8.3|^9.3",
         "fzaninotto/faker": "^1.4",
         "langleyfoxall/math_eval": "^2.0",
         "superbalist/laravel-google-cloud-storage": "^2.2",
@@ -42,8 +41,7 @@
                 "MediaService": "tanyudii\\Hero\\Utilities\\Facades\\MediaService",
                 "NumberSettingService": "tanyudii\\Hero\\Utilities\\Facades\\NumberSettingService",
                 "ResourceService": "tanyudii\\Hero\\Utilities\\Facades\\ResourceService",
-                "RouteService": "tanyudii\\Hero\\Utilities\\Facades\\RouteService",
-                "StubService": "tanyudii\\Hero\\Utilities\\Facades\\StubService"
+                "RouteService": "tanyudii\\Hero\\Utilities\\Facades\\RouteService"
             }
         }
     }
