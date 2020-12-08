@@ -19,12 +19,12 @@ abstract class BaseEntityUuid extends Model implements Auditable
 {
     use SoftDeletes,
         Userstamps,
-        WithSearchable,
         AudibleTrait,
         WithAbility,
         WithHasManySyncAble,
         WithModelValidation,
-        WithScope;
+        WithScope,
+        WithSearchable;
 
     public $incrementing = false;
     public $keyType = 'string';

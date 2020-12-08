@@ -18,12 +18,12 @@ abstract class BaseEntity extends Model implements Auditable
 {
     use SoftDeletes,
         Userstamps,
-        WithSearchable,
         AudibleTrait,
         WithAbility,
         WithHasManySyncAble,
         WithModelValidation,
-        WithScope;
+        WithScope,
+        WithSearchable;
 
     protected $indexResource = BaseResource::class;
     protected $showResource = BaseResource::class;
