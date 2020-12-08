@@ -1,15 +1,15 @@
 <?php
 
-namespace Smoothsystem\Manager\Utilities\Traits;
+namespace tanyudii\Hero\Utilities\Traits;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\DB;
-use Smoothsystem\Manager\Http\Resources\BaseResource;
-use Smoothsystem\Manager\Utilities\Entities\BaseEntity;
-use Smoothsystem\Manager\Utilities\Facades\ExceptionService;
-use Smoothsystem\Manager\Utilities\Facades\ResourceService;
+use tanyudii\Hero\Http\Resources\BaseResource;
+use tanyudii\Hero\Utilities\Entities\BaseEntity;
+use tanyudii\Hero\Utilities\Facades\ExceptionService;
+use tanyudii\Hero\Utilities\Facades\ResourceService;
 
 trait RestCoreController
 {

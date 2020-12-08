@@ -1,15 +1,17 @@
 <?php
 
-namespace Smoothsystem\Manager\Http\Controllers;
+namespace tanyudii\Hero\Http\Controllers;
 
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-use Smoothsystem\Manager\Entities\Media;
-use Smoothsystem\Manager\Http\Requests\MediaCreateRequest;
-use Smoothsystem\Manager\Utilities\Facades\ExceptionService;
-use Smoothsystem\Manager\Utilities\Facades\FileService;
-use Smoothsystem\Manager\Utilities\Traits\RestCoreController;
+use Symfony\Component\HttpFoundation\StreamedResponse;
+use tanyudii\Hero\Entities\Media;
+use tanyudii\Hero\Http\Requests\MediaCreateRequest;
+use tanyudii\Hero\Utilities\Facades\ExceptionService;
+use tanyudii\Hero\Utilities\Facades\FileService;
+use tanyudii\Hero\Utilities\Traits\RestCoreController;
 
 class MediaController extends Controller
 {
@@ -31,6 +33,7 @@ class MediaController extends Controller
             $merge = [];
 
             $uploads = FileService::store($request, 'file', $request->get('disk'), $request->get('path'));
+
             foreach ($uploads as $name => $file) {
                 $merge['name'] = $file->name;
                 $merge['encoded_name'] = $file->encoded_name;
@@ -46,23 +49,37 @@ class MediaController extends Controller
 
             DB::commit();
 
-            return ($this->show($request, $data->id))->additional([
-                'success' => true,
-                'message' => 'Data created.'
-            ]);
-        } catch (\Exception $e) {
+            if ($request->wantsJson()) {
+                return ($this->show($request, $data->id))->additional([
+                    'success' => true,
+                    'message' => 'Data created.'
+                ]);
+            }
+
+            return redirect()->back();
+        } catch (Exception $e) {
             DB::rollBack();
 
-            return ExceptionService::responseJson($e);
+            if ($request->wantsJson()) {
+                return ExceptionService::responseJson($e);
+            }
+
+            return ExceptionService::response($e);
         }
     }
 
-    public function download(Request $request, $id) {
+    /**
+     * @param Request $request
+     * @param $id
+     * @return StreamedResponse
+     */
+    public function download(Request $request, $id) : StreamedResponse
+    {
         $media = $this->repository->findOrFail($id);
 
         $disk = Storage::disk($media->disk);
         if (!(clone $disk)->exists($media->path)) {
-            return abort(404);
+            abort(404);
         }
 
         return $disk->download($media->path);

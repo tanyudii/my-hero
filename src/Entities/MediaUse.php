@@ -1,8 +1,10 @@
 <?php
 
-namespace Smoothsystem\Manager\Entities;
+namespace tanyudii\Hero\Entities;
 
-use Smoothsystem\Manager\Utilities\Entities\BaseEntity;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
+use tanyudii\Hero\Utilities\Entities\BaseEntity;
 
 class MediaUse extends BaseEntity
 {
@@ -12,12 +14,18 @@ class MediaUse extends BaseEntity
         'subject_id',
     ];
 
-    public function media()
+    /**
+     * @return BelongsTo
+     */
+    public function media() : BelongsTo
     {
-        return $this->belongsTo(config('smoothsystem.models.media'));
+        return $this->belongsTo(config('hero.models.media'));
     }
 
-    public function subject()
+    /**
+     * @return MorphTo
+     */
+    public function subject() : MorphTo
     {
         return $this->morphTo(__FUNCTION__, 'entity', 'subject_id');
     }

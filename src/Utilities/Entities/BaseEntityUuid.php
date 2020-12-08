@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use OwenIt\Auditing\Auditable as AudibleTrait;
 use OwenIt\Auditing\Contracts\Auditable;
+use Ramsey\Uuid\Uuid;
 use tanyudii\Hero\Http\Resources\BaseResource;
 use tanyudii\Hero\Utilities\Traits\WithSearchable;
 use tanyudii\Hero\Utilities\Traits\WithAbility;
@@ -14,7 +15,7 @@ use tanyudii\Hero\Utilities\Traits\WithModelValidation;
 use tanyudii\Hero\Utilities\Traits\WithScope;
 use Wildside\Userstamps\Userstamps;
 
-abstract class BaseEntity extends Model implements Auditable
+abstract class BaseEntityUuid extends Model implements Auditable
 {
     use SoftDeletes,
         Userstamps,
@@ -24,6 +25,17 @@ abstract class BaseEntity extends Model implements Auditable
         WithHasManySyncAble,
         WithModelValidation,
         WithScope;
+
+    public $incrementing = false;
+    public $keyType = 'string';
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::creating(function (self $data) {
+            $data->id = Uuid::uuid4();
+        });
+    }
 
     protected $indexResource = BaseResource::class;
     protected $showResource = BaseResource::class;
@@ -52,4 +64,5 @@ abstract class BaseEntity extends Model implements Auditable
     {
         return $this->selectResource;
     }
+
 }

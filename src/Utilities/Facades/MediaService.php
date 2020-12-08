@@ -1,6 +1,6 @@
 <?php
 
-namespace Smoothsystem\Manager\Utilities\Facades;
+namespace tanyudii\Hero\Utilities\Facades;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Facade;
@@ -8,11 +8,11 @@ use Illuminate\Support\Facades\Facade;
 /**
  * @method static void logUse(Model $model, string $relationName)
  *
- * @see \Smoothsystem\Manager\Utilities\Services\MediaService
+ * @see \tanyudii\Hero\Utilities\Services\MediaService
  */
 class MediaService extends Facade
 {
-    protected static function getFacadeAccessor()
+    protected static function getFacadeAccessor() : string
     {
         return 'media.service';
     }

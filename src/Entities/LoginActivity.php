@@ -1,8 +1,9 @@
 <?php
 
-namespace Smoothsystem\Manager\Entities;
+namespace tanyudii\Hero\Entities;
 
-use Smoothsystem\Manager\Utilities\Entities\BaseEntity;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use tanyudii\Hero\Utilities\Entities\BaseEntity;
 
 class LoginActivity extends BaseEntity
 {
@@ -12,8 +13,12 @@ class LoginActivity extends BaseEntity
         'ip_address',
     ];
 
-    public function user() {
-        return $this->belongsTo(config('smoothsystem.models.user'));
+    /**
+     * @return BelongsTo
+     */
+    public function user() : BelongsTo
+    {
+        return $this->belongsTo(config('hero.models.user'));
     }
 
 }

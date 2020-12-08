@@ -1,12 +1,34 @@
 <?php
 
 if (!function_exists('arr_key_equal')) {
-    function arr_key_equal(array $array, string $key, $value) {
+    /**
+     * @param array $array
+     * @param string $key
+     * @param $value
+     * @return bool
+     */
+    function arr_key_equal(array $array, string $key, $value) : bool
+    {
         if (is_array($value)) {
             return in_array($value, @$array[$key]);
         }
 
         return @$array[$key] == $value;
+    }
+}
+
+if (!function_exists('arr_strict')) {
+    /**
+     * @param $value
+     * @return array
+     */
+    function arr_strict($value) : array
+    {
+        if (is_array($value)) {
+            return $value;
+        }
+
+        return [$value];
     }
 }
 

@@ -1,6 +1,6 @@
 {
-    "name": "smoothsystem/manager",
-    "description": "SmoothSystem[TM]",
+    "name": "tanyudii/hero",
+    "description": "Hero of Laravel PHP Framework",
     "type": "library",
     "authors": [
         {
@@ -8,6 +8,7 @@
             "email": "y.hertanto17@gmail.com"
         }
     ],
+    "license": "MIT",
     "require": {
         "php": "^7.2",
         "ext-json": "*",
@@ -23,7 +24,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Smoothsystem\\Manager\\": "src/"
+            "tanyudii\\Hero\\": "src/"
         },
         "files": []
     },
@@ -35,16 +36,16 @@
 		},
         "laravel": {
             "providers": [
-                "Smoothsystem\\Manager\\ManagerServiceProvider"
+                "tanyudii\\Hero\\HeroServiceProvider"
             ],
             "aliases": {
-                "ExceptionService": "Smoothsystem\\Manager\\Utilities\\Facades\\ExceptionService",
-                "FileService": "Smoothsystem\\Manager\\Utilities\\Facades\\FileService",
-                "MediaService": "Smoothsystem\\Manager\\Utilities\\Facades\\MediaService",
-                "NumberSettingService": "Smoothsystem\\Manager\\Utilities\\Facades\\NumberSettingService",
-                "ResourceService": "Smoothsystem\\Manager\\Utilities\\Facades\\ResourceService",
-                "RouteService": "Smoothsystem\\Manager\\Utilities\\Facades\\RouteService",
-                "StubService": "Smoothsystem\\Manager\\Utilities\\Facades\\StubService"
+                "ExceptionService": "tanyudii\\Hero\\Utilities\\Facades\\ExceptionService",
+                "FileService": "tanyudii\\Hero\\Utilities\\Facades\\FileService",
+                "MediaService": "tanyudii\\Hero\\Utilities\\Facades\\MediaService",
+                "NumberSettingService": "tanyudii\\Hero\\Utilities\\Facades\\NumberSettingService",
+                "ResourceService": "tanyudii\\Hero\\Utilities\\Facades\\ResourceService",
+                "RouteService": "tanyudii\\Hero\\Utilities\\Facades\\RouteService",
+                "StubService": "tanyudii\\Hero\\Utilities\\Facades\\StubService"
             }
         }
     }

@@ -1,9 +1,9 @@
 <?php
 
-namespace Smoothsystem\Manager\Http\Requests;
+namespace tanyudii\Hero\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Smoothsystem\Manager\Utilities\Traits\DefaultFormRequest;
+use tanyudii\Hero\Utilities\Traits\DefaultFormRequest;
 
 class NumberSettingUpdateRequest extends FormRequest
 {
@@ -11,7 +11,7 @@ class NumberSettingUpdateRequest extends FormRequest
 
     public function __construct(array $query = [], array $request = [], array $attributes = [], array $cookies = [], array $files = [], array $server = [], $content = null)
     {
-        $this->entityNamespace = 'Smoothsystem\\Manager\\Entities\\';
+        $this->entityNamespace = 'tanyudii\\Hero\\Entities\\';
 
         parent::__construct($query, $request, $attributes, $cookies, $files, $server, $content);
     }

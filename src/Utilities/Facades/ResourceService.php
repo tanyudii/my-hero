@@ -1,20 +1,20 @@
 <?php
 
-namespace Smoothsystem\Manager\Utilities\Facades;
+namespace tanyudii\Hero\Utilities\Facades;
 
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Facade;
-use Smoothsystem\Manager\Http\Resources\BaseResource;
 
 /**
  * @method static AnonymousResourceCollection jsonCollection($resource, $data, $additional = [])
- * @method static BaseResource jsonResource($resource, $data, $additional = [])
+ * @method static JsonResource jsonResource($resource, $data, $additional = [])
  *
- * @see \Smoothsystem\Manager\Utilities\Services\ResourceService
+ * @see \tanyudii\Hero\Utilities\Services\ResourceService
  */
 class ResourceService extends Facade
 {
-    protected static function getFacadeAccessor()
+    protected static function getFacadeAccessor() : string
     {
         return 'resource.service';
     }

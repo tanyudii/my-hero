@@ -1,8 +1,9 @@
 <?php
 
-namespace Smoothsystem\Manager\Entities;
+namespace tanyudii\Hero\Entities;
 
-use Smoothsystem\Manager\Utilities\Entities\BaseEntity;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use tanyudii\Hero\Utilities\Entities\BaseEntity;
 
 class GateSettingPermission extends BaseEntity
 {
@@ -11,14 +12,20 @@ class GateSettingPermission extends BaseEntity
         'permission_id',
     ];
 
-    public function gateSetting()
+    /**
+     * @return BelongsTo
+     */
+    public function gateSetting() : BelongsTo
     {
-        return $this->belongsTo(config('smoothsystem.models.gate_setting'));
+        return $this->belongsTo(config('hero.models.gate_setting'));
     }
 
-    public function permission()
+    /**
+     * @return BelongsTo
+     */
+    public function permission() : BelongsTo
     {
-        return $this->belongsTo(config('smoothsystem.models.permission'));
+        return $this->belongsTo(config('hero.models.permission'));
     }
 
 }

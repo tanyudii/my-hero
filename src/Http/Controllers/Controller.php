@@ -1,6 +1,6 @@
 <?php
 
-namespace Smoothsystem\Manager\Http\Controllers;
+namespace tanyudii\Hero\Http\Controllers;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;

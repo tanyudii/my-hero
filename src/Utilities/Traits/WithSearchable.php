@@ -1,14 +1,18 @@
 <?php
 
-namespace Smoothsystem\Manager\Utilities\Traits;
+namespace tanyudii\Hero\Utilities\Traits;
 
 use Nicolaslopezj\Searchable\SearchableTrait;
 
-trait SearchableCustomTrait
+trait WithSearchable
 {
     use SearchableTrait;
 
-    public function getSearchable() {
+    /**
+     * @return array
+     */
+    public function getSearchable() : array
+    {
         if (isset($this->searchable)) {
             return $this->searchable;
         }

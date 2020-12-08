@@ -18,8 +18,8 @@ class RoleUsersTableSeeder extends Seeder
         ];
 
         foreach ($users as $email => $role) {
-            $role = config('smoothsystem.models.role')::where('code', $role)->firstOrFail();
-            $user = config('smoothsystem.models.user')::where('email', $email)->firstOrFail();
+            $role = config('hero.models.role')::where('code', $role)->firstOrFail();
+            $user = config('hero.models.user')::where('email', $email)->firstOrFail();
 
             $user->roleUsers()->create([
                 'role_id' => $role->id,

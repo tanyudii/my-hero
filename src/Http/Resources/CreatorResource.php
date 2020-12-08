@@ -1,6 +1,6 @@
 <?php
 
-namespace Smoothsystem\Manager\Http\Resources;
+namespace tanyudii\Hero\Http\Resources;
 
 class CreatorResource extends BaseResource
 {

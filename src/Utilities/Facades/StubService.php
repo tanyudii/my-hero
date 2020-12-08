@@ -1,17 +1,17 @@
 <?php
 
-namespace Smoothsystem\Manager\Utilities\Facades;
+namespace tanyudii\Hero\Utilities\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @method static false|string getStub()
+ * @method static false|string getStub(string $type)
  *
- * @see \Smoothsystem\Manager\Utilities\Services\StubService
+ * @see \tanyudii\Hero\Utilities\Services\StubService
  */
 class StubService extends Facade
 {
-    protected static function getFacadeAccessor()
+    protected static function getFacadeAccessor() : string
     {
         return 'stub.service';
     }

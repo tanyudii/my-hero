@@ -1,11 +1,11 @@
 <?php
 
-namespace Smoothsystem\Manager\Entities;
+namespace tanyudii\Hero\Entities;
 
 use Illuminate\Support\Facades\Storage;
-use Smoothsystem\Manager\Http\Resources\MediaResource;
-use Smoothsystem\Manager\Rules\ValidInConstant;
-use Smoothsystem\Manager\Utilities\Entities\BaseEntity;
+use tanyudii\Hero\Http\Resources\MediaResource;
+use tanyudii\Hero\Rules\ValidInConstant;
+use tanyudii\Hero\Utilities\Entities\BaseEntity;
 
 class Media extends BaseEntity
 {
@@ -28,10 +28,13 @@ class Media extends BaseEntity
 
     public function mediaUses()
     {
-        return $this->hasMany(config('smoothsystem.models.media_use'));
+        return $this->hasMany(config('hero.models.media_use'));
     }
 
-    public function getUrlAttribute()
+    /**
+     * @return string
+     */
+    public function getUrlAttribute() : string
     {
         return Storage::disk($this->disk)->url($this->path);
     }

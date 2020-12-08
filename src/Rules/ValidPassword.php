@@ -1,6 +1,6 @@
 <?php
 
-namespace Smoothsystem\Manager\Rules;
+namespace tanyudii\Hero\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
@@ -33,9 +33,9 @@ class ValidPassword implements Rule
      * @param  mixed  $value
      * @return bool
      */
-    public function passes($attribute, $value)
+    public function passes($attribute, $value) : bool
     {
-        $user = config('smoothsystem.models.user')::find($this->id);
+        $user = config('hero.models.user')::find($this->id);
 
         return Hash::check($this->password, $user->password);
     }
@@ -45,7 +45,7 @@ class ValidPassword implements Rule
      *
      * @return string
      */
-    public function message()
+    public function message() : string
     {
         return __($this->message);
     }

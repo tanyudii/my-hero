@@ -1,8 +1,8 @@
 <?php
 
-namespace Smoothsystem\Manager\Entities;
+namespace tanyudii\Hero\Entities;
 
-use Smoothsystem\Manager\Utilities\Entities\BaseEntity;
+use tanyudii\Hero\Utilities\Entities\BaseEntity;
 
 class Setting extends BaseEntity
 {

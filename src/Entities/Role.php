@@ -1,9 +1,11 @@
 <?php
 
-namespace Smoothsystem\Manager\Entities;
+namespace tanyudii\Hero\Entities;
 
-use Smoothsystem\Manager\Rules\ValidUnique;
-use Smoothsystem\Manager\Utilities\Entities\BaseEntity;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use tanyudii\Hero\Rules\ValidUnique;
+use tanyudii\Hero\Utilities\Entities\BaseEntity;
 
 class Role extends BaseEntity
 {
@@ -26,22 +28,34 @@ class Role extends BaseEntity
         'is_special' => 'boolean',
     ];
 
-    public function parent()
+    /**
+     * @return BelongsTo
+     */
+    public function parent() : BelongsTo
     {
-        return $this->belongsTo(config('smoothsystem.models.role'))->with('parent');
+        return $this->belongsTo(config('hero.models.role'))->with('parent');
     }
 
-    public function children()
+    /**
+     * @return HasMany
+     */
+    public function children() : HasMany
     {
-        return $this->hasMany(config('smoothsystem.models.role'),'parent_id')->with('children');
+        return $this->hasMany(config('hero.models.role'),'parent_id')->with('children');
     }
 
-    public function roleUsers()
+    /**
+     * @return HasMany
+     */
+    public function roleUsers() : HasMany
     {
-        return $this->hasMany(config('smoothsystem.models.role_user'));
+        return $this->hasMany(config('hero.models.role_user'));
     }
 
-    public function getChildrenIdsAttribute()
+    /**
+     * @return array
+     */
+    public function getChildrenIdsAttribute() : array
     {
         $data = [];
 
@@ -50,7 +64,12 @@ class Role extends BaseEntity
         return $data;
     }
 
-    public function recursiveChildrenGetAttribute($child, &$data, $key = 'id')
+    /**
+     * @param $child
+     * @param $data
+     * @param string $key
+     */
+    public function recursiveChildrenGetAttribute($child, &$data, $key = 'id') : void
     {
         array_push($data, $child[$key]);
 

@@ -1,13 +1,14 @@
 <?php
 
-namespace Smoothsystem\Manager\Entities;
+namespace tanyudii\Hero\Entities;
 
-use Smoothsystem\Manager\Rules\ValidEntity;
-use Smoothsystem\Manager\Rules\ValidInConstant;
-use Smoothsystem\Manager\Rules\ValidNumberSettingComponent;
-use Smoothsystem\Manager\Rules\ValidUnique;
-use Smoothsystem\Manager\Utilities\Constant;
-use Smoothsystem\Manager\Utilities\Entities\BaseEntity;
+use tanyudii\Hero\Rules\ValidEntity;
+use tanyudii\Hero\Rules\ValidInConstant;
+use tanyudii\Hero\Rules\ValidNumberSettingComponent;
+use tanyudii\Hero\Rules\ValidUnique;
+use tanyudii\Hero\Utilities\Constant;
+use tanyudii\Hero\Utilities\Entities\BaseEntity;
+use tanyudii\Hero\Utilities\Entities\HasManySyncAble;
 
 class NumberSetting extends BaseEntity
 {
@@ -22,9 +23,12 @@ class NumberSetting extends BaseEntity
         'number_setting_components.*.sequence' => 'required|distinct|integer|min:1',
     ];
 
-    public function numberSettingComponents()
+    /**
+     * @return HasManySyncAble
+     */
+    public function numberSettingComponents() : HasManySyncAble
     {
-        return $this->hasMany(config('smoothsystem.models.number_setting_component'));
+        return $this->hasMany(config('hero.models.number_setting_component'));
     }
 
     public function setValidationRules(array $request = [], $id = null)

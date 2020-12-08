@@ -1,6 +1,6 @@
 <?php
 
-namespace Smoothsystem\Manager\Rules;
+namespace tanyudii\Hero\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Support\Arr;
@@ -34,7 +34,7 @@ class ValidInConstant implements Rule
      * @param  mixed  $value
      * @return bool
      */
-    public function passes($attribute, $value)
+    public function passes($attribute, $value) : bool
     {
         if (!is_string($value)) {
             return false;
@@ -52,7 +52,7 @@ class ValidInConstant implements Rule
      *
      * @return string
      */
-    public function message()
+    public function message() : string
     {
         return __($this->message);
     }

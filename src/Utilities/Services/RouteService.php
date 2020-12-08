@@ -1,6 +1,6 @@
 <?php
 
-namespace Smoothsystem\Manager\Utilities\Services;
+namespace tanyudii\Hero\Utilities\Services;
 
 use Illuminate\Support\Facades\Route;
 
@@ -11,11 +11,11 @@ class RouteService
      *
      * @return void
      */
-    public function mediaService() {
-        Route::group(['prefix' => 'media', 'as' => 'media.', 'namespace' => '\Smoothsystem\Manager\Http\Controllers'], function () {
+    public function mediaService() : void
+    {
+        Route::group(['prefix' => 'media', 'as' => 'media.', 'namespace' => '\tanyudii\Hero\Http\Controllers'], function () {
             Route::get('/', 'MediaController@index')->name('index');
             Route::post('/','MediaController@store')->name('store');
-
         });
     }
 
@@ -24,12 +24,12 @@ class RouteService
      *
      * @return void
      */
-    public function notificationService() {
-        Route::group(['prefix' => 'notification', 'as' => 'notification.', 'namespace' => '\Smoothsystem\Manager\Http\Controllers'], function () {
+    public function notificationService() : void
+    {
+        Route::group(['prefix' => 'notification', 'as' => 'notification.', 'namespace' => '\tanyudii\Hero\Http\Controllers'], function () {
             Route::get('/','NotificationController@index')->name('index');
             Route::get('/{id}', 'NotificationController@show')->name('show');
             Route::post('/read-all', 'NotificationController@readAll')->name('read-all');
-
         });
     }
 
@@ -38,8 +38,9 @@ class RouteService
      *
      * @return void
      */
-    public function numberSettingService() {
-        Route::group(['prefix' => 'number-setting', 'as' => 'number-setting.', 'namespace' => '\Smoothsystem\Manager\Http\Controllers'], function () {
+    public function numberSettingService() : void
+    {
+        Route::group(['prefix' => 'number-setting', 'as' => 'number-setting.', 'namespace' => '\tanyudii\Hero\Http\Controllers'], function () {
             Route::get('/','NumberSettingController@index')->name('index');
             Route::post('/','NumberSettingController@store')->name('store');
             Route::get('/{id}','NumberSettingController@show')->name('show');

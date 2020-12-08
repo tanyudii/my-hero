@@ -1,10 +1,12 @@
 <?php
 
-namespace Smoothsystem\Manager\Entities;
+namespace tanyudii\Hero\Entities;
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
-use Smoothsystem\Manager\Rules\ValidUser;
-use Smoothsystem\Manager\Utilities\Entities\BaseEntity;
+use tanyudii\Hero\Utilities\Entities\BaseEntity;
 
 class GateSetting extends BaseEntity
 {
@@ -20,6 +22,7 @@ class GateSetting extends BaseEntity
 
     protected $validationRules = [
         'role_id' => 'required_without:user_id|exists:roles,id,deleted_at,NULL',
+        'user_id' => 'required_without:role_id|exists:users,id,deleted_at,NULL',
         'valid_from' => 'required|date_format:Y-m-d',
         'permission_ids' => 'required|array|min:1',
         'permission_ids.*' => 'required|exists:permissions,id,deleted_at,NULL',
@@ -36,34 +39,36 @@ class GateSetting extends BaseEntity
         });
     }
 
-    public function role()
+    /**
+     * @return BelongsTo
+     */
+    public function role() : BelongsTo
     {
-        return $this->belongsTo(config('smoothsystem.entities.role'));
+        return $this->belongsTo(config('hero.entities.role'));
     }
 
-    public function user()
+    /**
+     * @return BelongsTo
+     */
+    public function user() : BelongsTo
     {
-        return $this->belongsTo(config('smoothsystem.entities.user'));
+        return $this->belongsTo(config('hero.entities.user'));
     }
 
-    public function gateSettingPermissions()
+    /**
+     * @return HasMany
+     */
+    public function gateSettingPermissions() : HasMany
     {
-        return $this->hasMany(config('smoothsystem.models.gate_permission_setting'));
+        return $this->hasMany(config('hero.models.gate_permission_setting'));
     }
 
-    public function permissions()
+    /**
+     * @return BelongsToMany
+     */
+    public function permissions() : BelongsToMany
     {
-        return $this->belongsToMany(config('smoothsystem.models.permission'), 'gate_setting_permissions')->withTimestamps();
-    }
-
-    public function setValidationRules(array $request = [], $id = null)
-    {
-        $this->validationRules['user_id'] = [
-            'required_without:role_id',
-            new ValidUser(),
-        ];
-
-        return $this;
+        return $this->belongsToMany(config('hero.models.permission'), 'gate_setting_permissions')->withTimestamps();
     }
 
 }

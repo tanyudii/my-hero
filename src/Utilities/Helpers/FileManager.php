@@ -1,7 +1,12 @@
 <?php
 
 if (!function_exists('get_json_from_path')) {
-    function get_json_from_path(string $path) {
+    /**
+     * @param string $path
+     * @return array
+     */
+    function get_json_from_path(string $path) : array
+    {
         if (!file_exists($path)) {
             return [];
         }

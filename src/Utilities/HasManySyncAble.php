@@ -1,12 +1,17 @@
 <?php
 
-namespace Smoothsystem\Manager\Utilities\Entities;
+namespace tanyudii\Hero\Utilities\Entities;
 
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class HasManySyncable extends HasMany
+class HasManySyncAble extends HasMany
 {
-    public function sync($data, $deleting = true)
+    /**
+     * @param $data
+     * @param bool $deleting
+     * @return array[]
+     */
+    public function sync($data, $deleting = true) : array
     {
         $changes = [
             'created' => [],
@@ -66,7 +71,7 @@ class HasManySyncable extends HasMany
      * @param  array  $keys
      * @return array
      */
-    protected function castKeys(array $keys)
+    protected function castKeys(array $keys) : array
     {
         return (array) array_map(function ($v) {
             return $this->castKey($v);

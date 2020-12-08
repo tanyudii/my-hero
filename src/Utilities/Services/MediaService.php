@@ -1,7 +1,8 @@
 <?php
 
-namespace Smoothsystem\Manager\Utilities\Services;
+namespace tanyudii\Hero\Utilities\Services;
 
+use Exception;
 use Illuminate\Database\Eloquent\Model;
 
 class MediaService
@@ -11,10 +12,11 @@ class MediaService
      *
      * @param Model $model
      * @param string $relationName
-     *
      * @return void
+     * @throws Exception
      */
-    public function logUse(Model $model, string $relationName) {
+    public function logUse(Model $model, string $relationName) : void
+    {
         try {
             if ($attachment = $model->$relationName) {
                 $logUse = [
@@ -26,8 +28,8 @@ class MediaService
                     $attachment->mediaUses()->create($logUse);
                 }
             }
-        } catch (\Exception $e) {
-            \Smoothsystem\Manager\Utilities\Facades\ExceptionService::log($e);
+        } catch (Exception $e) {
+            throw $e;
         }
     }
 }

@@ -1,9 +1,9 @@
 <?php
 
-namespace Smoothsystem\Manager\Rules;
+namespace tanyudii\Hero\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
-use Smoothsystem\Manager\Utilities\Constant;
+use tanyudii\Hero\Utilities\Constant;
 
 class ValidNumberSettingComponent implements Rule
 {
@@ -25,7 +25,7 @@ class ValidNumberSettingComponent implements Rule
      * @param  mixed  $value
      * @return bool
      */
-    public function passes($attribute, $value)
+    public function passes($attribute, $value) : bool
     {
         if (!is_array($value) || empty($value)) {
             return false;
@@ -45,7 +45,7 @@ class ValidNumberSettingComponent implements Rule
      *
      * @return string
      */
-    public function message()
+    public function message() : string
     {
         return __($this->message);
     }

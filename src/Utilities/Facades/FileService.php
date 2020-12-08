@@ -1,6 +1,6 @@
 <?php
 
-namespace Smoothsystem\Manager\Utilities\Facades;
+namespace tanyudii\Hero\Utilities\Facades;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Facade;
@@ -8,11 +8,11 @@ use Illuminate\Support\Facades\Facade;
 /**
  * @method static array store(Request $request, string $key, string $disk, string $path)
  *
- * @see \Smoothsystem\Manager\Utilities\Services\FileService
+ * @see \tanyudii\Hero\Utilities\Services\FileService
  */
 class FileService extends Facade
 {
-    protected static function getFacadeAccessor()
+    protected static function getFacadeAccessor() : string
     {
         return 'file.service';
     }

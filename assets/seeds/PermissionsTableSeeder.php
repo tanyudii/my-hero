@@ -16,7 +16,7 @@ class PermissionsTableSeeder extends Seeder
         $routes = Route::getRoutes()->getRoutes();
         foreach ($routes as $route) {
             $middleware = $route->gatherMiddleware();
-            if (!in_array('smoothsystem.gate', $middleware) || is_null($route->getName())) {
+            if (!in_array('hero.gate', $middleware) || is_null($route->getName())) {
                 continue;
             }
 
@@ -26,11 +26,11 @@ class PermissionsTableSeeder extends Seeder
                 'method' => $route->getActionMethod(),
             ];
 
-            if (config('smoothsystem.models.permission')::where($permission)->exists()) {
+            if (config('hero.models.permission')::where($permission)->exists()) {
                 continue;
             }
 
-            config('smoothsystem.models.permission')::create($permission);
+            config('hero.models.permission')::create($permission);
         }
     }
 }

@@ -1,8 +1,9 @@
 <?php
 
-namespace Smoothsystem\Manager\Utilities\Services;
+namespace tanyudii\Hero\Utilities\Services;
 
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -15,7 +16,8 @@ class ExceptionService
      * @param $e
      * @return void
      */
-    public function log($e) {
+    public function log($e) : void
+    {
         $messages = [
             'timestamp' => Carbon::now()->toDateString(),
         ];
@@ -45,12 +47,28 @@ class ExceptionService
      * @param $e
      * @return JsonResponse
      */
-    public function responseJson($e) {
-        \Smoothsystem\Manager\Utilities\Facades\ExceptionService::log($e);
+    public function responseJson($e) : JsonResponse
+    {
+        \tanyudii\Hero\Utilities\Facades\ExceptionService::log($e);
 
         return response()->json([
             'error' => true,
             'message' => $e->getMessage()
         ], $e->status ?? 500);
+    }
+
+    /**
+     * Handler response from exception and save to log
+     *
+     * @param $e
+     * @return RedirectResponse
+     */
+    public function response($e) : RedirectResponse
+    {
+        \tanyudii\Hero\Utilities\Facades\ExceptionService::log($e);
+
+        return redirect()->back()->withErrors([
+            'message' => $e->getMessage()
+        ]);
     }
 }

@@ -17,7 +17,7 @@ class RolesTableSeeder extends Seeder
         ];
 
         foreach ($roles as $index => $role) {
-            config('smoothsystem.models.role')::create($role);
+            config('hero.models.role')::create($role);
         }
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Smoothsystem\Manager\Http\Middleware;
+namespace tanyudii\Hero\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;

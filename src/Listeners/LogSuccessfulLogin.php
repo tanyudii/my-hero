@@ -1,6 +1,6 @@
 <?php
 
-namespace Smoothsystem\Manager\Listeners;
+namespace tanyudii\Hero\Listeners;
 
 use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Request;
@@ -25,14 +25,14 @@ class LogSuccessfulLogin
      */
     public function handle(Login $event)
     {
-        config('smoothsystem.models.login_activity')::disableAuditing();
+        config('hero.models.login_activity')::disableAuditing();
 
-        config('smoothsystem.models.login_activity')::create([
+        config('hero.models.login_activity')::create([
             'user_id'       =>  $event->user->id,
             'user_agent'    =>  Request::header('User-Agent'),
             'ip_address'    =>  Request::ip()
         ]);
 
-        config('smoothsystem.models.login_activity')::enableAuditing();
+        config('hero.models.login_activity')::enableAuditing();
     }
 }

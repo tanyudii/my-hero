@@ -7,10 +7,10 @@ if (!function_exists('distance')) {
      * @param float $toLat
      * @param float $toLong
      * @param string $unit
-     *
      * @return float
      */
-    function distance(float $fromLat, float $fromLong, float $toLat, float $toLong, string $unit = 'KM') {
+    function distance(float $fromLat, float $fromLong, float $toLat, float $toLong, string $unit = 'KM') : float
+    {
         $theta = $fromLong - $toLong;
         $dist = sin(deg2rad($fromLat)) * sin(deg2rad($toLat)) +  cos(deg2rad($fromLat)) * cos(deg2rad($toLat)) * cos(deg2rad($theta));
         $dist = acos($dist);
@@ -31,10 +31,10 @@ if (!function_exists('distance')) {
 if (!function_exists('ceil_thousand')) {
     /**
      * @param float $value
-     *
      * @return float
      */
-    function ceil_thousand(float $value) {
+    function ceil_thousand(float $value) : float
+    {
         if ($value >= 1000) {
             return ceil($value / 1000) * 1000;
         }
@@ -46,10 +46,10 @@ if (!function_exists('ceil_thousand')) {
 if (!function_exists('ceil_nearest')) {
     /**
      * @param float $value
-     *
      * @return float
      */
-    function ceil_nearest(float $value) {
+    function ceil_nearest(float $value) : float
+    {
         if ($value >= 1000) {
             return ceil($value / 1000) * 1000;
         }

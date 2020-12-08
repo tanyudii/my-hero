@@ -1,9 +1,10 @@
 <?php
 
-namespace Smoothsystem\Manager\Entities;
+namespace tanyudii\Hero\Entities;
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
-use Smoothsystem\Manager\Utilities\Entities\BaseEntity;
+use tanyudii\Hero\Utilities\Entities\BaseEntity;
 
 class RoleUser extends BaseEntity
 {
@@ -28,14 +29,20 @@ class RoleUser extends BaseEntity
         });
     }
 
-    public function user()
+    /**
+     * @return BelongsTo
+     */
+    public function user() : BelongsTo
     {
-        return $this->belongsTo(config('smoothsystem.models.user'));
+        return $this->belongsTo(config('hero.models.user'));
     }
 
-    public function role()
+    /**
+     * @return BelongsTo
+     */
+    public function role() : BelongsTo
     {
-        return $this->belongsTo(config('smoothsystem.models.role'));
+        return $this->belongsTo(config('hero.models.role'));
     }
 
 }

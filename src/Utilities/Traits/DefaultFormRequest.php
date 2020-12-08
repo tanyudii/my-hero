@@ -1,12 +1,12 @@
 <?php
 
-namespace Smoothsystem\Manager\Utilities\Traits;
+namespace tanyudii\Hero\Utilities\Traits;
 
 trait DefaultFormRequest
 {
     protected $entityNamespace = 'App\\Entities\\';
 
-    public function authorize()
+    public function authorize() : bool
     {
         return true;
     }
@@ -16,8 +16,10 @@ trait DefaultFormRequest
         $nameSpace = $this->entityNamespace . preg_replace('/(CreateRequest|UpdateRequest)/','',class_basename($this));
         $model = app($nameSpace);
 
-        if (@$this->id) {
-            return $model->setValidationRules($this->all(), $this->id)->setExceptUpdateFields()->getValidationRules();
+        if (!empty($this->id)) {
+            return $model->setValidationRules($this->all(), $this->id)
+                ->setExceptUpdateFields()
+                ->getValidationRules();
         }
 
         return $model->setValidationRules($this->all())->getValidationRules();
@@ -28,7 +30,7 @@ trait DefaultFormRequest
         $nameSpace = $this->entityNamespace . preg_replace('/(CreateRequest|UpdateRequest)/','',class_basename($this));
         $model = app($nameSpace);
 
-        return $model->setValidationMessages($this->all(), @$this->id)->getValidationMessages();
+        return $model->setValidationMessages($this->all())->getValidationMessages();
     }
 
     public function attributes()
@@ -36,6 +38,6 @@ trait DefaultFormRequest
         $nameSpace = $this->entityNamespace . preg_replace('/(CreateRequest|UpdateRequest)/','',class_basename($this));
         $model = app($nameSpace);
 
-        return $model->setValidationAttributes($this->all(), @$this->id)->getValidationAttributes();
+        return $model->setValidationAttributes($this->all())->getValidationAttributes();
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Smoothsystem\Manager\Rules;
+namespace tanyudii\Hero\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
@@ -28,17 +28,17 @@ class ValidSubjectIdFromEntity implements Rule
      * @param  mixed  $value
      * @return bool
      */
-    public function passes($attribute, $value)
+    public function passes($attribute, $value) : bool
     {
-        if (!$entity = @$this->request['entity']) {
+        if (empty($this->request['entity'])) {
             return false;
         }
 
-        if (!class_exists($entity)) {
+        if (!class_exists($this->request['entity'])) {
             return false;
         }
 
-        return app($entity)::find($value);
+        return app($this->request['entity'])::find($value);
     }
 
     /**
@@ -46,7 +46,7 @@ class ValidSubjectIdFromEntity implements Rule
      *
      * @return string
      */
-    public function message()
+    public function message() : string
     {
         return __($this->message);
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Smoothsystem\Manager\Rules;
+namespace tanyudii\Hero\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
@@ -25,7 +25,7 @@ class NotPresent implements Rule
      * @param  mixed  $value
      * @return bool
      */
-    public function passes($attribute, $value)
+    public function passes($attribute, $value) : bool
     {
         return false;
     }
@@ -35,7 +35,7 @@ class NotPresent implements Rule
      *
      * @return string
      */
-    public function message()
+    public function message() : string
     {
         return __($this->message);
     }

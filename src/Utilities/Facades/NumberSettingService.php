@@ -1,17 +1,17 @@
 <?php
 
-namespace Smoothsystem\Manager\Utilities\Facades;
+namespace tanyudii\Hero\Utilities\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
 /**
  * @method static string generateNumber(string $entity, $date = null, $subjectId = null)
  *
- * @see \Smoothsystem\Manager\Utilities\Services\NumberSettingService
+ * @see \tanyudii\Hero\Utilities\Services\NumberSettingService
  */
 class NumberSettingService extends Facade
 {
-    protected static function getFacadeAccessor()
+    protected static function getFacadeAccessor() : string
     {
         return 'number-setting.service';
     }

@@ -1,8 +1,9 @@
 <?php
 
-namespace Smoothsystem\Manager\Entities;
+namespace tanyudii\Hero\Entities;
 
-use Smoothsystem\Manager\Utilities\Entities\BaseEntity;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use tanyudii\Hero\Utilities\Entities\BaseEntity;
 
 class NumberSettingComponent extends BaseEntity
 {
@@ -13,8 +14,12 @@ class NumberSettingComponent extends BaseEntity
         'format',
     ];
 
-    public function numberSetting() {
-        return $this->belongsTo(config('smoothsystem.models.number_setting'));
+    /**
+     * @return BelongsTo
+     */
+    public function numberSetting() : BelongsTo
+    {
+        return $this->belongsTo(config('hero.models.number_setting'));
     }
 
 }

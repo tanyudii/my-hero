@@ -1,10 +1,10 @@
 <?php
 
-namespace Smoothsystem\Manager\Rules;
+namespace tanyudii\Hero\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Support\Arr;
-use Smoothsystem\Manager\Utilities\Entities\BaseEntity;
+use tanyudii\Hero\Utilities\Entities\BaseEntity;
 
 class ValidUnique implements Rule
 {
@@ -40,7 +40,7 @@ class ValidUnique implements Rule
      * @param  mixed  $value
      * @return bool
      */
-    public function passes($attribute, $value)
+    public function passes($attribute, $value) : bool
     {
         if (empty($this->model)) {
             return false;
@@ -62,7 +62,7 @@ class ValidUnique implements Rule
      *
      * @return string
      */
-    public function message()
+    public function message() : string
     {
         return __($this->message);
     }

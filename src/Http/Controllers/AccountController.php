@@ -1,37 +1,41 @@
 <?php
 
-namespace Smoothsystem\Manager\Http\Controllers;
+namespace tanyudii\Hero\Http\Controllers;
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Auth;
-use Smoothsystem\Manager\Utilities\Facades\ResourceService;
+use tanyudii\Hero\Utilities\Facades\ResourceService;
 
 class AccountController extends Controller
 {
+    /**
+     * @var array
+     */
     protected $lazyLoadingRelationAccount = [];
 
-    public function account(Request $request)
+    /**
+     * @param Request $request
+     * @return JsonResource
+     */
+    public function account(Request $request) : JsonResource
     {
-        $data = config('smoothsystem.models.user')::with($this->lazyLoadingRelationAccount)->findOrFail(Auth::id());
+        $data = config('hero.models.user')::with($this->lazyLoadingRelationAccount)->findOrFail(Auth::id());
 
         return ResourceService::jsonResource($data->getResource(), $data);
     }
 
-    public function permission(Request $request)
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function permission(Request $request) : JsonResponse
     {
-        $data = config('smoothsystem.models.user')::findOrFail(Auth::id());
+        $data = config('hero.models.user')::findOrFail(Auth::id());
 
         return response()->json([
             'data' => $data->permissions
-        ], 200);
-    }
-
-    public function revoke(Request $request)
-    {
-        $request->user()->token()->revoke();
-
-        return response()->json([
-            'success' => true,
         ], 200);
     }
 }
