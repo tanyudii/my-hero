@@ -2,6 +2,7 @@
 
 namespace tanyudii\Hero\Utilities\Traits;
 
+use Illuminate\Database\Eloquent\Builder;
 use tanyudii\Hero\Rules\NotPresent;
 
 trait WithModelValidation
@@ -49,9 +50,9 @@ trait WithModelValidation
     }
 
     /**
-     * @return self
+     * @return $this
      */
-    public function assignNotPresent() : self
+    public function assignNotPresent()
     {
         foreach ($this->getFillable() as $field) {
             if (!array_key_exists($field,$this->validationRules)) {
@@ -63,9 +64,9 @@ trait WithModelValidation
     }
 
     /**
-     * @return self
+     * @return $this
      */
-    public function setExceptUpdateFields() : self
+    public function setExceptUpdateFields()
     {
         foreach ($this->exceptUpdateFields as $exceptUpdateField) {
             $this->validationRules[$exceptUpdateField] = [ new NotPresent() ];
@@ -77,27 +78,27 @@ trait WithModelValidation
     /**
      * @param array $request
      * @param null $id
-     * @return self
+     * @return $this
      */
-    public function setValidationRules(array $request = [], $id = null) : self
+    public function setValidationRules(array $request = [], $id = null)
     {
         return $this;
     }
 
     /**
      * @param array $request
-     * @return self
+     * @return $this
      */
-    public function setValidationMessages(array $request = []) : self
+    public function setValidationMessages(array $request = [])
     {
         return $this;
     }
 
     /**
      * @param array $request
-     * @return self
+     * @return $this
      */
-    public function setValidationAttributes(array $request = []) : self
+    public function setValidationAttributes(array $request = [])
     {
         return $this;
     }
