@@ -12,6 +12,7 @@ use tanyudii\Hero\Utilities\Traits\WithModelValidation;
 use tanyudii\Hero\Utilities\Traits\WithResource;
 use tanyudii\Hero\Utilities\Traits\WithScope;
 use tanyudii\Hero\Utilities\Traits\WithSearchable;
+use tanyudii\Hero\Utilities\Traits\WithUserGateHero;
 use Wildside\Userstamps\Userstamps;
 
 abstract class User extends Authenticatable implements Auditable
@@ -24,5 +25,6 @@ abstract class User extends Authenticatable implements Auditable
         WithModelValidation,
         WithResource,
         WithScope,
-        WithSearchable;
+        WithSearchable,
+        WithUserGateHero;
 }
