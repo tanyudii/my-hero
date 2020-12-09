@@ -9,9 +9,13 @@ use tanyudii\Hero\Utilities\Entities\BaseEntity;
 
 class Media extends BaseEntity
 {
-    protected $indexResource = MediaResource::class;
-    protected $showResource = MediaResource::class;
-    protected $selectResource = MediaResource::class;
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+        $this->indexResource = MediaResource::class;
+        $this->showResource = MediaResource::class;
+        $this->selectResource = MediaResource::class;
+    }
 
     protected $fillable = [
         'name',
