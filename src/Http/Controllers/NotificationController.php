@@ -22,10 +22,14 @@ class NotificationController extends Controller
     public function index(Request $request) : AnonymousResourceCollection
     {
         $data = [];
+        $totalUnreadNotification = 0;
+
         if (Auth::check()) {
             $repository = Auth::user()->notifications()
                 ->with('notifiable')
                 ->orderByDesc('notifications.created_at');
+
+            $totalUnreadNotification = $repository->whereNull('read_at')->count();
 
             if ($request->get('type') == 'read') {
                 $repository = $repository->whereNotNull('read_at');
@@ -38,7 +42,9 @@ class NotificationController extends Controller
                 : $repository->get();
         }
 
-        return ResourceService::jsonCollection(DefaultResource::class, $data);
+        return ResourceService::jsonCollection(DefaultResource::class,$data, [
+            'total_unread_notification' => $totalUnreadNotification
+        ]);
     }
 
     /**
