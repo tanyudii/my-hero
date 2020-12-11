@@ -9,14 +9,21 @@ trait WithSearchable
     use SearchableTrait;
 
     /**
-     * @return array
+     * @return bool
      */
-    public function getSearchable() : array
+    public function isWithSearchable()
     {
-        if (isset($this->searchable)) {
-            return $this->searchable;
-        }
+        return isset($this->searchable);
+    }
 
-        return [];
+    /**
+     * The dynamic searchable column
+     *
+     * @param $query
+     * @param array $searchable
+     */
+    public function scopeSetSearchScope($query, $searchable = [])
+    {
+        $this->searchable = $searchable;
     }
 }
