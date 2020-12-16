@@ -4,7 +4,7 @@ namespace tanyudii\Hero\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
-class ValidEntity implements Rule
+class ValidModel implements Rule
 {
     protected $message;
 

@@ -17,7 +17,7 @@ class CreateMediaUsesTable extends Migration
             $table->bigIncrements('id');
 
             $table->relation('media_id', 'media', false);
-            $table->string('entity');
+            $table->string('model');
             $table->unsignedBigInteger('subject_id')->index();
 
             $table->userTimeStamp();

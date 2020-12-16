@@ -1,12 +1,12 @@
 <?php
 
-namespace tanyudii\Hero\Entities;
+namespace tanyudii\Hero\Models;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
-use tanyudii\Hero\Utilities\Entities\BaseEntity;
+use tanyudii\Hero\Utilities\Models\BaseModel;
 
-class RoleUser extends BaseEntity
+class RoleUser extends BaseModel
 {
     protected $fillable = [
         'role_id',

@@ -4,7 +4,7 @@ namespace tanyudii\Hero\Utilities\Traits;
 
 trait DefaultFormRequest
 {
-    protected $entityNamespace = 'App\\Entities\\';
+    protected $modelNamespace = 'App\\Models\\';
 
     public function authorize() : bool
     {
@@ -13,7 +13,7 @@ trait DefaultFormRequest
 
     public function rules()
     {
-        $nameSpace = $this->entityNamespace . preg_replace('/(CreateRequest|UpdateRequest)/','',class_basename($this));
+        $nameSpace = $this->modelNamespace . preg_replace('/(CreateRequest|UpdateRequest)/','',class_basename($this));
         $model = app($nameSpace);
 
         if (!empty($this->id)) {
@@ -27,7 +27,7 @@ trait DefaultFormRequest
 
     public function messages()
     {
-        $nameSpace = $this->entityNamespace . preg_replace('/(CreateRequest|UpdateRequest)/','',class_basename($this));
+        $nameSpace = $this->modelNamespace . preg_replace('/(CreateRequest|UpdateRequest)/','',class_basename($this));
         $model = app($nameSpace);
 
         return $model->setValidationMessages($this->all())->getValidationMessages();
@@ -35,7 +35,7 @@ trait DefaultFormRequest
 
     public function attributes()
     {
-        $nameSpace = $this->entityNamespace . preg_replace('/(CreateRequest|UpdateRequest)/','',class_basename($this));
+        $nameSpace = $this->modelNamespace . preg_replace('/(CreateRequest|UpdateRequest)/','',class_basename($this));
         $model = app($nameSpace);
 
         return $model->setValidationAttributes($this->all())->getValidationAttributes();

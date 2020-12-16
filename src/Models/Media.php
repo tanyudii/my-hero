@@ -1,13 +1,13 @@
 <?php
 
-namespace tanyudii\Hero\Entities;
+namespace tanyudii\Hero\Models;
 
 use Illuminate\Support\Facades\Storage;
 use tanyudii\Hero\Http\Resources\MediaResource;
 use tanyudii\Hero\Rules\ValidInConstant;
-use tanyudii\Hero\Utilities\Entities\BaseEntity;
+use tanyudii\Hero\Utilities\Models\BaseModel;
 
-class Media extends BaseEntity
+class Media extends BaseModel
 {
     public function __construct(array $attributes = [])
     {

@@ -17,7 +17,7 @@ class CreateNumberSettingsTable extends Migration
             $table->bigIncrements('id');
 
             $table->string('name');
-            $table->string('entity');
+            $table->string('model');
             $table->string('reset_type');
 
             $table->userTimeStamp();

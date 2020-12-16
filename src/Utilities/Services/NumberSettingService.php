@@ -12,15 +12,15 @@ class NumberSettingService
     /**
      * Number generator transaction
      *
-     * @param string $entity
+     * @param string $model
      * @param null $date
      * @param null $subjectId
      * @return string
      */
-    public function generateNumber(string $entity, $date = null, $subjectId = null) : string
+    public function generateNumber(string $model, $date = null, $subjectId = null) : string
     {
-        $tableName = app($entity)->getTable();
-        $numberSetting = config('hero.models.number_setting')::where('entity', $entity)->first();
+        $tableName = app($model)->getTable();
+        $numberSetting = config('hero.models.number_setting')::where('model', $model)->first();
 
         if (is_null($numberSetting) || !$numberSetting->numberSettingComponents()->exists()) {
             return (DB::select("show table status like '{$tableName}'"))[0]->Auto_increment;
@@ -84,7 +84,7 @@ class NumberSettingService
 
         $dateColumn = Schema::hasColumn($tableName, 'date') ? 'date' : 'created_at';
 
-        $subjectNumbers = app($entity)
+        $subjectNumbers = app($model)
             ->withoutGlobalScopes()
             ->where('number', 'like', $queryNumber)
             ->when($numberSetting->reset_type == Constant::NUMBER_SETTING_RESET_TYPE_YEARLY || $numberSetting->reset_type == Constant::NUMBER_SETTING_RESET_TYPE_MONTHLY, function ($query) use ($dateColumn, $date){

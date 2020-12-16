@@ -5,7 +5,7 @@ namespace tanyudii\Hero\Utilities\Facades;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @method static string generateNumber(string $entity, $date = null, $subjectId = null)
+ * @method static string generateNumber(string $model, $date = null, $subjectId = null)
  *
  * @see \tanyudii\Hero\Utilities\Services\NumberSettingService
  */

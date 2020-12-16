@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\DB;
 use tanyudii\Hero\Http\Resources\BaseResource;
-use tanyudii\Hero\Utilities\Entities\BaseEntity;
+use tanyudii\Hero\Utilities\Models\BaseModel;
 use tanyudii\Hero\Utilities\Facades\ExceptionService;
 use tanyudii\Hero\Utilities\Facades\ResourceService;
 

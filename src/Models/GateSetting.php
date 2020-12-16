@@ -1,14 +1,14 @@
 <?php
 
-namespace tanyudii\Hero\Entities;
+namespace tanyudii\Hero\Models;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
-use tanyudii\Hero\Utilities\Entities\BaseEntity;
+use tanyudii\Hero\Utilities\Models\BaseModel;
 
-class GateSetting extends BaseEntity
+class GateSetting extends BaseModel
 {
     protected $fillable = [
         'role_id',

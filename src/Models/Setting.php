@@ -1,10 +1,10 @@
 <?php
 
-namespace tanyudii\Hero\Entities;
+namespace tanyudii\Hero\Models;
 
-use tanyudii\Hero\Utilities\Entities\BaseEntity;
+use tanyudii\Hero\Utilities\Models\BaseModel;
 
-class Setting extends BaseEntity
+class Setting extends BaseModel
 {
     protected $fillable = [
         'type',

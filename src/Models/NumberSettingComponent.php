@@ -1,11 +1,11 @@
 <?php
 
-namespace tanyudii\Hero\Entities;
+namespace tanyudii\Hero\Models;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use tanyudii\Hero\Utilities\Entities\BaseEntity;
+use tanyudii\Hero\Utilities\Models\BaseModel;
 
-class NumberSettingComponent extends BaseEntity
+class NumberSettingComponent extends BaseModel
 {
     protected $fillable = [
         'number_setting_id',

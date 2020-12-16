@@ -3,7 +3,7 @@
 namespace tanyudii\Hero\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
-use tanyudii\Hero\Entities\NumberSetting;
+use tanyudii\Hero\Models\NumberSetting;
 use tanyudii\Hero\Http\Requests\NumberSettingCreateRequest;
 use tanyudii\Hero\Http\Requests\NumberSettingUpdateRequest;
 use tanyudii\Hero\Utilities\Facades\ExceptionService;

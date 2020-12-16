@@ -1,13 +1,13 @@
 <?php
 
-namespace tanyudii\Hero\Entities;
+namespace tanyudii\Hero\Models;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use tanyudii\Hero\Rules\ValidUnique;
-use tanyudii\Hero\Utilities\Entities\BaseEntity;
+use tanyudii\Hero\Utilities\Models\BaseModel;
 
-class Role extends BaseEntity
+class Role extends BaseModel
 {
     protected $fillable = [
         'code',

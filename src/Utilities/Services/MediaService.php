@@ -20,7 +20,7 @@ class MediaService
         try {
             if ($attachment = $model->$relationName) {
                 $logUse = [
-                    'entity' => get_class($model),
+                    'model' => get_class($model),
                     'subject_id' => $model->id
                 ];
 

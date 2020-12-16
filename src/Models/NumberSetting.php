@@ -1,20 +1,20 @@
 <?php
 
-namespace tanyudii\Hero\Entities;
+namespace tanyudii\Hero\Models;
 
-use tanyudii\Hero\Rules\ValidEntity;
+use tanyudii\Hero\Rules\ValidModel;
 use tanyudii\Hero\Rules\ValidInConstant;
 use tanyudii\Hero\Rules\ValidNumberSettingComponent;
 use tanyudii\Hero\Rules\ValidUnique;
 use tanyudii\Hero\Utilities\Constant;
-use tanyudii\Hero\Utilities\Entities\BaseEntity;
+use tanyudii\Hero\Utilities\Models\BaseModel;
 use tanyudii\Hero\Utilities\HasManySyncAble;
 
-class NumberSetting extends BaseEntity
+class NumberSetting extends BaseModel
 {
     protected $fillable = [
         'name',
-        'entity',
+        'model',
         'reset_type',
     ];
 
@@ -33,10 +33,10 @@ class NumberSetting extends BaseEntity
 
     public function setValidationRules(array $request = [], $id = null)
     {
-        $this->validationRules['entity'] = [
+        $this->validationRules['model'] = [
             'required',
             new ValidUnique($this, $id),
-            new ValidEntity(),
+            new ValidModel(),
         ];
 
         $this->validationRules['reset_type'] = [

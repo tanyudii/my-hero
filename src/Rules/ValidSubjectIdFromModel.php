@@ -4,7 +4,7 @@ namespace tanyudii\Hero\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
-class ValidSubjectIdFromEntity implements Rule
+class ValidSubjectIdFromModel implements Rule
 {
     protected $request;
     protected $message;
@@ -30,15 +30,15 @@ class ValidSubjectIdFromEntity implements Rule
      */
     public function passes($attribute, $value) : bool
     {
-        if (empty($this->request['entity'])) {
+        if (empty($this->request['model'])) {
             return false;
         }
 
-        if (!class_exists($this->request['entity'])) {
+        if (!class_exists($this->request['model'])) {
             return false;
         }
 
-        return app($this->request['entity'])::find($value);
+        return app($this->request['model'])::find($value);
     }
 
     /**

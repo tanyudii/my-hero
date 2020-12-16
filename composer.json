@@ -18,7 +18,8 @@
         "owen-it/laravel-auditing": "^12.0",
         "staudenmeir/eloquent-json-relations": "^1.5",
         "superbalist/laravel-google-cloud-storage": "^2.2",
-        "wildside/userstamps": "^2.1"
+        "wildside/userstamps": "^2.1",
+        "laravel/passport": "^10.1"
     },
     "autoload": {
         "psr-4": {

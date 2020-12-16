@@ -1,6 +1,6 @@
 <?php
 
-namespace tanyudii\Hero\Utilities\Entities;
+namespace tanyudii\Hero\Utilities\Models;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;

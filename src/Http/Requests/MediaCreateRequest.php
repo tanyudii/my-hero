@@ -11,7 +11,7 @@ class MediaCreateRequest extends FormRequest
 
     public function __construct(array $query = [], array $request = [], array $attributes = [], array $cookies = [], array $files = [], array $server = [], $content = null)
     {
-        $this->entityNamespace = 'tanyudii\\Hero\\Entities\\';
+        $this->modelNamespace = 'tanyudii\\Hero\\Models\\';
 
         parent::__construct($query, $request, $attributes, $cookies, $files, $server, $content);
     }

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\StreamedResponse;
-use tanyudii\Hero\Entities\Media;
+use tanyudii\Hero\Models\Media;
 use tanyudii\Hero\Http\Requests\MediaCreateRequest;
 use tanyudii\Hero\Utilities\Facades\ExceptionService;
 use tanyudii\Hero\Utilities\Facades\FileService;

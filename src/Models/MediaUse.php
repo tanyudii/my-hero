@@ -1,16 +1,16 @@
 <?php
 
-namespace tanyudii\Hero\Entities;
+namespace tanyudii\Hero\Models;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
-use tanyudii\Hero\Utilities\Entities\BaseEntity;
+use tanyudii\Hero\Utilities\Models\BaseModel;
 
-class MediaUse extends BaseEntity
+class MediaUse extends BaseModel
 {
     protected $fillable = [
         'media_id',
-        'entity',
+        'model',
         'subject_id',
     ];
 
@@ -27,7 +27,7 @@ class MediaUse extends BaseEntity
      */
     public function subject() : MorphTo
     {
-        return $this->morphTo(__FUNCTION__, 'entity', 'subject_id');
+        return $this->morphTo(__FUNCTION__, 'model', 'subject_id');
     }
 
 }

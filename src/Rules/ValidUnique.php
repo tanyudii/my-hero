@@ -4,7 +4,7 @@ namespace tanyudii\Hero\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Support\Arr;
-use tanyudii\Hero\Utilities\Entities\BaseEntity;
+use tanyudii\Hero\Utilities\Models\BaseModel;
 
 class ValidUnique implements Rule
 {
@@ -25,7 +25,7 @@ class ValidUnique implements Rule
             $model = app($model);
         }
 
-        if ($model instanceof BaseEntity) {
+        if ($model instanceof BaseModel) {
             $this->model = $model;
         }
 

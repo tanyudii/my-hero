@@ -1,6 +1,6 @@
 <?php
 
-namespace tanyudii\Hero\Utilities\Entities;
+namespace tanyudii\Hero\Utilities\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -15,7 +15,7 @@ use tanyudii\Hero\Utilities\Traits\WithScope;
 use tanyudii\Hero\Utilities\Traits\WithSearchable;
 use Wildside\Userstamps\Userstamps;
 
-abstract class BaseEntityUuid extends Model implements Auditable
+abstract class BaseModelUuid extends Model implements Auditable
 {
     use SoftDeletes,
         Userstamps,
