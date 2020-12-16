@@ -53,7 +53,7 @@ class HeroServiceProvider extends ServiceProvider
 
         $this->publishes([__DIR__ . '/../assets/migrations' => database_path('migrations')],'hero-migration');
         $this->publishes([__DIR__ . '/../assets/factories' => database_path('factories')],'hero-factory');
-        $this->publishes([__DIR__ . '/../assets/seeds' => database_path('seeds')],'hero-seed');
+        $this->publishes([__DIR__ . '/../assets/seeders' => database_path('seeds')],'hero-seed');
     }
 
     private function registerSchemas()
