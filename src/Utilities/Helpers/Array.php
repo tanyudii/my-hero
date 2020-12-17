@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Arr;
+
 if (!function_exists('arr_key_equal')) {
     /**
      * @param array $array
@@ -7,13 +9,12 @@ if (!function_exists('arr_key_equal')) {
      * @param $value
      * @return bool
      */
-    function arr_key_equal(array $array, string $key, $value) : bool
-    {
+    function arr_key_equal(array $array, string $key, $value) {
         if (is_array($value)) {
-            return in_array($value, @$array[$key]);
+            return in_array($value, Arr::get($array, $key));
         }
 
-        return @$array[$key] == $value;
+        return Arr::get($array, $key) == $value;
     }
 }
 
